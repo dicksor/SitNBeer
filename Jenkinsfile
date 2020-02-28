@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
 			        sh '(cd ./SitNBeer/; mvn clean package)'
-		          stash name: "app", includes: "**"fF
+		          stash name: "app", includes: "**"
             }
         }
         stage('QualityTest') {
