@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "bar")
 public class Bar {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
