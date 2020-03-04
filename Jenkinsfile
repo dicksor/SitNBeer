@@ -14,7 +14,7 @@ pipeline {
       }
       steps {
         echo "Building"
-        sh '(mvn clean package)'
+        sh '(cd ./SitNBeer/; mvn clean package)'
         stash name: "app", includes: "**"
       }
     }
@@ -26,20 +26,10 @@ pipeline {
       }
       steps {
         echo "Running quality tests"
-        sh '(mvn clean test)'
-        sh '(mvn sonar:sonar)'
+        sh '(cd ./SitNBeer/; mvn clean test)'
+        sh '(cd ./SitNBeer/; mvn sonar:sonar)'
       }
     }
-  }
-  post {
-    always {
-      echo 'Clean up'
-      deleteDir()
-    }
-  }
-}
-
-/*
     stage('IntegrationTest') {
       agent {
         docker {
@@ -50,7 +40,7 @@ pipeline {
       steps {
         echo "Running integration tests"
         unstash "app"
-        sh 'java -jar .SitNBeer/target/SitNBeer-SNAPSHOT.jar >/dev/null 2>&1 &'
+        sh 'java -jar ./SitNBeer/target/SitNBeer-SNAPSHOT.jar >/dev/null 2>&1 &'
         sh 'sleep 30'
         sh 'chmod +x ./runTest.sh'
         sh './runTest.sh'
@@ -58,4 +48,11 @@ pipeline {
         cleanWs()
       }
     }
-*/
+  }
+  post {
+    always {
+      echo 'Clean up'
+      deleteDir()
+    }
+  }
+}
