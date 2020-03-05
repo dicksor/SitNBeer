@@ -8,7 +8,7 @@ class BarController{
 
     @RequestMapping("/bar")
 	public String index() {
-		return "Hello bar";
+		return "bar";
 	}
 
 }
