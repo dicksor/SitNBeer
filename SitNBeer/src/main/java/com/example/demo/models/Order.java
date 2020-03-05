@@ -2,16 +2,17 @@ package com.example.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -19,28 +20,25 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    @NotEmpty(message = "*Please provide a user")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "bar_id")
-    @NotEmpty(message = "*Please provide a bar")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bar_id", nullable = false)
     private Bar bar;
 
-    @OneToOne
-    @JoinColumn(name = "beer_id")
-    @NotEmpty(message = "*Please provide a beer")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "beer_id", nullable = false)
     private Beer beer;
 
     @Column(name = "table")
-    @NotEmpty(message = "*Please provide a table")
+    @NotNull(message = "*Please provide a table")
     private Integer table;
 
     @Column(name = "status")
-    @NotEmpty(message = "*Please provide a status")
-    private int status;
+    @NotNull(message = "*Please provide a status")
+    private Integer status;
 
     public Integer getId() {
         return id;
@@ -86,7 +84,7 @@ public class Order {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

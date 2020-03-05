@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,9 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "bar")
+@Table(name = "bars")
 public class Bar {
 
     @Id
@@ -19,8 +21,8 @@ public class Bar {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "name")
@@ -32,7 +34,7 @@ public class Bar {
     private String address;
 
     @Column(name = "available_table")
-    @NotEmpty(message = "*Please provide a number of available tables")
+    @NotNull(message = "*Please provide a number of available tables")
     private int availableTable;
 
     public Integer getId() {

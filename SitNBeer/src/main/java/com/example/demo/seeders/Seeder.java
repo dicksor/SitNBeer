@@ -37,9 +37,9 @@ public class Seeder implements ISeeder {
     public void seedDB() {
         seedRoleTable();
         seedUserTable();
-        /*
-         * seedBeerTable(); seedBarTable(); seedOrderTable();
-         */
+        seedBarTable();
+        seedBeerTable();
+        seedOrderTable();
     }
 
     private void seedRoleTable() {
@@ -52,18 +52,18 @@ public class Seeder implements ISeeder {
         userSeeder.seedDB();
     }
 
-    private void seedBarTable() {
-        BarSeeder barSeeder = new BarSeeder(barRepository);
-        barSeeder.seedDB();
-    }
-
     private void seedBeerTable() {
-        BeerSeeder beerSeeder = new BeerSeeder(beerRepository);
+        BeerSeeder beerSeeder = new BeerSeeder(beerRepository, barRepository);
         beerSeeder.seedDB();
     }
 
+    private void seedBarTable() {
+        BarSeeder barSeeder = new BarSeeder(barRepository, userRepository);
+        barSeeder.seedDB();
+    }
+
     private void seedOrderTable() {
-        OrderSeeder orderSeeder = new OrderSeeder(orderRepository);
+        OrderSeeder orderSeeder = new OrderSeeder(orderRepository, userRepository, beerRepository, barRepository);
         orderSeeder.seedDB();
     }
 

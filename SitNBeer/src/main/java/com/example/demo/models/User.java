@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -36,7 +36,7 @@ public class User {
   private Integer active;
 
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-  @JoinTable(name = "user_role")
+  @JoinColumn(name = "user_role", nullable = false)
   private Role role;
 
   public Integer getId() {

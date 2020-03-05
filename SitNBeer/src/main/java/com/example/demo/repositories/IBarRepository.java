@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IBarRepository extends JpaRepository<Bar, Long>{
-
+    Bar findByName(String name);
 }

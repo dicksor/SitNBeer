@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IBeerRepository extends JpaRepository<Beer, Long>{
-
+    Beer findByName(String name);
 }

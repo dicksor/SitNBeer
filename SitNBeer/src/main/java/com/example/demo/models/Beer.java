@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,9 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "beer")
+@Table(name = "beers")
 public class Beer {
 
     @Id
@@ -23,8 +25,8 @@ public class Beer {
     @NotEmpty(message = "*Please provide a name")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "bar_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bar_id", nullable = false)
     private Bar bar;
 
     @Column(name = "manufacturer")
@@ -32,15 +34,15 @@ public class Beer {
     private String manufacturer;
 
     @Column(name = "price")
-    @NotEmpty(message = "*Please provide a price")
+    @NotNull(message = "*Please provide a price")
     private double price;
 
     @Column(name = "volume")
-    @NotEmpty(message = "*Please provide a volume")
+    @NotNull(message = "*Please provide a volume")
     private double volume;
 
     @Column(name = "stock_quantity")
-    @NotEmpty(message = "*Please provide a price")
+    @NotNull(message = "*Please provide a price")
     private int stockQuantity;
 
     public Integer getId() {
