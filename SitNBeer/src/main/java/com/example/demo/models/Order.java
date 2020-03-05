@@ -6,8 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "order")
@@ -18,19 +19,28 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    @NotEmpty(message = "*Please provide a user")
     private User user;
 
-    @ManyToOne
-    @JoinColumn
+    @OneToOne
+    @JoinColumn(name = "bar_id")
+    @NotEmpty(message = "*Please provide a bar")
+    private Bar bar;
+
+    @OneToOne
+    @JoinColumn(name = "beer_id")
+    @NotEmpty(message = "*Please provide a beer")
     private Beer beer;
 
     @Column(name = "table")
+    @NotEmpty(message = "*Please provide a table")
     private Integer table;
 
     @Column(name = "status")
-    private int status; // TODO : Define a better type than int
+    @NotEmpty(message = "*Please provide a status")
+    private int status;
 
     public Integer getId() {
         return id;
@@ -46,6 +56,14 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
     }
 
     public Beer getBeer() {

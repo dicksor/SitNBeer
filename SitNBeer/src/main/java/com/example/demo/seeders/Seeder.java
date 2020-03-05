@@ -1,5 +1,11 @@
 package com.example.demo.seeders;
 
+import com.example.demo.repositories.IBarRepository;
+import com.example.demo.repositories.IBeerRepository;
+import com.example.demo.repositories.IOrderRepository;
+import com.example.demo.repositories.IRoleRepository;
+import com.example.demo.repositories.IUserRepository;
+
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -7,7 +13,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class Seeder implements ISeeder {
 
-    public Seeder() {
+    private IBarRepository barRepository;
+    private IBeerRepository beerRepository;
+    private IOrderRepository orderRepository;
+    private IRoleRepository roleRepository;
+    private IUserRepository userRepository;
+
+    public Seeder(IBarRepository barRepository, IBeerRepository beerRepository, IOrderRepository orderRepository,
+            IRoleRepository roleRepository, IUserRepository userRepository) {
+        this.barRepository = barRepository;
+        this.beerRepository = beerRepository;
+        this.orderRepository = orderRepository;
+        this.roleRepository = roleRepository;
+        this.userRepository = userRepository;
     }
 
     @EventListener
@@ -17,16 +35,35 @@ public class Seeder implements ISeeder {
 
     @Override
     public void seedDB() {
-        UserSeeder userSeeder = new UserSeeder();
+        seedRoleTable();
+        seedUserTable();
+        /*
+         * seedBeerTable(); seedBarTable(); seedOrderTable();
+         */
+    }
+
+    private void seedRoleTable() {
+        RoleSeeder roleSeeder = new RoleSeeder(roleRepository);
+        roleSeeder.seedDB();
+    }
+
+    private void seedUserTable() {
+        UserSeeder userSeeder = new UserSeeder(userRepository, roleRepository);
         userSeeder.seedDB();
+    }
 
-        BarSeeder barSeeder = new BarSeeder();
+    private void seedBarTable() {
+        BarSeeder barSeeder = new BarSeeder(barRepository);
         barSeeder.seedDB();
+    }
 
-        BeerSeeder beerSeeder = new BeerSeeder();
+    private void seedBeerTable() {
+        BeerSeeder beerSeeder = new BeerSeeder(beerRepository);
         beerSeeder.seedDB();
+    }
 
-        OrderSeeder orderSeeder = new OrderSeeder();
+    private void seedOrderTable() {
+        OrderSeeder orderSeeder = new OrderSeeder(orderRepository);
         orderSeeder.seedDB();
     }
 

@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,8 +19,8 @@ public class Bar {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "name")
@@ -33,7 +33,7 @@ public class Bar {
 
     @Column(name = "available_table")
     @NotEmpty(message = "*Please provide a number of available tables")
-    private String availableTable;
+    private int availableTable;
 
     public Integer getId() {
         return id;
@@ -67,11 +67,11 @@ public class Bar {
         this.address = address;
     }
 
-    public String getAvailableTable() {
+    public int getAvailableTable() {
         return availableTable;
     }
 
-    public void setAvailableTable(String availableTable) {
+    public void setAvailableTable(int availableTable) {
         this.availableTable = availableTable;
     }
 
