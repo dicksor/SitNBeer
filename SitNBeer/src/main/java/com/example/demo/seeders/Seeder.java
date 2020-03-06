@@ -39,7 +39,7 @@ public class Seeder implements ISeeder {
         seedUserTable();
         seedBarTable();
         seedBeerTable();
-        seedOrderTable();
+        //seedOrderTable();
     }
 
     private void seedRoleTable() {
