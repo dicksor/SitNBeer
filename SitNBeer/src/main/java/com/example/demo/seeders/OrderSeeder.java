@@ -1,10 +1,13 @@
 package com.example.demo.seeders;
 
+import java.util.List;
+import java.util.Random;
+
+import com.example.demo.models.Bar;
+import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
-import com.example.demo.repositories.IBarRepository;
-import com.example.demo.repositories.IBeerRepository;
+import com.example.demo.models.User;
 import com.example.demo.repositories.IOrderRepository;
-import com.example.demo.repositories.IUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,30 +18,27 @@ public class OrderSeeder implements ISeeder {
     @Autowired
     private IOrderRepository orderRepository;
 
-    @Autowired
-    private IUserRepository userRepository;
+    private List<User> fakeUsers;
+    private List<Beer> fakeBeers;
+    private List<Bar> fakeBars;
 
-    @Autowired
-    private IBeerRepository beerRepository;
-
-    @Autowired
-    private IBarRepository barRepository;
-
-    public OrderSeeder(IOrderRepository orderRepository, IUserRepository userRepository, IBeerRepository beerRepository,
-            IBarRepository barRepository) {
+    public OrderSeeder(IOrderRepository orderRepository, List<User> fakeUsers, List<Beer> fakeBeers, List<Bar> fakeBars) {
         this.orderRepository = orderRepository;
-        this.userRepository = userRepository;
-        this.beerRepository = beerRepository;
-        this.barRepository = barRepository;
+
+        this.fakeUsers = fakeUsers;
+        this.fakeBeers = fakeBeers;
+        this.fakeBars = fakeBars;
     }
 
     @Override
     public void seedDB() {
+        Random rand = new Random();
+
         if (orderRepository.findAll().isEmpty()) {
             Order order = new Order();
-            order.setBar(barRepository.findByName("B'art"));
-            order.setBeer(beerRepository.findByName("Porn star"));
-            order.setUser(userRepository.findByName("test"));
+            order.setUser(fakeUsers.get(rand.nextInt(fakeUsers.size() - 1)));
+            order.setBeer(fakeBeers.get(rand.nextInt(fakeBeers.size() - 1)));
+            order.setBar(fakeBars.get(rand.nextInt(fakeBars.size() - 1)));
             order.setStatus(1);
             order.setTable(10);
             orderRepository.save(order);

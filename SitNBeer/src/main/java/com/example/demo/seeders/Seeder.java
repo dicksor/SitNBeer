@@ -18,6 +18,9 @@ public class Seeder implements ISeeder {
     private IOrderRepository orderRepository;
     private IRoleRepository roleRepository;
     private IUserRepository userRepository;
+    private UserSeeder userSeeder;
+    private BarSeeder barSeeder;
+    private BeerSeeder beerSeeder;
 
     public Seeder(IBarRepository barRepository, IBeerRepository beerRepository, IOrderRepository orderRepository,
             IRoleRepository roleRepository, IUserRepository userRepository) {
@@ -48,22 +51,23 @@ public class Seeder implements ISeeder {
     }
 
     private void seedUserTable() {
-        UserSeeder userSeeder = new UserSeeder(userRepository, roleRepository);
+        this.userSeeder = new UserSeeder(userRepository, roleRepository);
         userSeeder.seedDB();
     }
 
-    private void seedBeerTable() {
-        BeerSeeder beerSeeder = new BeerSeeder(beerRepository, barRepository);
-        beerSeeder.seedDB();
-    }
-
     private void seedBarTable() {
-        BarSeeder barSeeder = new BarSeeder(barRepository, userRepository);
+        this.barSeeder = new BarSeeder(barRepository, userSeeder.getFakeUsers());
         barSeeder.seedDB();
     }
 
+    private void seedBeerTable() {
+        this.beerSeeder = new BeerSeeder(beerRepository, barSeeder.getFakeBars());
+        beerSeeder.seedDB();
+    }
+
     private void seedOrderTable() {
-        OrderSeeder orderSeeder = new OrderSeeder(orderRepository, userRepository, beerRepository, barRepository);
+        OrderSeeder orderSeeder = new OrderSeeder(orderRepository, userSeeder.getFakeUsers(), beerSeeder.getFakeBeers(),
+                barSeeder.getFakeBars());
         orderSeeder.seedDB();
     }
 
