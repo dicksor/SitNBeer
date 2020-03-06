@@ -1,8 +1,13 @@
 package com.example.demo.seeders;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
+import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
-import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
+import com.github.javafaker.Faker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,25 +18,40 @@ public class BeerSeeder implements ISeeder {
     @Autowired
     private IBeerRepository beerRepository;
 
-    @Autowired
-    private IBarRepository barRepository;
+    private List<Bar> fakeBars;
+    private List<Beer> fakeBeers;
 
-    public BeerSeeder(IBeerRepository beerRepository, IBarRepository barRepository) {
+    public BeerSeeder(IBeerRepository beerRepository, List<Bar> fakeBars) {
         this.beerRepository = beerRepository;
-        this.barRepository = barRepository;
+        this.fakeBars = fakeBars;
+
+        this.fakeBeers = new LinkedList<Beer>();
     }
 
     @Override
     public void seedDB() {
         if (beerRepository.findAll().isEmpty()) {
+            generateFakeBeer();
+        }
+    }
+
+    public List<Beer> getFakeBeers(){
+        return this.fakeBeers;
+    }
+
+    private void generateFakeBeer() {
+        Faker faker = new Faker();
+        Random rand = new Random();
+
+        for (int i = 0; i < 50; i++) {
             Beer beer = new Beer();
-            beer.setBar(barRepository.findByName("B'art"));
-            beer.setManufacturer("Happy people");
-            beer.setName("Porn star");
-            beer.setPrice(3.5);
-            beer.setStockQuantity(100);
-            beer.setVolume(6.1);
-            beerRepository.save(beer);
+            beer.setBar(fakeBars.get(rand.nextInt(fakeBars.size() - 1)));
+            beer.setManufacturer(faker.company().name());
+            beer.setName(faker.beer().name());
+            beer.setPrice(faker.number().randomDouble(1, 2, 20));
+            beer.setStockQuantity(faker.number().numberBetween(10, 200));
+            beer.setVolume(faker.number().randomDouble(2, 0, 12));
+            this.fakeBeers.add(beerRepository.save(beer));
         }
     }
 
