@@ -41,7 +41,7 @@ class BarController{
 
 		bar.setUser(loggedUser);
 		
-		return "result";
+		return "/";
 	}
 
 }
