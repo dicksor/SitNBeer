@@ -1,10 +1,20 @@
 <th:block th:fragment="navbar">
+    <ul id="dropdown-bar" class="dropdown-content">
+        <li><a th:href="@{/bar}">Show bars</a></li>
+        <li><a href="#!">Add bar</a></li>
+    </ul>
+    <ul id="dropdown-beer" class="dropdown-content">
+        <li><a th:href="@{/beer}">Show beers</a></li>
+        <li><a href="#!">Add beer</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper">
             <a th:href="@{/}" class="brand-logo">SitNBeer</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a th:href="@{/bar}">Bars</a></li>
-                <li><a th:href="@{/beer}">Beers</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-bar">Bars<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
                 <li><a th:href="@{/login}">Login</a></li>
                 <li><a th:href="@{/register}">Register</a></li>
             </ul>
