@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -31,6 +32,9 @@ public class User {
 
   @Column(name = "email")
   private String email;
+
+  @Transient
+	private String passwordConfirm;
 
   @Column(name = "active")
   private Integer active;
@@ -67,6 +71,10 @@ public class User {
     return email;
   }
 
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
   public String getPassword() {
     return password;
   }
@@ -75,9 +83,13 @@ public class User {
     this.password = password;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+  public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
 
   public Role getRole() {
     return role;
