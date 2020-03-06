@@ -32,7 +32,7 @@ public class Order {
     @JoinColumn(name = "beer_id", nullable = false)
     private Beer beer;
 
-    @Column(name = "table")
+    @Column(name = "table_num")
     @NotNull(message = "*Please provide a table")
     private Integer table;
 
