@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,12 +8,12 @@ class UserController{
 
     @RequestMapping("/login")
 	public String login() {
-		return "Hello login";
+		return "login";
     }
 
     @RequestMapping("/register")
 	public String register() {
-		return "Hello register";
+		return "register";
 	}
 
 }

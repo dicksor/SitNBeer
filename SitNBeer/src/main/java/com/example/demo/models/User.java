@@ -1,91 +1,90 @@
 package com.example.demo.models;
 
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Integer id;
 
-    @Column(name = "name")
-    @NotEmpty(message = "*Please provide a name")
-    private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "user_id")
+  private Integer id;
 
-    @Column(name = "password")
-    @NotEmpty(message = "*Please provide your password")
-    private String password;
+  @Column(name = "name")
+  @NotEmpty(message = "*Please provide a name")
+  private String name;
 
-    @Column(name = "email")
-    private String email;
+  @Column(name = "password")
+  @NotEmpty(message = "*Please provide your password")
+  private String password;
 
-    @Column(name = "active")
-    private int active;
+  @Column(name = "email")
+  private String email;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+  @Column(name = "active")
+  private Integer active;
 
-    public Integer getId() {
-		return id;
-	}
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @JoinColumn(name = "user_role", nullable = false)
+  private Role role;
 
-    public void setId(Integer id) {
-		this.id = id;
-	}
+  public Integer getId() {
+    return id;
+  }
 
-    public String getName() {
-		return name;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-		this.name = name;
-	}
+  public String getName() {
+    return name;
+  }
 
-    public void setActive(int active) {
-		this.active = active;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public int getActive() {
-		return active;
-	}
+  public void setActive(Integer active) {
+    this.active = active;
+  }
 
-    public String getEmail() {
-		return email;
-	}
+  public Integer getActive() {
+    return active;
+  }
 
-    public String getPassword() {
-		return password;
-	}
+  public String getEmail() {
+    return email;
+  }
 
-    public void setPassword(String password) {
-		this.password = password;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-    public void setEmail(String email) {
-		this.email = email;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public Set<Role> getRoles() {
-		return roles;
-	}
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
 
 }
