@@ -1,9 +1,13 @@
 package com.example.demo.seeders;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.example.demo.models.User;
 import com.example.demo.models.enums.RoleEnum;
 import com.example.demo.repositories.IRoleRepository;
 import com.example.demo.repositories.IUserRepository;
+import com.github.javafaker.Faker;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,9 +21,13 @@ public class UserSeeder implements ISeeder {
     @Autowired
     private IRoleRepository roleRepository;
 
+    private List<User> fakeUsers;
+
     public UserSeeder(IUserRepository userRepository, IRoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+
+        this.fakeUsers = new LinkedList<User>();
     }
 
     @Override
@@ -30,7 +38,13 @@ public class UserSeeder implements ISeeder {
 
             User enterpriseUser = createEntepriseUser();
             userRepository.save(enterpriseUser);
+
+            generateFakeUsers();
         }
+    }
+
+    public List<User> getFakeUsers(){
+        return this.fakeUsers;
     }
 
     private User createSimpleUser() {
@@ -51,6 +65,20 @@ public class UserSeeder implements ISeeder {
         user.setEmail("enterprise@sitnbeer.com");
         user.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
         return user;
+    }
+
+    private void generateFakeUsers() {
+        Faker faker = new Faker();
+
+        for (int i = 0; i < 30; i++) {
+            User user = new User();
+            user.setName(faker.name().fullName());
+            user.setPassword(faker.internet().password());
+            user.setActive(1);
+            user.setEmail(faker.internet().emailAddress());
+            user.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
+            fakeUsers.add(userRepository.save(user));
+        }
     }
 
 }
