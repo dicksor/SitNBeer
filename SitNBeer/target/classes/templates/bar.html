@@ -7,6 +7,8 @@
     <title>SitNBeer - Bars</title>
 
     <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/bar.js"></script>
 </head>
 
 <body>
@@ -14,6 +16,16 @@
     <main>
         <div class="container">
             <h1>Bars</h1>
+
+            <form>
+                <label for="num-elements">Number of items displayed</label>
+                <p class="range-field">
+                    <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
+                        th:max="${barPage.totalElements}" />
+                </p>
+            </form>
+
+            <div id="test-slider"></div>
             <div class="row">
                 <div th:each="bar, iter : ${barPage.content}">
                     <th:block
@@ -21,7 +33,9 @@
                     </th:block>
                 </div>
             </div>
-            <th:block th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers}, path='/bar')"></th:block>
+            <th:block
+                th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers}, path='/bar')">
+            </th:block>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>

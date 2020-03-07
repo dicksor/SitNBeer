@@ -7,6 +7,8 @@
     <title>SitNBeer - Beers</title>
 
     <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/beer.js"></script>
 </head>
 
 <body>
@@ -14,6 +16,15 @@
     <main>
         <div class="container">
             <h1>Beers</h1>
+
+            <form>
+                <label for="num-elements">Number of items displayed</label>
+                <p class="range-field">
+                    <input type="range" name="num-elements" id="pageSizeBeers" th:value="${beerPage.size}" min="4"
+                        th:max="${beerPage.totalElements}" />
+                </p>
+            </form>
+
             <div class="row">
                 <div th:each="beer, iter : ${beerPage.content}">
                     <th:block
@@ -21,7 +32,9 @@
                     </th:block>
                 </div>
             </div>
-            <th:block th:include="fragments/layout :: pagination(page=${beerPage}, pageNums=${pageNumbers}, path='/beer')"></th:block>
+            <th:block
+                th:include="fragments/layout :: pagination(page=${beerPage}, pageNums=${pageNumbers}, path='/beer')">
+            </th:block>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>
