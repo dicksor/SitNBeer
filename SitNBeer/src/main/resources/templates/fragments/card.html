@@ -1,12 +1,16 @@
 <div th:fragment="bar-card">
     <div class="col s12 m4 l3">
-        <div class="card medium">
+        <div class="card large">
             <div class="card-image">
                 <img th:src="${imgSrc}">
                 <span th:text="${bar.getName()}" class="card-title"></span>
             </div>
             <div class="card-content">
-                <p th:text="${bar.getAddress()}"></p>
+                <p>[[${bar.getAddress()}]]</p>
+                <br>
+                <p>Available tables : [[${bar.getAvailableTable()}]]</p>
+                <br>
+                <p>Owner : [[${bar.getUser().getName()}]]</p>
             </div>
             <div class="card-action">
                 <a href="#">Show drinks</a>
@@ -28,7 +32,7 @@
                 <p>[[${beer.getPrice()}]] CHF</p>
             </div>
             <div class="card-action">
-                <a href="#">[[${beer.getBar().getName()}]]</a>
+                <a th:href="@{/bar/} + ${beer.getBar().getId()}">[[${beer.getBar().getName()}]]</a>
             </div>
         </div>
     </div>
