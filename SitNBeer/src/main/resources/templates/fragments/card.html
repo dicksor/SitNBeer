@@ -1,4 +1,4 @@
-<div th:fragment="card">
+<div th:fragment="bar-card">
     <div class="col s3 m3 l3">
         <div class="card medium">
             <div class="card-image">
@@ -10,6 +10,25 @@
             </div>
             <div class="card-action">
                 <a href="#">Show drinks</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="beer-card">
+    <div class="col s3 m3 l3">
+        <div class="card large">
+            <div class="card-image">
+                <img th:src="${imgSrc}">
+                <span th:text="${beer.getName()}" class="card-title"></span>
+            </div>
+            <div class="card-content">
+                <p>[[${beer.getManufacturer()}]]</p>
+                <p>[[${beer.getVolume()}]] &permil;</p>
+                <p>[[${beer.getPrice()}]] CHF</p>
+            </div>
+            <div class="card-action">
+                <a href="#">[[${beer.getBar().getName()}]]</a>
             </div>
         </div>
     </div>

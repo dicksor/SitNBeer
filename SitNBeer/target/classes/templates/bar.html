@@ -17,11 +17,11 @@
             <div class="row">
                 <div th:each="bar, iter : ${barPage.content}">
                     <th:block
-                        th:insert="fragments/card :: card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${iter.index}__', bar=${bar})">
+                        th:insert="fragments/card :: bar-card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${iter.index}__', bar=${bar})">
                     </th:block>
                 </div>
             </div>
-            <th:block th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers})"></th:block>
+            <th:block th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers}, path='/bar')"></th:block>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>
