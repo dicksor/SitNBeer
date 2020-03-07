@@ -11,20 +11,47 @@
         <div class="nav-wrapper">
             <a th:href="@{/}" class="brand-logo">SitNBeer</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <form>
+                        <div class="input-field">
+                            <input id="nav-search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </li>
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown-bar">Bars<i
                             class="material-icons right">arrow_drop_down</i></a></li>
-                            <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
-                                class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/register}">Register</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a th:href="@{/login}" class="btn">Login</a></li>
+                <li><a th:href="@{/register}" class="btn">Register</a></li>
             </ul>
         </div>
     </nav>
 </th:block>
 
+<th:block th:fragment="pagination">
+    <ul class="pagination">
+        <li th:if="${page.number > 0}" class="disabled">
+            <a th:href="@{/bar(size=${page.size}, page=${page.number})}"><i
+                    class="material-icons">chevron_left</i></a>
+        </li>
+        <th:block th:if="${page.totalPages > 0}" th:each="pageNum : ${pageNums}">
+            <li th:class="${pageNum==page.number + 1} ? active" class="waves-effect">
+                <a th:href="@{/bar(size=${page.size}, page=${pageNum})}" th:text="${pageNum}"></a>
+            </li>
+        </th:block>
+        <li th:if="${page.number < page.totalPages - 1}" class="waves-effect"><a
+                th:href="@{/bar(size=${page.size}, page=${page.number + 2})}"><i
+                    class="material-icons">chevron_right</i></a>
+        </li>
+    </ul>
+</th:block>
+
 <th:block th:fragment="footer">
 
-    <footer class="page-footer">
+    <footer class="page-footer center-align">
         <p>HE-Arc - SitNBeer</p>
     </footer>
 

@@ -15,15 +15,13 @@
         <div class="container">
             <h1>Bars</h1>
             <div class="row">
-                <div th:each="i : ${#numbers.sequence(1, 4)}">
-                    <th:block th:insert="fragments/card :: card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${i}__')"></th:block>
+                <div th:each="bar, iter : ${barPage.content}">
+                    <th:block
+                        th:insert="fragments/card :: card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${iter.index}__', bar=${bar})">
+                    </th:block>
                 </div>
             </div>
-            <div class="row">
-                <div th:each="i : ${#numbers.sequence(5, 8)}">
-                    <th:block th:insert="fragments/card :: card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${i}__')"></th:block>
-                </div>
-            </div>
+            <th:block th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers})"></th:block>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>
