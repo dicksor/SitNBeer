@@ -37,8 +37,9 @@
             <a th:href="@{${path}(size=${page.size}, page=${page.number})}"><i
                     class="material-icons">chevron_left</i></a>
         </li>
-        <th:block th:if="${page.totalPages > 0}" th:each="pageNum : ${pageNums}">
-            <li th:class="${pageNum==page.number + 1} ? active" class="waves-effect">
+        <th:block th:if="${page.totalPages > 0}" th:each="pageNum, iter : ${pageNums}">
+            <li th:if="${iter.index > page.number - 4 and iter.index < page.number + 4}"
+                th:class="${pageNum==page.number + 1} ? active" class="waves-effect">
                 <a th:href="@{${path}(size=${page.size}, page=${pageNum})}" th:text="${pageNum}"></a>
             </li>
         </th:block>
