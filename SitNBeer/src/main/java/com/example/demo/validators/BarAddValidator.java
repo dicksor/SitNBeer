@@ -17,9 +17,9 @@ public class BarAddValidator implements Validator{
             errors.rejectValue("name", "name.size", "The size must be between 2 and 32 !");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "adress.empty", "You must enter a bar adress !");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "address.empty", "You must enter a bar adress !");
         if(bar.getAddress().length() < 10 || bar.getAddress().length() > 255){
-            errors.rejectValue("adress", "address.size", "The size must be between 10 and 255 !");
+            errors.rejectValue("address", "address.size", "The size must be between 10 and 255 !");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "availableTable", "availableTable.empty", "You must enter number of available table !");

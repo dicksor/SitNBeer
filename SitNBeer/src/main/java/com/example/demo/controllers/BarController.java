@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import com.example.demo.models.Bar;
 import com.example.demo.models.User;
+import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BarAddValidator;
 
@@ -20,28 +21,32 @@ class BarController{
 	private BarAddValidator barAddValidator;
 
 	@Autowired
+	private IBarRepository barRepository;
+
+	@Autowired
 	private IUserRepository userRepository;
 
     @GetMapping("/bar/add")
-	public String index(Model model) {
+	public String addBarForm(Model model) {
 		model.addAttribute("bar", new Bar());
 		return "bar";
 	}
 
 	@PostMapping("/bar/add")
-	public String barSubmit(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal) {
-		
+	public String addBar(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal) {
+
 		barAddValidator.validate(bar, bindingResult);
 
 		if(bindingResult.hasErrors()){
 			return "bar";
 		}
 
-		User loggedUser = userRepository.findByName(principal.getName());
+		/*User loggedUser = userRepository.findByName(principal.getName());
 
 		bar.setUser(loggedUser);
-		
-		return "/";
+		barRepository.save(bar);*/
+
+		return "redirect:/";
 	}
 
 }

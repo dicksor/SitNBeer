@@ -12,6 +12,7 @@
 <body>
     <th:block th:include="fragments/layout :: navbar"></th:block>
     <main>
+        <div class="container">
         <h1>Bars</h1>
         <form action="bar" th:action="@{/bar/add}" th:object="${bar}" method="post">
             <div class="row">
@@ -29,8 +30,10 @@
                     <label for="bar-available-table" class="activate">Number of table available in the bar : </label><input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required/>
                 </div>
             </div>
+            <input type="submit" class="waves-effect waves-light btn" value="Add a bar">
         </form>
     </main>
+    </div>
     <th:block th:include="fragments/layout :: footer"></th:block>
 </body>
 
