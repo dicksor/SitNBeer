@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.example.demo.models.enums.OrderStatusEnum;
+
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -25,10 +27,6 @@ public class Order {
     private User user;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bar_id", nullable = false)
-    private Bar bar;
-
-    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "beer_id", nullable = false)
     private Beer beer;
 
@@ -38,7 +36,7 @@ public class Order {
 
     @Column(name = "status")
     @NotNull(message = "*Please provide a status")
-    private Integer status;
+    private OrderStatusEnum status;
 
     public Integer getId() {
         return id;

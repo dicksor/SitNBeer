@@ -31,7 +31,7 @@ class BeerController{
     @GetMapping("/beer/add")
 	public String addBeerForm(Model model) {
         model.addAttribute("beer", new Beer());
-		return "beer";
+		return "createBeer";
     }
 
 
@@ -41,8 +41,12 @@ class BeerController{
         beerAddValidator.validate(beer, bindingResult);
 
 		if(bindingResult.hasErrors()){
-			return "beer";
-		}
+			return "createBeer";
+        }
+        //TODO : make method to find bar from user
+        /*
+        beer.setBar(bar);
+        beerRepository.save(beer);*/
 
         return "redirect:/";
     }
