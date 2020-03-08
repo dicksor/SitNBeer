@@ -13,7 +13,7 @@
                 <p>Owner : [[${bar.getUser().getName()}]]</p>
             </div>
             <div class="card-action">
-                <a href="#">Show drinks</a>
+                <a th:href="@{/bar/} + ${bar.getId()}">Show drinks</a>
             </div>
         </div>
     </div>
