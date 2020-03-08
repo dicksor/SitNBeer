@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,17 +28,21 @@ public class User {
   @NotEmpty(message = "*Please provide a name")
   private String name;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "password")
   @NotEmpty(message = "*Please provide your password")
   private String password;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "email")
   private String email;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "active")
   private Integer active;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @JsonProperty(access = Access.WRITE_ONLY)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JoinColumn(name = "user_role", nullable = false)
   private Role role;
 

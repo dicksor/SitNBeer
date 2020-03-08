@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "beers")
 public class Beer {
@@ -25,7 +27,7 @@ public class Beer {
     @NotEmpty(message = "*Please provide a name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bar_id", nullable = false)
     private Bar bar;
 
