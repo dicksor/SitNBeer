@@ -14,7 +14,7 @@
     <main>
         <div class="container">
             <h2>Registration</h2>
-            <form action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
+            <form class="col s12" action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
                 <div class="row">
                     <div class="input-field col s12">
                         <label for="email">Email : </label>
@@ -39,7 +39,7 @@
                         <input type="password" th:field="*{passwordConfirm}" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
                     </div>  
                 </div>
-                <input type="submit" class="waves-effect waves-light btn" value="Register">
+                <input type="submit" class="btn" value="Register">
             </form>
         </div>
     </main>
