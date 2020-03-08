@@ -23,6 +23,11 @@
                     <input type="range" name="num-elements" id="pageSizeBeers" th:value="${beerPage.size}" min="4"
                         th:max="${beerPage.totalElements}" />
                 </p>
+                <label for="price">Maximum price</label>
+                <p class="range-field">
+                    <input type="range" name="price" id="beerPrice" min="1" value="25"
+                        th:max="25" />
+                </p>
             </form>
 
             <div class="row">

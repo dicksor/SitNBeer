@@ -18,10 +18,15 @@
             <h1>Bars</h1>
 
             <form>
-                <label for="num-elements">Number of items displayed</label>
+                <label for="num-elements">[[${barPage.size}]] bars displayed per page</label>
                 <p class="range-field">
                     <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
                         th:max="${barPage.totalElements}" />
+                </p>
+                <label for="num-tables">Available tables</label>
+                <p class="range-field">
+                    <input type="range" name="num-tables" id="numTables" min="1"
+                        th:max="100" />
                 </p>
             </form>
 
