@@ -1,20 +1,70 @@
 <th:block th:fragment="navbar">
+    <ul id="dropdown-bar" class="dropdown-content">
+        <li><a th:href="@{/bar}">Show bars</a></li>
+        <li><a href="#!">Add bar</a></li>
+    </ul>
+    <ul id="dropdown-beer" class="dropdown-content">
+        <li><a th:href="@{/beer}">Show beers</a></li>
+        <li><a href="#!">Add beer</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper">
             <a th:href="@{/}" class="brand-logo">SitNBeer</a>
+            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a th:href="@{/bar}">Bars</a></li>
-                <li><a th:href="@{/beer}">Beers</a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/registration}">Register</a></li>
+                <li>
+                    <form>
+                        <div class="input-field">
+                            <input id="nav-search" type="search" required>
+                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
+                </li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-bar">Bars<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a th:href="@{/login}" class="btn">Login</a></li>
+                <li><a th:href="@{/register}" class="btn">Register</a></li>
             </ul>
         </div>
     </nav>
+    <ul class="sidenav" id="mobile-nav">
+        <li><a th:href="@{/bar}">Bars</a></li>
+        <li><a th:href="@{/beer}">Beers</a></li>
+        <li><a th:href="@{/login}">Login</a></li>
+        <li><a th:href="@{/registration}">Register</a></li>
+    </ul>
+</th:block>
+
+<th:block th:fragment="pagination">
+    <ul class="pagination">
+        <th:block
+            th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+            <li th:if="${page.number > 0}" class="disabled">
+                <a
+                    th:href="@{${urlBuilder.replaceQueryParam('size', page.size).replaceQueryParam('page', page.number).build().toUriString()}}">
+                    <i class="material-icons">chevron_left</i></a>
+            </li>
+            <th:block th:if="${page.totalPages > 0}" th:each="pageNum, iter : ${pageNums}">
+                <li th:if="${iter.index > page.number - 4 and iter.index < page.number + 4}"
+                    th:class="${pageNum==page.number + 1} ? active" class="waves-effect">
+                    <a th:href="@{${urlBuilder.replaceQueryParam('size', page.size).replaceQueryParam('page', pageNum).build().toUriString()}}"
+                        th:text="${pageNum}"></a>
+                </li>
+            </th:block>
+            <li th:if="${page.number < page.totalPages - 1}" class="waves-effect"><a
+                    th:href="@{${urlBuilder.replaceQueryParam('size', page.size).replaceQueryParam('page', page.number + 2).build().toUriString()}}">
+                    <i class="material-icons">chevron_right</i></a>
+            </li>
+        </th:block>
+    </ul>
 </th:block>
 
 <th:block th:fragment="footer">
 
-    <footer class="page-footer">
+    <footer class="page-footer center-align">
         <p>HE-Arc - SitNBeer</p>
     </footer>
 

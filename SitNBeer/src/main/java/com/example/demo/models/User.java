@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -24,19 +27,23 @@ public class User {
   @Column(name = "username")
   private String username;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "password")
   private String password;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "email")
   private String email;
 
   @Transient
 	private String passwordConfirm;
 
+  @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "active")
   private Integer active;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @JsonProperty(access = Access.WRITE_ONLY)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JoinColumn(name = "user_role", nullable = false)
   private Role role;
 
