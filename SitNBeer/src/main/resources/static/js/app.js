@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
             let searchQuery = `(name:'${this.value}')`
             params.set('search', searchQuery)
             url.searchParams.set('search', params.get('search'))
+            url.searchParams.set('size', params.get('size') || 4)
+            url.searchParams.set('page', 1)
             window.location.assign(url)
         }
     });
