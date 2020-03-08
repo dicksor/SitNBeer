@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -24,18 +24,19 @@ public class User {
   @Column(name = "user_id")
   private Integer id;
 
-  @Column(name = "name")
-  @NotEmpty(message = "*Please provide a name")
-  private String name;
+  @Column(name = "username")
+  private String username;
 
   @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "password")
-  @NotEmpty(message = "*Please provide your password")
   private String password;
 
   @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "email")
   private String email;
+
+  @Transient
+	private String passwordConfirm;
 
   @JsonProperty(access = Access.WRITE_ONLY)
   @Column(name = "active")
@@ -54,12 +55,12 @@ public class User {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public void setActive(Integer active) {
@@ -74,6 +75,10 @@ public class User {
     return email;
   }
 
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
   public String getPassword() {
     return password;
   }
@@ -82,9 +87,13 @@ public class User {
     this.password = password;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+  public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
 
   public Role getRole() {
     return role;

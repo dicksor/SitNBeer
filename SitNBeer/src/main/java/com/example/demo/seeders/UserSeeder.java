@@ -49,7 +49,7 @@ public class UserSeeder implements ISeeder {
 
     private User createSimpleUser() {
         User user = new User();
-        user.setName("test");
+        user.setUsername("test");
         user.setPassword("test");
         user.setActive(1);
         user.setEmail("test@sitnbeer.com");
@@ -59,7 +59,7 @@ public class UserSeeder implements ISeeder {
 
     private User createEntepriseUser() {
         User user = new User();
-        user.setName("enterprise");
+        user.setUsername("enterprise");
         user.setPassword("test");
         user.setActive(1);
         user.setEmail("enterprise@sitnbeer.com");
@@ -72,7 +72,7 @@ public class UserSeeder implements ISeeder {
 
         for (int i = 0; i < 30; i++) {
             User user = new User();
-            user.setName(faker.name().fullName());
+            user.setUsername(faker.name().fullName());
             user.setPassword(faker.internet().password());
             user.setActive(1);
             user.setEmail(faker.internet().emailAddress());
@@ -80,5 +80,4 @@ public class UserSeeder implements ISeeder {
             fakeUsers.add(userRepository.save(user));
         }
     }
-
 }
