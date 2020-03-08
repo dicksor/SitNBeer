@@ -23,7 +23,7 @@
                     <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
                         th:max="${barPage.totalElements}" />
                 </p>
-                <label for="num-tables">Available tables</label>
+                <label for="num-tables">Minimum available tables</label>
                 <p class="range-field">
                     <input type="range" name="num-tables" id="numTables" min="1"
                         th:max="100" />
@@ -32,10 +32,13 @@
 
             <div id="test-slider"></div>
             <div class="row">
-                <div th:each="bar, iter : ${barPage.content}">
+                <div th:if="${not #lists.isEmpty(barPage.content)}" th:each="bar, iter : ${barPage.content}">
                     <th:block
                         th:insert="fragments/card :: bar-card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${iter.index}__', bar=${bar})">
                     </th:block>
+                </div>
+                <div th:unless="${not #lists.isEmpty(barPage.content)}">
+                    <p>Sorry, they were no available results for your query</p>
                 </div>
             </div>
             <th:block

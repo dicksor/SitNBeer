@@ -31,10 +31,13 @@
             </form>
 
             <div class="row">
-                <div th:each="beer, iter : ${beerPage.content}">
+                <div th:if="${not #lists.isEmpty(beerPage.content)}" th:each="beer, iter : ${beerPage.content}">
                     <th:block
                         th:insert="fragments/card :: beer-card(imgSrc='https://source.unsplash.com/collection/2138025/480x480?sig=__${iter.index}__', beer=${beer})">
                     </th:block>
+                </div>
+                <div th:unless="${not #lists.isEmpty(beerPage.content)}">
+                    <p>Sorry, they were no available results for your query</p>
                 </div>
             </div>
             <th:block

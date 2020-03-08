@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let searchBar = document.getElementById('nav-search')
     searchBar.addEventListener('keyup', function (event) {
+        event.preventDefault()
         if (event.keyCode === 13 && this.value) {
             let url = new URL(window.location)
             url.pathname = url.pathname.includes('bar') ? 'bar/query' : 'beer/query'
