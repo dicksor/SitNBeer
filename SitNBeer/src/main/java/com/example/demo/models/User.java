@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
@@ -22,12 +21,10 @@ public class User {
   @Column(name = "user_id")
   private Integer id;
 
-  @Column(name = "name")
-  @NotEmpty(message = "*Please provide a name")
-  private String name;
+  @Column(name = "username")
+  private String username;
 
   @Column(name = "password")
-  @NotEmpty(message = "*Please provide your password")
   private String password;
 
   @Column(name = "email")
@@ -51,12 +48,12 @@ public class User {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public void setActive(Integer active) {

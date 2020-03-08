@@ -30,6 +30,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+        
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -38,9 +39,9 @@ public class UserController {
 
         userService.save(userForm);
 
-        securityService.autoLogin(userForm.getName(), userForm.getPasswordConfirm());
+        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/home";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
