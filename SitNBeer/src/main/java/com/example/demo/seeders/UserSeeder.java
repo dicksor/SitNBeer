@@ -51,7 +51,6 @@ public class UserSeeder implements ISeeder {
         User user = new User();
         user.setUsername("test");
         user.setPassword("test");
-        user.setActive(1);
         user.setEmail("test@sitnbeer.com");
         user.setRole(roleRepository.findByRole(RoleEnum.USER.toString()));
         return user;
@@ -61,7 +60,6 @@ public class UserSeeder implements ISeeder {
         User user = new User();
         user.setUsername("enterprise");
         user.setPassword("test");
-        user.setActive(1);
         user.setEmail("enterprise@sitnbeer.com");
         user.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
         return user;
@@ -74,7 +72,6 @@ public class UserSeeder implements ISeeder {
             User user = new User();
             user.setUsername(faker.name().fullName());
             user.setPassword(faker.internet().password());
-            user.setActive(1);
             user.setEmail(faker.internet().emailAddress());
             user.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
             fakeUsers.add(userRepository.save(user));

@@ -1,6 +1,9 @@
 package com.example.demo.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.demo.models.User;
+import com.example.demo.repositories.IUserRepository;
 import com.example.demo.services.interfaces.ISecurityService;
 import com.example.demo.services.interfaces.IUserService;
 import com.example.demo.validators.UserValidator;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IUserRepository userRepository;
 
     @Autowired
     private ISecurityService securityService;
@@ -41,17 +47,18 @@ public class UserController {
 
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/login";
+        return "redirect:/home";
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error, String logout, HttpSession session) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
+            //System.out.println(userRepository.findByUsername("vincent").getUsername());
         return "login";
     }
 

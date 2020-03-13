@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id")
-  private Integer id;
+  private Long id;
 
   @Column(name = "username")
   private String username;
@@ -39,19 +39,15 @@ public class User {
 	private String passwordConfirm;
 
   @JsonProperty(access = Access.WRITE_ONLY)
-  @Column(name = "active")
-  private Integer active;
-
-  @JsonProperty(access = Access.WRITE_ONLY)
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JoinColumn(name = "user_role", nullable = false)
   private Role role;
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -61,14 +57,6 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public void setActive(Integer active) {
-    this.active = active;
-  }
-
-  public Integer getActive() {
-    return active;
   }
 
   public String getEmail() {
