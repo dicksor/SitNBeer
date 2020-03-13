@@ -17,18 +17,22 @@
         <div class="container">
             <h1>Bars</h1>
 
-            <form>
-                <label for="num-elements">[[${barPage.size}]] bars displayed per page</label>
-                <p class="range-field">
-                    <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
-                        th:max="${barPage.totalElements}" />
-                </p>
-                <label for="num-tables">Minimum available tables</label>
-                <p class="range-field">
-                    <input type="range" name="num-tables" id="numTables" min="1"
-                        th:max="100" />
-                </p>
-            </form>
+            <div class="search">
+                <label id="btnBarSearchTool" class="btn-search-tool">
+                    <i class="material-icons">search</i>
+                </label>
+                <form class="in" id="inBarSearch">
+                    <label for="num-elements">[[${barPage.size}]] bars displayed per page</label>
+                    <p class="range-field">
+                        <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
+                            th:max="${barPage.totalElements}" />
+                    </p>
+                    <label for="num-tables">Minimum available tables</label>
+                    <p class="range-field">
+                        <input type="range" name="num-tables" id="numTables" min="1" th:max="100" />
+                    </p>
+                </form>
+            </div>
 
             <div id="test-slider"></div>
             <div class="row">

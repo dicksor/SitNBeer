@@ -18,4 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
         url.searchParams.set('search', params.get('search'))
         window.location.assign(url)
     }
+
+    var btnBeerSearchTool = document.getElementById('btnBeerSearchTool')
+    btnBeerSearchTool.onclick = function () {
+        let toolBar = document.getElementById('inBeerSearch')
+        toolBar.style.height = toolBar.style.height === '0px' ? '200px' : '0px'
+        toolBar.style.opacity = toolBar.style.opacity === '0' ? '1' : '0'
+    }
 })
