@@ -60,8 +60,8 @@ class BarController{
 	}
 
 	@GetMapping("/bar/{bar_id}")
-	public String showBar(Model model, @PathVariable long bar_id){
-		Optional<Bar> optionalBar = barRepository.findById(new Integer((int)bar_id));
+	public String showBar(Model model, @PathVariable Integer bar_id){
+		Optional<Bar> optionalBar = barRepository.findById(bar_id);
 		Bar bar = null;
 		if(optionalBar.isPresent()){
 			bar = optionalBar.get();

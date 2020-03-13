@@ -24,7 +24,7 @@
                 <div class="row">
                     <label for="order-beer">Select a beer : </label>
                     <div class="input-field">
-                        <select style="display:block" th:objects="${beers}" id="order-beer">
+                        <select style="display:block" th:objects="${beers}" id="order-beer" name="order-beer">
                             <option th:each="beer : ${beers}" th:text="${beer.name}" th:value="${beer.id}"></option>
                         </select>
                     </div>

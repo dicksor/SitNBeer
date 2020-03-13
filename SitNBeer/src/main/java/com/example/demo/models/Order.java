@@ -54,14 +54,6 @@ public class Order {
         this.user = user;
     }
 
-    public Bar getBar() {
-        return bar;
-    }
-
-    public void setBar(Bar bar) {
-        this.bar = bar;
-    }
-
     public Beer getBeer() {
         return beer;
     }
@@ -78,11 +70,11 @@ public class Order {
         this.table = table;
     }
 
-    public Integer getStatus() {
+    public OrderStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(OrderStatusEnum status) {
         this.status = status;
     }
 
