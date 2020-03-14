@@ -30,7 +30,7 @@ public class Seeder implements ISeeder {
 
     @EventListener
     public void seed(ContextRefreshedEvent event) {
-        this.seedDB();
+        //this.seedDB();
     }
 
     @Override

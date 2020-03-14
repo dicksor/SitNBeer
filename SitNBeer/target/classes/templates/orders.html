@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Orders</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+            <!--<tr th:each="order: ${orders}">
+                <td th:text="${order.id}" />
+                <td th:text="${order.table}" />
+            </tr>-->
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

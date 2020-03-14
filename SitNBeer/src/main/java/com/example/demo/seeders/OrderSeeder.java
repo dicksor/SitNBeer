@@ -1,6 +1,7 @@
 package com.example.demo.seeders;
 
 import com.example.demo.models.Order;
+import com.example.demo.models.enums.OrderStatusEnum;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IOrderRepository;
@@ -36,10 +37,9 @@ public class OrderSeeder implements ISeeder {
     public void seedDB() {
         if (orderRepository.findAll().isEmpty()) {
             Order order = new Order();
-            order.setBar(barRepository.findByName("B'art"));
             order.setBeer(beerRepository.findByName("Porn star"));
             order.setUser(userRepository.findByName("test"));
-            order.setStatus(1);
+            order.setStatus(OrderStatusEnum.IN_PROCESS);
             order.setTable(10);
             orderRepository.save(order);
         }
