@@ -25,7 +25,7 @@ public class Beer {
     @NotEmpty(message = "*Please provide a name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Bar bar;
 
     @Column(name = "manufacturer")

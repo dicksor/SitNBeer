@@ -36,7 +36,7 @@ public class User {
   private Integer active;
 
   @JoinColumn(name = "role_id")
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
   private Role role;
 
   public Integer getId() {

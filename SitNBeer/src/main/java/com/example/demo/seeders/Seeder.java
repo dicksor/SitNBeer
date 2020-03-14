@@ -30,7 +30,7 @@ public class Seeder implements ISeeder {
 
     @EventListener
     public void seed(ContextRefreshedEvent event) {
-        //this.seedDB();
+        this.seedDB();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class Seeder implements ISeeder {
         seedUserTable();
         seedBarTable();
         seedBeerTable();
-        //seedOrderTable();
+        seedOrderTable();
     }
 
     private void seedRoleTable() {

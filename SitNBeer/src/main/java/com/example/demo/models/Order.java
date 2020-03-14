@@ -24,11 +24,11 @@ public class Order {
     private Integer id;
 
     @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private User user;
 
     @JoinColumn(name = "beer_id")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private Beer beer;
 
     @Column(name = "table_number")
