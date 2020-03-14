@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.security.Principal;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,7 @@ class BarController{
 			return "redirect:/";
 		}
 
-		Iterable<Beer> beers = beerRepository.findByBar(bar);
+		Iterable<Beer> beers = bar.getBeers();
 
 		model.addAttribute("bar", bar);
 		model.addAttribute("order", new Order());
