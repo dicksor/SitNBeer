@@ -25,9 +25,12 @@ public class Bar {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "bar")
+    private Set<Beer> beers;
 
     @Column(name = "name")
     @NotEmpty(message = "*Please provide a name")
@@ -79,6 +82,14 @@ public class Bar {
 
     public void setAvailableTable(int availableTable) {
         this.availableTable = availableTable;
+    }
+
+    public Set<Beer> getBeers(){
+        return this.beers;
+    }
+
+    public void setBeers(Set<Beer> beers){
+        this.beers = beers;
     }
 
 }

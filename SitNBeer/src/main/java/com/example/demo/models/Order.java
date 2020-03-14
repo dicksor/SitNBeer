@@ -23,17 +23,17 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
+    @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @JoinColumn(name = "beer_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "beer_id", nullable = false)
     private Beer beer;
 
-    @Column(name = "table")
-    @NotNull(message = "*Please provide a table")
-    private Integer table;
+    @Column(name = "table_number")
+    @NotNull(message = "*Please provide a table number")
+    private int tableNumber;
 
     @Column(name = "status")
     @NotNull(message = "*Please provide a status")
@@ -63,12 +63,12 @@ public class Order {
         this.beer = beer;
     }
 
-    public Integer getTable() {
-        return table;
+    public Integer getTableNumber() {
+        return tableNumber;
     }
 
-    public void setTable(Integer table) {
-        this.table = table;
+    public void setTableNumber(Integer table) {
+        this.tableNumber = table;
     }
 
     public OrderStatusEnum getStatus() {

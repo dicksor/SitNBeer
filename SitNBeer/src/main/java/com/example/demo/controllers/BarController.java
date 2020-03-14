@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
-import com.example.demo.models.User;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;

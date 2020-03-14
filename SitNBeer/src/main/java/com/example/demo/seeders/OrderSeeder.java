@@ -40,7 +40,7 @@ public class OrderSeeder implements ISeeder {
             order.setBeer(beerRepository.findByName("Porn star"));
             order.setUser(userRepository.findByName("test"));
             order.setStatus(OrderStatusEnum.IN_PROCESS);
-            order.setTable(10);
+            order.setTableNumber(10);
             orderRepository.save(order);
         }
     }
