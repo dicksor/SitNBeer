@@ -21,15 +21,15 @@ public class RoleSeeder implements ISeeder {
     public void seedDB() {
         if (roleRepository.findAll().isEmpty()) {
             Role userRole = new Role();
-            userRole.setRole(RoleEnum.USER.toString());
+            userRole.setRoleName(RoleEnum.USER.toString());
             roleRepository.save(userRole);
 
             Role enterpriseRole = new Role();
-            enterpriseRole.setRole(RoleEnum.ENTERPRISE.toString());
+            enterpriseRole.setRoleName(RoleEnum.ENTERPRISE.toString());
             roleRepository.save(enterpriseRole);
 
             Role visitorRole = new Role();
-            visitorRole.setRole(RoleEnum.VISITOR.toString());
+            visitorRole.setRoleName(RoleEnum.VISITOR.toString());
             roleRepository.save(visitorRole);
         }
     }
