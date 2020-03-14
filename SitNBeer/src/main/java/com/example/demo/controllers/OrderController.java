@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-class CommandController{
+class OrderController{
 
 	@Autowired
 	private IBeerRepository beerRepository;

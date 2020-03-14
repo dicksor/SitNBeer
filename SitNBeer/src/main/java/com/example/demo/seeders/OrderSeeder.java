@@ -35,9 +35,17 @@ public class OrderSeeder implements ISeeder {
 
     @Override
     public void seedDB() {
-        Random rand = new Random();
+        
 
         if (orderRepository.findAll().isEmpty()) {
+            generateFakeOrder();
+        }
+    }
+
+    public void generateFakeOrder(){
+        Random rand = new Random();
+
+        for(int i = 0; i< 15; i++){
             Order order = new Order();
             order.setUser(fakeUsers.get(rand.nextInt(fakeUsers.size() - 1)));
             order.setBeer(fakeBeers.get(rand.nextInt(fakeBeers.size() - 1)));
