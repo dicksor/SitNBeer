@@ -7,30 +7,36 @@
     <title>SitNBeer - Orders</title>
 
     <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/bar.js"></script>
 </head>
 
 <body>
     <th:block th:include="fragments/layout :: navbar"></th:block>
-    <main>
-        <span th:text="${#lists.size(orders)}"></span>
-        
+    <main>  
         <div class="container">
             <h1>Client orders</h1>
-            <ul th:each="order: ${orders}" class="collection">
-                <span th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}">
-                    <li class="collection-item">
-                        <strong>Id : </strong><span th:text="${order.id}"></span><br>
-                        <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
-                        <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
-                        <strong>Manufacturer : </strong><span th:text="${order.getBeer().getManufacturer()}"></span>
-                        <hr>
-                        <strong>Status : </strong><span th:text="${order.getStatus()}"></span>
-                        <span th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN}">
-                            <a class="waves-effect waves-light btn accept-button" href="#">Accept</a>
-                        </span>
-                    </li>
-                </span>
-            </ul>
+            <span th:if="${#lists.size(orders) > 0}">
+                <ul th:each="order: ${orders}" class="collection">
+                    <span th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}">
+                        <li class="collection-item">
+                            <span hidden class="order-id" th:text="${order.id}"></span>
+                            <strong>Id : </strong><span th:text="${order.id}"></span><br>
+                            <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
+                            <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
+                            <strong>Manufacturer : </strong><span th:text="${order.getBeer().getManufacturer()}"></span>
+                            <hr>
+                            <strong>Status : </strong><span th:text="${order.getStatus()}"></span>
+                            <span th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN}">
+                                <a class="waves-effect waves-light btn accept-button">Accept</a>
+                            </span>
+                            <span th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}">
+                                <a class="waves-effect waves-light btn close-button" href="#">Close</a>
+                            </span>
+                        </li>
+                    </span>
+                </ul>
+            </span>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>
