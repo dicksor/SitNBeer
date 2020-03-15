@@ -50,7 +50,7 @@ class BeerController {
         return "createBeer";
     }
 
-    @RequestMapping("/beer")
+    @RequestMapping("/beers")
     public String index(Model model, @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -65,7 +65,7 @@ class BeerController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "beer";
+        return "beers";
     }
 
     @GetMapping("/beer/query")
@@ -84,7 +84,7 @@ class BeerController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "beer";
+        return "beers";
     }
 
     @PostMapping("/beer/add")

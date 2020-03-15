@@ -65,6 +65,25 @@ class BarController {
 		return "bars";
 	}
 
+	@GetMapping("/bar/query")
+    public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
+            @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(8);
+
+        Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
+                Specification.where(specs));
+        model.addAttribute("barPage", barPage);
+
+        int totalPages = barPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+		}
+
+        return "bars";
+    }
+
     @GetMapping("/bar/add")
 	public String addBarForm(Model model) {
 		model.addAttribute("bar", new Bar());
@@ -106,24 +125,4 @@ class BarController {
 
 		return "showBar";
 	}
-
-	@GetMapping("/bar/query")
-    public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
-            @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(8);
-
-        Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
-                Specification.where(specs));
-        model.addAttribute("barPage", barPage);
-
-        int totalPages = barPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-		}
-
-        return "bar";
-    }
-
 }

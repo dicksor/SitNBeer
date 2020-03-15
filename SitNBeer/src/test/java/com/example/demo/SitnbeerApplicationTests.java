@@ -10,24 +10,18 @@ import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SitnbeerApplicationTests {
-
-	@MockBean
-	private IUserRepository userRepository;
-
-	@MockBean
-	private IBeerRepository beerRepository;
-
-	@MockBean
-	private IBarRepository barRepository;
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -53,7 +47,7 @@ class SitnbeerApplicationTests {
 		assertThat(entity.getBody()).contains("home");
 	}
 
-	@Test
+	/*@Test
 	public void createOrderShowTest(){
 		List<Bar> bars	= barRepository.findAll();
 
@@ -69,6 +63,6 @@ class SitnbeerApplicationTests {
 		}else {
 			assertThat(false).isTrue();
 		}
-	}
+	}*/
 
 }

@@ -10,7 +10,7 @@
                 <br>
                 <p>Available tables : [[${bar.getAvailableTable()}]]</p>
                 <br>
-                <p>Owner : [[${bar.getUser().getName()}]]</p>
+                <p>Owner : [[${bar.getUser().getUsername()}]]</p>
             </div>
             <div class="card-action">
                 <a th:href="@{/bar/} + ${bar.getId()}">Show drinks</a>

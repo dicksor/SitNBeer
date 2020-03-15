@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SitnbeerApplicationTests",
+            "request": "launch",
+            "mainClass": "com.example.demo.SitnbeerApplicationTests",
+            "projectName": "sitnbeer"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-SitnbeerApplication<sitnbeer>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

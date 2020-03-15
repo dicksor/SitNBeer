@@ -29,13 +29,21 @@ class OrderController{
 	private IBeerRepository beerRepository;
 
 	@Autowired
+	private IBarRepository barRepository;
+
+	@Autowired
 	private IOrderRepository orderRepository;
 
 	@Autowired 
 	private OrderAddValidator orderAddValidator;
 
-	@GetMapping("/orders")
-	public String orders(Model model){
+	@GetMapping("/orders/{bar_id}")
+	public String orders(Model model,  @PathVariable Integer bar_id){
+		Optional<Bar> optionalBar = barRepository.findById(bar_id);
+		if(optionalBar.isPresent()){
+			Bar bar = optionalBar.get();
+			Iterable<Beer> beers = bar.getBeers();
+		}
 		/*List<Order> listOrders = orderRepository.findAll();
 		System.out.println(listOrders.toString());
 		//model.addAttribute("orders", listOrders);*/
