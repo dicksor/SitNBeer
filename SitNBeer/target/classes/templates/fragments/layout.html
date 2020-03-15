@@ -42,7 +42,7 @@
     <ul class="pagination">
         <th:block
             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
-            <li th:if="${page.number > 0}" class="disabled">
+            <li th:if="${page.number > 0}">
                 <a
                     th:href="@{${urlBuilder.replaceQueryParam('size', page.size).replaceQueryParam('page', page.number).build().toUriString()}}">
                     <i class="material-icons">chevron_left</i></a>
