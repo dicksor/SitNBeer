@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var ranges = document.querySelectorAll("input[type=range]");
-    M.Range.init(ranges);
+    var ranges = document.querySelectorAll("input[type=range]")
+    M.Range.init(ranges)
 
     var dropdowns = document.querySelectorAll(".dropdown-trigger")
     let dropdownOptions = {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     var instances = M.Dropdown.init(dropdowns, dropdownOptions)
 
-    var sideNavs = document.querySelectorAll('.sidenav');
+    var sideNavs = document.querySelectorAll('.sidenav')
     var instances = M.Sidenav.init(sideNavs);
 
     let searchBar = document.getElementById('nav-search')
@@ -26,5 +26,5 @@ document.addEventListener('DOMContentLoaded', function () {
             url.searchParams.set('page', 1)
             window.location.assign(url)
         }
-    });
+    })
 })

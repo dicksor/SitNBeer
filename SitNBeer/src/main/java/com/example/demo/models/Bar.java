@@ -1,5 +1,8 @@
 package com.example.demo.models;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -21,9 +25,12 @@ public class Bar {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "bar")
+    private Set<Beer> beers;
 
     @Column(name = "name")
     @NotEmpty(message = "*Please provide a name")
@@ -75,6 +82,14 @@ public class Bar {
 
     public void setAvailableTable(int availableTable) {
         this.availableTable = availableTable;
+    }
+
+    public Set<Beer> getBeers(){
+        return this.beers;
+    }
+
+    public void setBeers(Set<Beer> beers){
+        this.beers = beers;
     }
 
 }

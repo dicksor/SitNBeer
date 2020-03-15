@@ -42,9 +42,9 @@ public class User {
   @Column(name = "active")
   private Integer active;
 
-  @JsonProperty(access = Access.WRITE_ONLY)
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JoinColumn(name = "user_role", nullable = false)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+  @JsonProperty(access = Access.WRITE_ONLY)
   private Role role;
 
   public Integer getId() {

@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.example.demo.models.enums.OrderStatusEnum;
 
 @Entity
 @Table(name = "orders")
@@ -20,25 +23,21 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bar_id", nullable = false)
-    private Bar bar;
-
-    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "beer_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Beer beer;
 
-    @Column(name = "table_num")
-    @NotNull(message = "*Please provide a table")
-    private Integer table;
+    @Column(name = "table_number")
+    @NotNull(message = "*Please provide a table number")
+    private int tableNumber;
 
     @Column(name = "status")
     @NotNull(message = "*Please provide a status")
-    private Integer status;
+    private OrderStatusEnum status;
 
     public Integer getId() {
         return id;
@@ -56,14 +55,6 @@ public class Order {
         this.user = user;
     }
 
-    public Bar getBar() {
-        return bar;
-    }
-
-    public void setBar(Bar bar) {
-        this.bar = bar;
-    }
-
     public Beer getBeer() {
         return beer;
     }
@@ -72,19 +63,19 @@ public class Order {
         this.beer = beer;
     }
 
-    public Integer getTable() {
-        return table;
+    public Integer getTableNumber() {
+        return tableNumber;
     }
 
-    public void setTable(Integer table) {
-        this.table = table;
+    public void setTableNumber(Integer table) {
+        this.tableNumber = table;
     }
 
-    public Integer getStatus() {
+    public OrderStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(OrderStatusEnum status) {
         this.status = status;
     }
 

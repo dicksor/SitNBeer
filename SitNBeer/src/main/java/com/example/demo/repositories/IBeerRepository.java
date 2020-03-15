@@ -1,5 +1,8 @@
 package com.example.demo.repositories;
 
+import java.util.Optional;
+
+import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +14,6 @@ import org.springframework.stereotype.Repository;
 @RepositoryRestResource
 public interface IBeerRepository extends JpaRepository<Beer, Long>, JpaSpecificationExecutor<Beer>{
     Beer findByName(String name);
+    Iterable<Beer> findByBar(Bar bar);
+    Optional<Beer> findById(Integer id);
 }

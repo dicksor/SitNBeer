@@ -7,12 +7,28 @@
     <title>SitNBeer - Home</title>
 
     <th:block th:include="fragments/head :: assets"></th:block>
+
+    <link href="/css/home.css" rel="stylesheet">
 </head>
 
 <body>
     <th:block th:include="fragments/layout :: navbar"></th:block>
+    <header>
+        <div class="home-banner">
+            <h1>Welcome to Sit'n beer</h1>
+        </div>
+    </header>
     <main>
+        <span id="home"></span>
         <h1>Welcome to Sit'n beer</h1>
+        <div class="container">
+            <p>The concept is simple. You take a seat, look at the bar's menu and you order your beer.</p>
+            <p>If you're not yet signed in, please do.</p>
+            <a class="waves-effect waves-light btn-small">Sign in</a>
+            <p>Or if you're thirsty, don't waste your time and sign up.</p>
+            <a class="waves-effect waves-light btn-large">Sign up</a>
+            <h2>Cheers <i class="material-icons">local_drink</i></h2>
+        </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>
 </body>

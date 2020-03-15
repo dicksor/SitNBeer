@@ -1,0 +1,19 @@
+.home-banner {
+    background-color: #333;
+    background-image: url('https://source.unsplash.com/collection/884739');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    padding: 20px 20px 20px 20px;
+}
+
+header h1 {
+    background-color: #ee6e7355;
+    color: #fff;
+    padding: 1rem 1rem 1rem 1rem;
+    position: absolute;
+    margin: 0 0 0 0;
+    text-shadow: 2px 2px #ee6e73;
+}

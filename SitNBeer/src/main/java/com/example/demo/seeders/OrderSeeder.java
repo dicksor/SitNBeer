@@ -6,6 +6,9 @@ import java.util.Random;
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
+import com.example.demo.models.enums.OrderStatusEnum;
+import com.example.demo.repositories.IBarRepository;
+import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.models.User;
 import com.example.demo.repositories.IOrderRepository;
 
@@ -32,15 +35,22 @@ public class OrderSeeder implements ISeeder {
 
     @Override
     public void seedDB() {
-        Random rand = new Random();
+        
 
         if (orderRepository.findAll().isEmpty()) {
+            generateFakeOrder();
+        }
+    }
+
+    public void generateFakeOrder(){
+        Random rand = new Random();
+
+        for(int i = 0; i< 15; i++){
             Order order = new Order();
             order.setUser(fakeUsers.get(rand.nextInt(fakeUsers.size() - 1)));
             order.setBeer(fakeBeers.get(rand.nextInt(fakeBeers.size() - 1)));
-            order.setBar(fakeBars.get(rand.nextInt(fakeBars.size() - 1)));
-            order.setStatus(1);
-            order.setTable(10);
+            order.setStatus(OrderStatusEnum.IN_PROCESS);
+            order.setTableNumber(10);
             orderRepository.save(order);
         }
     }
