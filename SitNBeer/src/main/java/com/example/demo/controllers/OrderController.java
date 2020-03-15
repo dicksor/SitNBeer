@@ -57,16 +57,52 @@ class OrderController{
 		return "home";
 	}
 
+	@GetMapping(value = "/order/{newOrderStatusString}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String processOrder(@PathVariable String newOrderStatusString, @PathVariable long orderId){
+		String status = "{\"status\":\"PARAM_ERROR\"}";
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
+
+		try {
+			OrderStatusEnum newOrderStatus = OrderStatusEnum.valueOf(newOrderStatusString);
+	
+			if(optionalOrder.isPresent()){
+				Order order = optionalOrder.get();
+				order.setStatus(newOrderStatus);
+
+				status = "{\"status\":\"OK\", \"orderStatus\":\""+ newOrderStatus +"\"}";
+			}
+		} catch (Exception e) {
+			status = "{\"status\":\"PARSE_ERROR\"}";
+		}
+		
+		return status;
+	}
+
 	@GetMapping(value = "/order/accept/{order_id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String orderAccept(@PathVariable long order_id){
-		String status = "{status:'ERROR'}";
+	public String acceptOrder(@PathVariable long order_id){
+		String status = "{\"status\":\"ERROR\"}";
 		Optional<Order> optionalOrder = orderRepository.findById(order_id);
 		if(optionalOrder.isPresent()){
 			Order order = optionalOrder.get();
 			order.setStatus(OrderStatusEnum.IN_PROCESS);
-			System.out.println(order.getStatus());
-			status = "{status:'OK'}";
+
+			status = "{\"status\":\"OK\", \"orderStatus\":\""+ OrderStatusEnum.IN_PROCESS +"\"}";
+		}
+		return status;
+	}
+
+	@GetMapping(value = "/order/close/{order_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public String closeOrder(@PathVariable long order_id){
+		String status = "{\"status\":\"ERROR\"}";
+		Optional<Order> optionalOrder = orderRepository.findById(order_id);
+		if(optionalOrder.isPresent()){
+			Order order = optionalOrder.get();
+			order.setStatus(OrderStatusEnum.CLOSE);
+
+			status = "{\"status\":\"OK\", \"orderStatus\":\""+ OrderStatusEnum.CLOSE +"\"}";
 		}
 		return status;
 	}

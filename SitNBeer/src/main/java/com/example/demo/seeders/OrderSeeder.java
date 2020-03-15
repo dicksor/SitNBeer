@@ -55,6 +55,9 @@ public class OrderSeeder implements ISeeder {
             case 2: 
                 orderStatusEnum = OrderStatusEnum.CLOSE;
                 break;
+            case 3:
+                orderStatusEnum = OrderStatusEnum.REJECTED;
+                break;
         }
         return orderStatusEnum;
     }
