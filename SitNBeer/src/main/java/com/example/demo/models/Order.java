@@ -31,6 +31,10 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Beer beer;
 
+    @JoinColumn(name = "bar_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Bar bar;
+
     @Column(name = "table_number")
     @NotNull(message = "*Please provide a table number")
     private int tableNumber;
@@ -61,6 +65,14 @@ public class Order {
 
     public void setBeer(Beer beer) {
         this.beer = beer;
+    }
+
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
     }
 
     public Integer getTableNumber() {

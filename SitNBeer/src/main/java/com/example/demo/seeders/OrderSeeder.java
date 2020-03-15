@@ -42,15 +42,37 @@ public class OrderSeeder implements ISeeder {
         }
     }
 
+    private OrderStatusEnum getRandomOrderStatus(){
+        Random rand = new Random();
+        OrderStatusEnum orderStatusEnum = null;
+        switch (rand.nextInt(OrderStatusEnum.values().length)) {
+            case 0:
+                orderStatusEnum =  OrderStatusEnum.OPEN;
+                break;
+            case 1:
+                orderStatusEnum = OrderStatusEnum.IN_PROCESS;
+                break;
+            case 2: 
+                orderStatusEnum = OrderStatusEnum.CLOSE;
+                break;
+        }
+        return orderStatusEnum;
+    }
+
     public void generateFakeOrder(){
         Random rand = new Random();
 
         for(int i = 0; i< 15; i++){
             Order order = new Order();
             order.setUser(fakeUsers.get(rand.nextInt(fakeUsers.size() - 1)));
-            order.setBeer(fakeBeers.get(rand.nextInt(fakeBeers.size() - 1)));
-            order.setStatus(OrderStatusEnum.IN_PROCESS);
-            order.setTableNumber(10);
+
+            Beer beer = fakeBeers.get(rand.nextInt(fakeBeers.size() - 1));
+            order.setBeer(beer);
+
+            Bar bar = beer.getBar();
+            order.setBar(bar);
+            order.setStatus(getRandomOrderStatus());
+            order.setTableNumber(rand.nextInt(bar.getAvailableTable()));
             orderRepository.save(order);
         }
     }

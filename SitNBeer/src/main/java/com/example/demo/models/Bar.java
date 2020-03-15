@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -43,6 +44,9 @@ public class Bar {
     @Column(name = "available_table")
     @NotNull(message = "*Please provide a number of available tables")
     private int availableTable;
+
+    @OneToMany(mappedBy = "bar")
+    private List<Order> orders;
 
     public Integer getId() {
         return id;
@@ -92,4 +96,11 @@ public class Bar {
         this.beers = beers;
     }
 
+    public List<Order> getOrders(){
+        return this.orders;
+    }
+
+    public void setOrders(List<Order> orders){
+        this.orders = orders;
+    }
 }

@@ -1,7 +1,10 @@
 package com.example.demo.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
@@ -42,11 +45,13 @@ class OrderController{
 		Optional<Bar> optionalBar = barRepository.findById(bar_id);
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();
-			Iterable<Beer> beers = bar.getBeers();
+			List<Order> orders = bar.getOrders();
+			model.addAttribute("orders", orders);
+			model.addAttribute("isEntreprise", true);
+			System.out.println(orders);
+			return "orders";
 		}
-		/*List<Order> listOrders = orderRepository.findAll();
-		System.out.println(listOrders.toString());
-		//model.addAttribute("orders", listOrders);*/
+		
 		return "home";
 	}
 
@@ -55,7 +60,9 @@ class OrderController{
 
 		Optional<Beer> optionalBeer = beerRepository.findById(beerId);
 		if(optionalBeer.isPresent()){
-			order.setBeer(optionalBeer.get());
+			Beer beer = optionalBeer.get();
+			order.setBeer(beer);
+			order.setBar(beer.getBar());
 		}
 		
 		orderAddValidator.validate(order, bindingResult);
