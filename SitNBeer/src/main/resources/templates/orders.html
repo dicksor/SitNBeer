@@ -16,7 +16,7 @@
     <main>  
         <div class="container">
             <h1>Client orders</h1>
-            <span th:if="${#lists.size(orders) > 0}" class="test">
+            <span th:if="${#lists.size(orders) > 0}">
                 <ul class="collection">
                     <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}">
                         <strong>Id : </strong><span th:text="${order.id}"></span><br>

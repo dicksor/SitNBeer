@@ -1,18 +1,18 @@
 package com.example.demo.controllers;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
+import com.example.demo.models.User;
 import com.example.demo.models.enums.OrderStatusEnum;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IOrderRepository;
+import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.OrderAddValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 class OrderController{
 
 	@Autowired
+	private IUserRepository userRepository;
+
+	@Autowired
 	private IBeerRepository beerRepository;
 
 	@Autowired
@@ -42,22 +45,49 @@ class OrderController{
 	@Autowired 
 	private OrderAddValidator orderAddValidator;
 
-	@GetMapping("/orders/{bar_id}")
-	public String orders(Model model,  @PathVariable Integer bar_id){
-		Optional<Bar> optionalBar = barRepository.findById(bar_id);
+	@GetMapping("/orders/client/{clientId}")
+	public String ordersClient(Model model,  @PathVariable long clientId){
+		Optional<User> optionalUser = userRepository.findById(clientId);
+		if(optionalUser.isPresent()){
+			User user = optionalUser.get();
+			List<Order> orders = user.getOrders();
+
+			model.addAttribute("orders", orders);
+
+			return "clientOrders";
+		}
+		return "home";
+	}
+
+	@GetMapping("/orders/{barId}")
+	public String orders(Model model,  @PathVariable Integer barId){
+		Optional<Bar> optionalBar = barRepository.findById(barId);
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();
 			List<Order> orders = bar.getOrders();
 			model.addAttribute("orders", orders);
-			model.addAttribute("isEntreprise", true);
-			System.out.println(orders);
+
 			return "orders";
 		}
 		
 		return "home";
 	}
 
-	@GetMapping(value = "/order/{newOrderStatusString}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping("/orders/history/{barId}")
+	public String ordersHistory(Model model,  @PathVariable Integer barId){
+	Optional<Bar> optionalBar = barRepository.findById(barId);
+		if(optionalBar.isPresent()){
+			Bar bar = optionalBar.get();
+			List<Order> orders = bar.getOrders();
+			model.addAttribute("orders", orders);
+
+			return "ordersHistory";
+		}
+		
+		return "home";
+	}
+
+	@GetMapping(value = "/order/update/{newOrderStatusString}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String processOrder(@PathVariable String newOrderStatusString, @PathVariable long orderId){
 		String status = "{\"status\":\"PARAM_ERROR\"}";
@@ -69,40 +99,27 @@ class OrderController{
 			if(optionalOrder.isPresent()){
 				Order order = optionalOrder.get();
 				order.setStatus(newOrderStatus);
+				
+				orderRepository.save(order);
 
 				status = "{\"status\":\"OK\", \"orderStatus\":\""+ newOrderStatus +"\"}";
 			}
 		} catch (Exception e) {
 			status = "{\"status\":\"PARSE_ERROR\"}";
 		}
-		
 		return status;
 	}
 
-	@GetMapping(value = "/order/accept/{order_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "order/delete/{orderId}",  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public String acceptOrder(@PathVariable long order_id){
-		String status = "{\"status\":\"ERROR\"}";
-		Optional<Order> optionalOrder = orderRepository.findById(order_id);
+	public String deleteOrder(@PathVariable long orderId){
+		String status = "{\"status\":\"PARAM_ERRORRR\"}";
+		System.out.println("test");
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
 		if(optionalOrder.isPresent()){
 			Order order = optionalOrder.get();
-			order.setStatus(OrderStatusEnum.IN_PROCESS);
-
-			status = "{\"status\":\"OK\", \"orderStatus\":\""+ OrderStatusEnum.IN_PROCESS +"\"}";
-		}
-		return status;
-	}
-
-	@GetMapping(value = "/order/close/{order_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public String closeOrder(@PathVariable long order_id){
-		String status = "{\"status\":\"ERROR\"}";
-		Optional<Order> optionalOrder = orderRepository.findById(order_id);
-		if(optionalOrder.isPresent()){
-			Order order = optionalOrder.get();
-			order.setStatus(OrderStatusEnum.CLOSE);
-
-			status = "{\"status\":\"OK\", \"orderStatus\":\""+ OrderStatusEnum.CLOSE +"\"}";
+			orderRepository.delete(order);
+			status = "{\"status\":\"OK\"}";
 		}
 		return status;
 	}

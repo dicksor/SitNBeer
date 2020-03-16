@@ -15,10 +15,10 @@
     <th:block th:include="fragments/layout :: navbar"></th:block>
     <main>  
         <div class="container">
-            <h1>Client orders</h1>
+            <h1>Orders history</h1>
             <span th:if="${#lists.size(orders) > 0}">
                 <ul class="collection">
-                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}">
+                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).REJECTED or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).CLOSE}">
                         <strong>Id : </strong><span th:text="${order.id}"></span><br>
                         <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
                         <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
@@ -26,9 +26,7 @@
                         <hr>
                         <strong>Status : </strong><span class="order-status" th:text="${order.getStatus()}"></span>
                         <span class="order-button-group">
-                            <a th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN}" class="waves-effect waves-light btn accept-button" onclick="acceptOrder(this)">Accept</a>
-                            <a th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).OPEN}" class="waves-effect waves-light btn reject-button" onclick="rejectOrder(this)">Reject</a>
-                            <a th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).IN_PROCESS}" class="waves-effect waves-light btn close-button" onclick="closeOrder(this)">Close</a>
+                            <a class="waves-effect waves-light btn accept-button" onclick="deleteOrder(this)">Delete</a>
                         </span>
                     </li>
                 </ul>
