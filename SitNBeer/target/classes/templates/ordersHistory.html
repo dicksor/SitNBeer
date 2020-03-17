@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Orders</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/order.js"></script>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>  
+        <div class="container">
+            <span id="ordersHistory"></span>
+            <h1>Orders history</h1>
+            <span th:if="${#lists.size(orders) > 0}">
+                <ul class="collection">
+                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).REJECTED or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).CLOSE}">
+                        <strong>Id : </strong><span th:text="${order.id}"></span><br>
+                        <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
+                        <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
+                        <strong>Manufacturer : </strong><span th:text="${order.getBeer().getManufacturer()}"></span>
+                        <hr>
+                        <strong>Status : </strong><span class="order-status" th:text="${order.getStatus()}"></span>
+                        <span class="order-button-group">
+                            <a class="waves-effect waves-light btn accept-button" onclick="deleteOrder(this)">Delete</a>
+                        </span>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

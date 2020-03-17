@@ -1,0 +1,39 @@
+<div th:fragment="bar-card">
+    <div class="col s12 m4 l3">
+        <div class="card large">
+            <div class="card-image">
+                <img th:src="${imgSrc}">
+                <span th:text="${bar.getName()}" class="card-title"></span>
+            </div>
+            <div class="card-content">
+                <p>[[${bar.getAddress()}]]</p>
+                <br>
+                <p>Available tables : [[${bar.getAvailableTable()}]]</p>
+                <br>
+                <p>Owner : [[${bar.getUser().getUsername()}]]</p>
+            </div>
+            <div class="card-action">
+                <a th:href="@{/bar/} + ${bar.getId()}">Show drinks</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="beer-card">
+    <div class="col s12 m4 l3">
+        <div class="card large">
+            <div class="card-image">
+                <img th:src="${imgSrc}">
+                <span th:text="${beer.getName()}" class="card-title"></span>
+            </div>
+            <div class="card-content">
+                <p>[[${beer.getManufacturer()}]]</p>
+                <p>[[${beer.getVolume()}]]&deg;</p>
+                <p>[[${beer.getPrice()}]] CHF</p>
+            </div>
+            <div class="card-action">
+                <a th:href="@{/bar/} + ${beer.getBar().getId()}">[[${beer.getBar().getName()}]]</a>
+            </div>
+        </div>
+    </div>
+</div>

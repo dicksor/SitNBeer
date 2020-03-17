@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Orders</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/order.js"></script>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>  
+        <div class="container">
+            <h1>Your orders</h1>
+            <span th:if="${#lists.size(orders) > 0}">
+                <ul class="collection">
+                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}">
+                        <strong>Id : </strong><span th:text="${order.id}"></span><br>
+                        <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
+                        <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
+                        <strong>Manufacturer : </strong><span th:text="${order.getBeer().getManufacturer()}"></span>
+                        <hr>
+                        <strong>Status : </strong><span class="order-status" th:text="${order.getStatus()}"></span>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

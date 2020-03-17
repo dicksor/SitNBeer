@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Bars</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+        <span id="createBar"></span>
+        <h1>Add a bar</h1>
+        <form action="bar" th:action="@{/bar/add}" th:object="${bar}" method="post" autocomplete="off">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="bar-name" class="active">Bar name : </label>
+                    <input type="text" th:field="*{name}" id="bar-name" name="bar-name" class="validate" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="bar-adress" class="activate">Bar Address : </label>
+                    <input type="text" th:field="*{address}" id="bar-address" name="bar-address" class="validate" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="bar-available-table" class="activate">Number of table available in the bar : </label>
+                    <input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required/>
+                </div>
+            </div>
+            <input type="submit" class="waves-effect waves-light btn" value="Add a bar">
+        </form>
+    </main>
+    </div>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

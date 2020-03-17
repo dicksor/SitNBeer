@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Registration</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+            <h2>Registration</h2>
+            <form action="#" th:action="@{/registration}" method="post" th:object="${userForm}">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">Email : </label>
+                        <input type="email" th:field="*{email}" class="validate" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="username">Username : </label>
+                        <input type="text" th:field="*{username}" class="validate" id="username" name="username" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="password">Password : </label>
+                        <input type="password" th:field="*{password}" class="validate" id="password" name="password" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="password_confirm">Confirm password : </label>
+                        <input type="password" th:field="*{passwordConfirm}" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
+                    </div>  
+                </div>
+                <input type="submit" class="waves-effect waves-light btn" value="Register">
+            </form>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>
+
+
+
+
+
+
+
