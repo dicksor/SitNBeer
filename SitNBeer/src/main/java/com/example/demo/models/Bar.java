@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Bar {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,11 +45,14 @@ public class Bar {
     @NotNull(message = "*Please provide a number of available tables")
     private int availableTable;
 
-    public Integer getId() {
+    @OneToMany(mappedBy = "bar")
+    private List<Order> orders;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -92,4 +96,11 @@ public class Bar {
         this.beers = beers;
     }
 
+    public List<Order> getOrders(){
+        return this.orders;
+    }
+
+    public void setOrders(List<Order> orders){
+        this.orders = orders;
+    }
 }

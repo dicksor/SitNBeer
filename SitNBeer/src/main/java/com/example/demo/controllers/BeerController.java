@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -50,7 +51,7 @@ class BeerController {
         return "createBeer";
     }
 
-    @RequestMapping("/beers")
+    @GetMapping("/beers")
     public String index(Model model, @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -100,6 +101,33 @@ class BeerController {
         beer.setBar(bar);
         beerRepository.save(beer);*/
 
-        return "redirect:/";
+        return "home";
+    }
+
+    @GetMapping("/beer/update/{beerId}")
+    public String updateBeerForm(@PathVariable long beerId, Model model){
+
+        Optional<Beer> optionalBeer = beerRepository.findById(beerId);
+        if(optionalBeer.isPresent()){
+            model.addAttribute("beer", optionalBeer.get());
+            return "updateBeer";
+        }
+        return "home";
+    }
+
+    @PostMapping("/beer/update")
+    public String updateBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
+        beerAddValidator.validate(beer, bindingResult);
+
+        if(bindingResult.hasErrors()){
+            return "updateBeer";
+        }
+
+        //TODO : make method to find bar from user
+        /*
+        beer.setBar(bar);
+        beerRepository.save(beer);*/
+
+        return "home";
     }
 }

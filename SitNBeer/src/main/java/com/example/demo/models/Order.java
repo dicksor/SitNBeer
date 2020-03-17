@@ -21,7 +21,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @JoinColumn(name = "user_id", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -31,6 +31,10 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Beer beer;
 
+    @JoinColumn(name = "bar_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private Bar bar;
+
     @Column(name = "table_number")
     @NotNull(message = "*Please provide a table number")
     private int tableNumber;
@@ -39,11 +43,11 @@ public class Order {
     @NotNull(message = "*Please provide a status")
     private OrderStatusEnum status;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -63,12 +67,20 @@ public class Order {
         this.beer = beer;
     }
 
-    public Integer getTableNumber() {
+    public Bar getBar() {
+        return bar;
+    }
+
+    public void setBar(Bar bar) {
+        this.bar = bar;
+    }
+
+    public int getTableNumber() {
         return tableNumber;
     }
 
-    public void setTableNumber(Integer table) {
-        this.tableNumber = table;
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     public OrderStatusEnum getStatus() {

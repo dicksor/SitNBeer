@@ -48,7 +48,7 @@ class BarController {
 	@Autowired
 	private IUserRepository userRepository;
 
-	@RequestMapping("/bars")
+	@GetMapping("/bars")
 	public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(8);
@@ -108,7 +108,7 @@ class BarController {
 	}
 
 	@GetMapping("/bar/{bar_id}")
-	public String showBar(Model model, @PathVariable Integer bar_id){
+	public String showBar(Model model, @PathVariable long bar_id){
 		Optional<Bar> optionalBar = barRepository.findById(bar_id);
 		Bar bar = null;
 		if(optionalBar.isPresent()){
@@ -125,4 +125,31 @@ class BarController {
 
 		return "showBar";
 	}
+
+	@GetMapping("/bar/update/{barId}")
+    public String updateBarForm(@PathVariable long barId, Model model){
+
+        Optional<Bar> optionalBar = barRepository.findById(barId);
+        if(optionalBar.isPresent()){
+            model.addAttribute("bar", optionalBar.get());
+            return "updateBar";
+        }
+        return "home";
+    }
+
+    @PostMapping("/bar/update")
+    public String updateBeer(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal){
+        barAddValidator.validate(bar, bindingResult);
+
+        if(bindingResult.hasErrors()){
+            return "updateBar";
+        }
+
+        //TODO : make method to find bar from user
+        /*
+        beer.setBar(bar);
+        beerRepository.save(beer);*/
+
+        return "home";
+    }
 }

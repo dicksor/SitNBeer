@@ -53,3 +53,9 @@ main {
 .page-footer{
     padding-top: 0px;
 }
+
+.order-button-group{
+    position: relative;
+    top: -100px;
+    float: right;
+}

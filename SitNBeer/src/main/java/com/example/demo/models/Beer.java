@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity
 @Table(name = "beers")
 public class Beer {
@@ -22,7 +20,7 @@ public class Beer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "name")
     @NotEmpty(message = "*Please provide a name")
@@ -48,11 +46,11 @@ public class Beer {
     @NotNull(message = "*Please provide a price")
     private int stockQuantity;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -103,5 +101,4 @@ public class Beer {
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
-
 }
