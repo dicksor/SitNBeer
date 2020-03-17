@@ -48,7 +48,7 @@ class BarController {
 	@Autowired
 	private IUserRepository userRepository;
 
-	@RequestMapping("/bars")
+	@GetMapping("/bars")
 	public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(8);
