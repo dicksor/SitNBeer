@@ -60,7 +60,7 @@ class OrderController{
 	}
 
 	@GetMapping("/orders/{barId}")
-	public String orders(Model model,  @PathVariable Integer barId){
+	public String orders(Model model,  @PathVariable long barId){
 		Optional<Bar> optionalBar = barRepository.findById(barId);
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();
@@ -74,7 +74,7 @@ class OrderController{
 	}
 
 	@GetMapping("/orders/history/{barId}")
-	public String ordersHistory(Model model,  @PathVariable Integer barId){
+	public String ordersHistory(Model model,  @PathVariable long barId){
 	Optional<Bar> optionalBar = barRepository.findById(barId);
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();

@@ -15,6 +15,7 @@
     <th:block th:include="fragments/layout :: navbar"></th:block>
     <main>  
         <div class="container">
+        <span id="orders"></span>
             <h1>Client orders</h1>
             <span th:if="${#lists.size(orders) > 0}">
                 <ul class="collection">
