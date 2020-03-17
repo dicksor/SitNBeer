@@ -1,5 +1,6 @@
 package com.example.demo.seeders;
 
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -21,11 +22,13 @@ public class BarSeeder implements ISeeder {
     private List<User> fakeUsers;
     private List<Bar> fakeBars;
 
+    private Random rand = new Random();
+
     public BarSeeder(IBarRepository barRepository, List<User> fakeUsers) {
         this.barRepository = barRepository;
 
         this.fakeUsers = fakeUsers;
-        this.fakeBars = new LinkedList<Bar>();
+        this.fakeBars = new LinkedList<>();
     }
 
     @Override
@@ -41,7 +44,6 @@ public class BarSeeder implements ISeeder {
 
     private void generateFakeBars() {
         Faker faker = new Faker();
-        Random rand = new Random();
 
         for (int i = 0; i < 20; i++) {
             Bar bar = new Bar();

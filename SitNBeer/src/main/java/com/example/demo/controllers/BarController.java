@@ -107,9 +107,9 @@ class BarController {
 		return "redirect:/";
 	}
 
-	@GetMapping("/bar/{bar_id}")
-	public String showBar(Model model, @PathVariable long bar_id){
-		Optional<Bar> optionalBar = barRepository.findById(bar_id);
+	@GetMapping("/bar/{barId}")
+	public String showBar(Model model, @PathVariable long barId){
+		Optional<Bar> optionalBar = barRepository.findById(barId);
 		Bar bar = null;
 		if(optionalBar.isPresent()){
 			bar = optionalBar.get();
