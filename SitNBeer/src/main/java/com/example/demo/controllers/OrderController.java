@@ -114,7 +114,7 @@ class OrderController{
 	@ResponseBody
 	public String deleteOrder(@PathVariable long orderId){
 		String status = "{\"status\":\"PARAM_ERRORRR\"}";
-		System.out.println("test");
+
 		Optional<Order> optionalOrder = orderRepository.findById(orderId);
 		if(optionalOrder.isPresent()){
 			Order order = optionalOrder.get();

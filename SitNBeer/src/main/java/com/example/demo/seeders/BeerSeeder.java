@@ -21,11 +21,13 @@ public class BeerSeeder implements ISeeder {
     private List<Bar> fakeBars;
     private List<Beer> fakeBeers;
 
+    private Random rand = new Random();
+
     public BeerSeeder(IBeerRepository beerRepository, List<Bar> fakeBars) {
         this.beerRepository = beerRepository;
         this.fakeBars = fakeBars;
 
-        this.fakeBeers = new LinkedList<Beer>();
+        this.fakeBeers = new LinkedList<>();
     }
 
     @Override
@@ -41,7 +43,6 @@ public class BeerSeeder implements ISeeder {
 
     private void generateFakeBeer() {
         Faker faker = new Faker();
-        Random rand = new Random();
 
         for (int i = 0; i < 50; i++) {
             Beer beer = new Beer();

@@ -26,8 +26,6 @@ public interface IPagingService<T> {
             list = items.subList(startItem, toIndex);
         }
 
-        Page<T> page = new PageImpl<T>(list, PageRequest.of(currentPage, pageSize), items.size());
-
-        return page;
+        return new PageImpl<>(list, PageRequest.of(currentPage, pageSize), items.size());
     }
 }
