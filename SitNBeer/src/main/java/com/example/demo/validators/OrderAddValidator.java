@@ -22,9 +22,9 @@ public class OrderAddValidator implements Validator{
 
         Bar bar = beer.getBar();
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "table", "table.empty", "You must enter a table number !");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tableNumber", "tableNumber.empty", "You must enter a table number !");
         if(order.getTableNumber() < 0 || order.getTableNumber() > bar.getAvailableTable()){
-            errors.rejectValue("table", "table.size", "The size must be between 2 and "+bar.getAvailableTable()+" !");
+            errors.rejectValue("tableNumber", "tableNumber.size", "The size must be between 2 and "+bar.getAvailableTable()+" !");
         }
     }
 

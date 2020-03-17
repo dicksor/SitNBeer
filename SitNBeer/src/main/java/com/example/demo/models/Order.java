@@ -75,12 +75,12 @@ public class Order {
         this.bar = bar;
     }
 
-    public Integer getTableNumber() {
+    public int getTableNumber() {
         return tableNumber;
     }
 
-    public void setTableNumber(Integer table) {
-        this.tableNumber = table;
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     public OrderStatusEnum getStatus() {
