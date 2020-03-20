@@ -1,11 +1,11 @@
 <th:block th:fragment="navbar">
     <ul id="dropdown-bar" class="dropdown-content">
-        <li><a th:href="@{/bar}">Show bars</a></li>
-        <li><a href="#!">Add bar</a></li>
+        <li><a th:href="@{/bars}">Show bars</a></li>
+        <li><a th:href="@{/bar/add}">Add bar</a></li>
     </ul>
     <ul id="dropdown-beer" class="dropdown-content">
-        <li><a th:href="@{/beer}">Show beers</a></li>
-        <li><a href="#!">Add beer</a></li>
+        <li><a th:href="@{/beers}">Show beers</a></li>
+        <li><a th:href="@{/beer/add}">Add beer</a></li>
     </ul>
     <nav>
         <div class="nav-wrapper">
@@ -31,8 +31,8 @@
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
-        <li><a th:href="@{/bar}">Bars</a></li>
-        <li><a th:href="@{/beer}">Beers</a></li>
+        <li><a th:href="@{/bars}">Bars</a></li>
+        <li><a th:href="@{/beers}">Beers</a></li>
         <li><a th:href="@{/login}">Login</a></li>
         <li><a th:href="@{/registration}">Register</a></li>
     </ul>
@@ -42,7 +42,7 @@
     <ul class="pagination">
         <th:block
             th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
-            <li th:if="${page.number > 0}" class="disabled">
+            <li th:if="${page.number > 0}">
                 <a
                     th:href="@{${urlBuilder.replaceQueryParam('size', page.size).replaceQueryParam('page', page.number).build().toUriString()}}">
                     <i class="material-icons">chevron_left</i></a>

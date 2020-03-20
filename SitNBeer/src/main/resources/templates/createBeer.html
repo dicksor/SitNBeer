@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Beers</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+        <span id="createBeer"></span>
+        <h1>Add a beer</h1>
+        <form action="beer" th:action="@{/beer/add}" th:object="${beer}" method="post" autocomplete="off">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="beer-name" class="active">Beer name : </label>
+                    <input type="text" th:field="*{name}" id="beer-name" name="beer-name" class="validate" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="beer-manufacturer" class="active">Beer manufacturer : </label>
+                    <input type="text" th:field="*{manufacturer}" id="beer-manufacturer" name="beer-manufacturer" class="validate" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="beer-price" class="active">Beer price : </label>
+                    <input type="number" th:field="*{price}" id="beer-price" name="beer-price" class="validate" required min="0"  step="0.01"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="beer-volume" class="active">Beer volume : </label>
+                    <input type="number" th:field="*{volume}" id="beer-volume" name="beer-volume" class="validate" required min="0"  step="0.01"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="beer-stockQuantity" class="active">Stock quantity : </label>
+                    <input type="number" th:field="*{stockQuantity}" id="beer-stockQuantity" name="beer-stockQuantity" class="validate" required min="0"  step="0.01"/>
+                </div>
+            </div>
+            <input type="submit" class="waves-effect waves-light btn" value="Add a beer">
+        </form>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

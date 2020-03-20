@@ -27,6 +27,10 @@ public class RoleSeeder implements ISeeder {
             Role enterpriseRole = new Role();
             enterpriseRole.setRoleName(RoleEnum.ENTERPRISE.toString());
             roleRepository.save(enterpriseRole);
+
+            Role visitorRole = new Role();
+            visitorRole.setRoleName(RoleEnum.VISITOR.toString());
+            roleRepository.save(visitorRole);
         }
     }
 

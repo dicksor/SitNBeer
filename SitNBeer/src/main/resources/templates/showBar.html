@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Bar</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+            <span id="createOrder"></span>
+            <h1>Bar information</h1>
+            <p><strong>Bar name : </strong><span th:text="${bar.name}"></span></p>
+            <p><strong>Bar address : </strong><span th:text="${bar.address}"></span></p>
+            <p><strong>Bar available table : </strong><span th:text="${bar.availableTable}"></span></p>
+            
+            <h1>Make an order</h1>
+        
+            <form action="order" th:action="@{/order/add}" th:object="${order}" method="post" autocomplete="off">
+                <div class="row">
+                    <label for="order-beer">Select a beer : </label>
+                    <div class="input-field">
+                        <select style="display:block" th:objects="${beers}" id="order-beer" name="order-beer">
+                            <option th:each="beer : ${beers}" th:text="${beer.name}" th:value="${beer.id}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="order-table" class="active">Table number : </label>
+                        <input type="number" th:field="*{tableNumber}" id="order-table-number" name="order-table-number" class="validate" required min="0" th:max="${bar.availableTable}"/>
+                    </div>
+                </div>
+                <input type="submit" class="waves-effect waves-light btn" value="Order the beer">
+            </form>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 package com.example.demo.models.enums;
 
 public enum RoleEnum {
-    ENTERPRISE, USER;
+    ENTERPRISE, USER, VISITOR;
 
     @Override
     public String toString() {

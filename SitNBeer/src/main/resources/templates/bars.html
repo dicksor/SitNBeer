@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Bars</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/bar.js"></script>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>
+        <div class="container">
+            <h1>Bars</h1>
+
+            <form>
+                <label for="num-elements">[[${barPage.size}]] bars displayed per page</label>
+                <p class="range-field">
+                    <input type="range" name="num-elements" id="pageSizeBars" th:value="${barPage.size}" min="4"
+                        th:max="${barPage.totalElements}" />
+                </p>
+                <label for="num-tables">Minimum available tables</label>
+                <p class="range-field">
+                    <input type="range" name="num-tables" id="numTables" min="1"
+                        th:max="100" />
+                </p>
+            </form>
+
+            <div id="test-slider"></div>
+            <div class="row">
+                <div th:if="${not #lists.isEmpty(barPage.content)}" th:each="bar, iter : ${barPage.content}">
+                    <th:block
+                        th:insert="fragments/card :: bar-card(imgSrc='https://source.unsplash.com/collection/884739/480x480?sig=__${iter.index}__', bar=${bar})">
+                    </th:block>
+                </div>
+                <div th:unless="${not #lists.isEmpty(barPage.content)}">
+                    <p>Sorry, they were no available results for your query</p>
+                </div>
+            </div>
+            <th:block
+                th:include="fragments/layout :: pagination(page=${barPage}, pageNums=${pageNumbers}, path='/bar')">
+            </th:block>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>

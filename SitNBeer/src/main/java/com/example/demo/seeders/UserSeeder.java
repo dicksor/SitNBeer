@@ -27,7 +27,7 @@ public class UserSeeder implements ISeeder {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
 
-        this.fakeUsers = new LinkedList<User>();
+        this.fakeUsers = new LinkedList<>();
     }
 
     @Override

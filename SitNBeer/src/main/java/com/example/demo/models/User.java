@@ -1,5 +1,7 @@
 package com.example.demo.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -22,7 +25,7 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id")
-  private Long id;
+  private long id;
 
   @Column(name = "username")
   private String username;
@@ -38,16 +41,19 @@ public class User {
   @Transient
 	private String passwordConfirm;
 
-  @JsonProperty(access = Access.WRITE_ONLY)
-  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JoinColumn(name = "user_role", nullable = false)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+  @JsonProperty(access = Access.WRITE_ONLY)
   private Role role;
 
-  public Long getId() {
+  @OneToMany(mappedBy = "user")
+  private List<Order> orders;
+
+  public long getId() {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -91,4 +97,11 @@ public class User {
     this.role = role;
   }
 
+  public List<Order> getOrders(){
+    return this.orders;
+  }
+
+  public void setOrders(List<Order> orders){
+      this.orders = orders;
+  } 
 }
