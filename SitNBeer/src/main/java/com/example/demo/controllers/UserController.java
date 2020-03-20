@@ -19,9 +19,6 @@ public class UserController {
     private IUserService userService;
 
     @Autowired
-    private IUserRepository userRepository;
-
-    @Autowired
     private ISecurityService securityService;
 
     @Autowired
@@ -36,7 +33,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        
+
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -58,12 +55,10 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-        
-        System.out.println(userRepository.findByUsername("vincent"));
         return "login";
     }
 
-    @GetMapping({"/", "/home"})
+    @GetMapping({ "/", "/home" })
     public String welcome(Model model) {
         return "home";
     }
