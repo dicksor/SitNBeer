@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
   @Id
@@ -41,17 +41,13 @@ public class User {
   @Transient
 	private String passwordConfirm;
 
-  @JsonProperty(access = Access.WRITE_ONLY)
-  @Column(name = "active")
-  private Integer active;
-
   @JoinColumn(name = "user_role", nullable = false)
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JsonProperty(access = Access.WRITE_ONLY)
   private Role role;
 
   @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+  private List<Order> orders;
 
   public long getId() {
     return id;
@@ -67,14 +63,6 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public void setActive(Integer active) {
-    this.active = active;
-  }
-
-  public Integer getActive() {
-    return active;
   }
 
   public String getEmail() {
