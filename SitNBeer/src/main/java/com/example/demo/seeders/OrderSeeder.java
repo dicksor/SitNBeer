@@ -41,7 +41,6 @@ public class OrderSeeder implements ISeeder {
     }
 
     private OrderStatusEnum getRandomOrderStatus(){
-        Random rand = new Random();
         OrderStatusEnum orderStatusEnum = null;
         switch (rand.nextInt(OrderStatusEnum.values().length)) {
             case 0:
