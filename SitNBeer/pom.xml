@@ -20,6 +20,7 @@
 	  	<sonar.organization>sitnbeer</sonar.organization>
 	  	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	  	<sonar.login>65f8e672606c7412d9699ebaf3a65dc5e566cbb2</sonar.login>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencies>

@@ -1,6 +1,9 @@
 package com.example.demo.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import com.example.demo.models.User;
+import com.example.demo.repositories.IUserRepository;
 import com.example.demo.services.interfaces.ISecurityService;
 import com.example.demo.services.interfaces.IUserService;
 import com.example.demo.validators.UserValidator;
@@ -30,7 +33,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
-        
+
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -39,9 +42,9 @@ public class UserController {
 
         userService.save(userForm);
 
-        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return "redirect:/login";
+        return "redirect:/home";
     }
 
     @GetMapping("/login")
@@ -55,7 +58,7 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/home"})
+    @GetMapping({ "/", "/home" })
     public String welcome(Model model) {
         return "home";
     }
