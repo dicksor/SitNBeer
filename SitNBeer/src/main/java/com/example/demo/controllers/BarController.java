@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import com.example.demo.services.BarService;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller

@@ -16,11 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
-    }
-    
     @Qualifier("userDetailsServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
@@ -29,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-  
+
     @Bean
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
@@ -42,18 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/registration", "/home", "/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .usernameParameter("username")
-                .defaultSuccessUrl("/home", true)
-                .and()
-            .logout()
-                .permitAll();
+        http.authorizeRequests()
+            .antMatchers("/js/*.js", "/css/*.css", "/favicon.ico").permitAll()
+            .antMatchers("/registration", "/home", "/bars", "/beers", "/").permitAll()
+            .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").permitAll().usernameParameter("username")
+                .defaultSuccessUrl("/home", true).and().logout().permitAll();
+
     }
 }
