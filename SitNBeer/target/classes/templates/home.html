@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <th:block th:include="fragments/head :: meta"></th:block>
@@ -22,12 +22,6 @@
         <span id="home"></span>
         <div class="container">
             <h1>Welcome to Sit'n beer</h1>
-            
-            <form id="logoutForm" method="POST" action="#" th:action="@{/logout}">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            </form>
-    
-            <h2>Welcome | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
             <p>The concept is simple. You take a seat, look at the bar's menu and you order your beer.</p>
             <p>If you're not yet signed in, please do.</p>

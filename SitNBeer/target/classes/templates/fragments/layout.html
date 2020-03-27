@@ -26,8 +26,16 @@
                                 class="material-icons right">arrow_drop_down</i></a></li>
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
                                 class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a th:href="@{/login}" class="btn">Login</a></li>
-                    <li><a th:href="@{/registration}" class="btn">Register</a></li>
+                    
+                    <span sec:authorize="isAnonymous()">
+                        <li><a th:href="@{/login}" class="btn">Login</a></li>
+                        <li><a th:href="@{/registration}" class="btn">Register</a></li>
+                    </span>
+
+                    <span sec:authorize="isAuthenticated()">
+                        <li><a th:href="@{/profile}" class="btn"><span sec:authentication="name"></span></a></li>
+                        <li><a class="btn" onclick="document.forms['logoutForm'].submit()">Logout</a></li>
+                    </span>
                 </ul>
             </div>
         </div>
@@ -38,6 +46,11 @@
         <li><a th:href="@{/login}">Login</a></li>
         <li><a th:href="@{/registration}">Register</a></li>
     </ul>
+
+    <form id="logoutForm" method="POST" action="#" th:action="@{/logout}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+
 </th:block>
 
 <th:block th:fragment="pagination">
