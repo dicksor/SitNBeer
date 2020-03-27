@@ -9,25 +9,27 @@
     </ul>
     <nav>
         <div class="nav-wrapper">
-            <a th:href="@{/}" class="brand-logo">SitNBeer</a>
-            <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>
-                    <form>
-                        <div class="input-field">
-                            <input id="nav-search" type="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                    </form>
-                </li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-bar">Bars<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a th:href="@{/login}" class="btn">Login</a></li>
-                <li><a th:href="@{/registration}" class="btn">Register</a></li>
-            </ul>
+            <div class="container">
+                <a th:href="@{/}" class="brand-logo">SitNBeer</a>
+                <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <form>
+                            <div class="input-field">
+                                <input id="nav-search" type="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown-bar">Bars<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown-beer">Beers<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a th:href="@{/login}" class="btn">Login</a></li>
+                    <li><a th:href="@{/registration}" class="btn">Register</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <ul class="sidenav" id="mobile-nav">
