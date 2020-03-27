@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.User;
@@ -21,6 +22,8 @@ public class BarSeeder implements ISeeder {
 
     private List<User> fakeUsers;
     private List<Bar> fakeBars;
+
+    private static final int NUMBER_OF_BARS = 20;
 
     private Random rand = new Random();
 
@@ -45,9 +48,9 @@ public class BarSeeder implements ISeeder {
     private void generateFakeBars() {
         Faker faker = new Faker();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < NUMBER_OF_BARS; i++) {
             Bar bar = new Bar();
-            bar.setUser(fakeUsers.get(rand.nextInt(fakeUsers.size() - 1)));
+            bar.setUser(fakeUsers.get(i));
             bar.setName(faker.company().name());
             bar.setAddress(faker.address().fullAddress());
             bar.setAvailableTable(faker.number().numberBetween(5, 40));

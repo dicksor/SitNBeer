@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import java.security.Principal;
 
 import com.example.demo.models.Beer;
+import com.example.demo.models.User;
+import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BeerAddValidator;
@@ -96,10 +98,10 @@ class BeerController {
 		if(bindingResult.hasErrors()){
 			return "createBeer";
         }
-        //TODO : make method to find bar from user
-        /*
-        beer.setBar(bar);
-        beerRepository.save(beer);*/
+        User loggedUser = userRepository.findByUsername(principal.getName());
+        
+        beer.setBar(loggedUser.getOwnedBar());
+        beerRepository.save(beer);
 
         return "home";
     }
@@ -123,10 +125,11 @@ class BeerController {
             return "updateBeer";
         }
 
-        //TODO : make method to find bar from user
-        /*
-        beer.setBar(bar);
+
+        /*beer.setBar();
         beerRepository.save(beer);*/
+
+        //System.out.println(barRepository.findByUser(loggedUser).get().getName());
 
         return "home";
     }

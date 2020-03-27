@@ -106,8 +106,9 @@ class BarController {
 			return "createBar";
 		}
 
-		/*bar.setUser(loggedUser);
-		barRepository.save(bar);*/
+		User loggedUser = userRepository.findByUsername(principal.getName());
+		bar.setUser(loggedUser);
+		barRepository.save(bar);
 
 		return "redirect:/";
 	}
