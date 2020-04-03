@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.security.Principal;
 
+import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.User;
 import com.example.demo.repositories.IBarRepository;
@@ -92,15 +93,15 @@ class BeerController {
 
     @PostMapping("/beer/add")
     public String addBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
-
         beerAddValidator.validate(beer, bindingResult);
 
 		if(bindingResult.hasErrors()){
 			return "createBeer";
         }
         User loggedUser = userRepository.findByUsername(principal.getName());
-        
-        beer.setBar(loggedUser.getOwnedBar());
+        Bar bar = loggedUser.getOwnedBar();
+        beer.setBar(bar);
+
         beerRepository.save(beer);
 
         return "home";

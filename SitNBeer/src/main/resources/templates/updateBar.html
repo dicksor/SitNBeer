@@ -15,7 +15,7 @@
         <div class="container">
         <span id="createBar"></span>
         <h1>Update a bar</h1>
-        <form action="bar" th:action="@{/bar/update}" th:object="${bar}" method="post" autocomplete="off">
+        <form action="bar" th:action="@{/bar/update/{id}(id=${bar.id})}" th:object="${bar}" method="post" autocomplete="off">
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-name" class="active">Bar name : </label>

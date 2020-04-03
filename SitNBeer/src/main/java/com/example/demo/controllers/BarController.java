@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,9 @@ import com.example.demo.validators.BarAddValidator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import javax.validation.Valid;
+
 import com.example.demo.services.BarService;
 import com.example.demo.services.UserServiceImpl;
 import com.sipios.springsearch.anotation.SearchSpec;
@@ -100,13 +104,18 @@ class BarController {
 	@PostMapping("/bar/add")
 	public String addBar(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal) {
 
+		User loggedUser = userRepository.findByUsername(principal.getName());
+
+		if(loggedUser.getOwnedBar() != null){
+			return "createBar";
+		}
+
 		barAddValidator.validate(bar, bindingResult);
 
 		if(bindingResult.hasErrors()){
 			return "createBar";
 		}
 
-		User loggedUser = userRepository.findByUsername(principal.getName());
 		bar.setUser(loggedUser);
 		barRepository.save(bar);
 
@@ -133,9 +142,10 @@ class BarController {
 	}
 
 	@GetMapping("/bar/update/{barId}")
-    public String updateBarForm(@PathVariable long barId, Model model){
+    public String updateBarForm(@PathVariable Long barId, Model model){
 
-        Optional<Bar> optionalBar = barRepository.findById(barId);
+		Optional<Bar> optionalBar = barRepository.findById(barId);
+		
         if(optionalBar.isPresent()){
             model.addAttribute("bar", optionalBar.get());
             return "updateBar";
@@ -143,19 +153,27 @@ class BarController {
         return "home";
     }
 
-    @PostMapping("/bar/update")
-    public String updateBeer(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal){
-        barAddValidator.validate(bar, bindingResult);
+	@PostMapping("/bar/update/{id}")
+    public String updateBeer(@PathVariable Long id, @ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal){
+
+		barAddValidator.validate(bar, bindingResult);
 
         if(bindingResult.hasErrors()){
             return "updateBar";
-        }
+		}
 
-        //TODO : make method to find bar from user
-        /*
-        beer.setBar(bar);
-        beerRepository.save(beer);*/
+		Optional<Bar> optionalBar = barRepository.findById(id);
+		if(optionalBar.isPresent())
+		{
+			Bar updatedBar = optionalBar.get();
+			updatedBar.setName(bar.getName());
+			updatedBar.setAddress(bar.getAddress());
+			updatedBar.setAvailableTable(bar.getAvailableTable());
+			updatedBar.setUser(userRepository.findByUsername(principal.getName()));
+			barRepository.save(updatedBar);
+			return "home";
+		}
 
-        return "home";
+        return "updateBar";
     }
 }
