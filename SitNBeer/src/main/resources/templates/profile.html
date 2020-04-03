@@ -23,8 +23,10 @@
             </ul>
 
             <span th:if="${user.getRole().getRoleName()=='USER'}">
-                <h1>Command history</h1>
-                <p>...</p>
+                <h1>Access to :</h1>
+                <ul>
+                    <li><a th:href="@{/orders/client/} + ${user.getId()}">Command history</a></li>
+                </ul>
             </span>
 
             <span th:if="${user.getRole().getRoleName()=='ENTERPRISE'}">
