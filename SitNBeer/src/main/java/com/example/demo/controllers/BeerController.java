@@ -24,6 +24,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.validation.Valid;
+
 import com.example.demo.services.BeerService;
 import com.sipios.springsearch.anotation.SearchSpec;
 
@@ -118,20 +120,15 @@ class BeerController {
         return "home";
     }
 
-    @PostMapping("/beer/update")
-    public String updateBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
-        beerAddValidator.validate(beer, bindingResult);
-
-        if(bindingResult.hasErrors()){
+    @PostMapping("/beer/update/{id}")
+    public String updateBeer(@PathVariable Long id, @Valid Beer beer, Model model, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+        {
+            beer.setId(id);
             return "updateBeer";
         }
 
-
-        /*beer.setBar();
-        beerRepository.save(beer);*/
-
-        //System.out.println(barRepository.findByUser(loggedUser).get().getName());
-
+        beerRepository.save(beer);
         return "home";
     }
 }

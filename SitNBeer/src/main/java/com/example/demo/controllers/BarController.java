@@ -154,26 +154,15 @@ class BarController {
     }
 
 	@PostMapping("/bar/update/{id}")
-    public String updateBeer(@PathVariable Long id, @ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal){
+    public String updateBeer(@PathVariable Long id, @Valid Bar bar, Model model, BindingResult bindingResult){
 
-		barAddValidator.validate(bar, bindingResult);
-
-        if(bindingResult.hasErrors()){
-            return "updateBar";
-		}
-
-		Optional<Bar> optionalBar = barRepository.findById(id);
-		if(optionalBar.isPresent())
+		if(bindingResult.hasErrors())
 		{
-			Bar updatedBar = optionalBar.get();
-			updatedBar.setName(bar.getName());
-			updatedBar.setAddress(bar.getAddress());
-			updatedBar.setAvailableTable(bar.getAvailableTable());
-			updatedBar.setUser(userRepository.findByUsername(principal.getName()));
-			barRepository.save(updatedBar);
-			return "home";
+			bar.setId(id);
+			return "updateBar";
 		}
 
-        return "updateBar";
+		barRepository.save(bar);
+		return "home";
     }
 }
