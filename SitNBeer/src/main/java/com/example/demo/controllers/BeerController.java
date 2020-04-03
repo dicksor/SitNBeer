@@ -5,7 +5,6 @@ import java.security.Principal;
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.User;
-import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BeerAddValidator;
@@ -32,7 +31,6 @@ import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
@@ -33,9 +30,7 @@ import java.util.stream.IntStream;
 import javax.validation.Valid;
 
 import com.example.demo.services.BarService;
-import com.example.demo.services.UserServiceImpl;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
