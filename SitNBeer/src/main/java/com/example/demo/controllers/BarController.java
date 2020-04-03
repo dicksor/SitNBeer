@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
+import com.example.demo.models.User;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
@@ -26,6 +29,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import com.example.demo.services.BarService;
+import com.example.demo.services.UserServiceImpl;
 import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,6 +47,9 @@ class BarController {
 
 	@Autowired
 	private IBeerRepository beerRepository;
+
+	//@Autowired
+	//private UserServiceImpl userService;
 
 	@Autowired
 	private IUserRepository userRepository;
@@ -98,9 +105,7 @@ class BarController {
 			return "createBar";
 		}
 
-		/*User loggedUser = userRepository.findByName(principal.getName());
-
-		bar.setUser(loggedUser);
+		/*bar.setUser(loggedUser);
 		barRepository.save(bar);*/
 
 		return "redirect:/";
