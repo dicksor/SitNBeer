@@ -31,7 +31,6 @@ import java.util.stream.IntStream;
 import com.example.demo.services.BarService;
 import com.example.demo.services.UserServiceImpl;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
