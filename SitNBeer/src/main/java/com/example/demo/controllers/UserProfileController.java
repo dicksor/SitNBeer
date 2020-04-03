@@ -20,6 +20,7 @@ class UserProfileController{
 	public String index(Model model, Principal principal) {
 
 		User user = userRepository.findByUsername(principal.getName());
+
 		model.addAttribute("user", user);
 		return "profile";
 	}

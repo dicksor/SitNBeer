@@ -45,7 +45,7 @@ class BeerController {
     @Autowired
 	private BeerAddValidator beerAddValidator;
 
-    @GetMapping("/beer/add")
+    @GetMapping("/beer/add") 
 	public String addBeerForm(Model model) {
         model.addAttribute("beer", new Beer());
         return "createBeer";
