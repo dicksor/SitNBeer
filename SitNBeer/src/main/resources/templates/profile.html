@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="fragments/head :: meta"></th:block>
+
+    <title>SitNBeer - Profile</title>
+
+    <th:block th:include="fragments/head :: assets"></th:block>
+
+    <script src="/js/order.js"></script>
+</head>
+
+<body>
+    <th:block th:include="fragments/layout :: navbar"></th:block>
+    <main>  
+        <div class="container">
+            <h1>Your profile</h1>
+            
+            <ul>
+                <li>Name : <span th:text="${user.getUsername()}"></span></li>
+                <li>Email : <span th:text="${user.getEmail()}"></span></li>
+            </ul>
+
+            <span th:if="${user.getRole().getRoleName()=='USER'}">
+                <h1>Command history</h1>
+                <p>...</p>
+            </span>
+
+            <span th:if="${user.getRole().getRoleName()=='ENTERPRISE'}">
+                <h1>Add beer</h1>
+                <p>...</p>
+            </span>
+        </div>
+    </main>
+    <th:block th:include="fragments/layout :: footer"></th:block>
+</body>
+
+</html>
