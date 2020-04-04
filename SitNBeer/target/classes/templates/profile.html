@@ -35,9 +35,16 @@
                     <li><a th:href="@{/beer/update/}">Edit Beer</a></li>
                 </ul>
                 <ul>
-                    <li><a th:href="@{/bar/add/}">Add Bar</a></li>
-                    <li><a th:href="@{/bar/update/}">Edit Bar</a></li>
+                    <span th:if="${bar == null}">
+                        <li><a th:href="@{/bar/add/}">Add Bar</a></li>
+                    </span>
+                    <span th:if="${bar != null}">
+                        <li><a th:href="@{/bar/update/}+ ${bar.getId()}">Edit Bar</a></li>
+                    </span>
                 </ul>
+
+                
+                
                 <ul>
                     <li><a th:href="@{/orders/} + ${user.getId()}">Incoming commands</a></li>
                 </ul>
