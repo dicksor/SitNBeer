@@ -30,10 +30,12 @@
             </span>
 
             <span th:if="${user.getRole().getRoleName()=='ENTERPRISE'}">
-                <ul>
-                    <li><a th:href="@{/beer/add/}">Add Beer</a></li>
-                    <li><a th:href="@{/beer/update/}">Edit Beer</a></li>
-                </ul>
+                <span th:if="${bar != null}">
+                    <ul>
+                        <li><a th:href="@{/beer/add/}">Add Beer</a></li>
+                        <li><a th:href="@{/beer/edit/} + ${bar.getId()}">Edit Beer</a></li>
+                    </ul>
+                </span>
                 <ul>
                     <span th:if="${bar == null}">
                         <li><a th:href="@{/bar/add/}">Add Bar</a></li>
@@ -42,9 +44,11 @@
                         <li><a th:href="@{/bar/update/}+ ${bar.getId()}">Edit Bar</a></li>
                     </span>
                 </ul>
-                <ul>
-                    <li><a th:href="@{/orders/} + ${bar.getId()}">Incoming commands</a></li>
-                </ul>
+                <span th:if="${bar != null}">
+                    <ul>
+                        <li><a th:href="@{/orders/} + ${bar.getId()}">Incoming commands</a></li>
+                    </ul>
+                </span>
             </span>
         </div>
     </main>

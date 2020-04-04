@@ -5,6 +5,7 @@ import java.security.Principal;
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.User;
+import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BeerAddValidator;
@@ -44,6 +45,9 @@ class BeerController {
 
     @Autowired
     private IUserRepository userRepository;
+
+    @Autowired
+    private IBarRepository barRepository;
 
     @Autowired
 	private BeerAddValidator beerAddValidator;
@@ -127,6 +131,23 @@ class BeerController {
         }
 
         beerRepository.save(beer);
+        return "home";
+    }
+
+    @GetMapping("/beer/edit/{barId}")
+    public String updateBeerOfBar(Model model, @PathVariable long barId)
+    {
+        Optional<Bar> optionalBar = barRepository.findById(barId);
+        Bar bar = null;
+
+        if(optionalBar.isPresent())
+        {
+            bar = optionalBar.get();
+            Iterable<Beer> beers = beerRepository.findByBar(bar);
+            model.addAttribute("beers", beers);
+            return "beersOfBar";
+        }
+
         return "home";
     }
 }
