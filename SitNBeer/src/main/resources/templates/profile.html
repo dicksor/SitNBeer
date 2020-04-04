@@ -22,14 +22,33 @@
                 <li>Email : <span th:text="${user.getEmail()}"></span></li>
             </ul>
 
-            <span th:if="${user.getRole().getRoleName()=='USER'}">
-                <h1>Command history</h1>
-                <p>...</p>
+            <h1>Access to :</h1>
+            <span th:if="${user.getRole().getRoleName()=='USER'}">  
+                <ul>
+                    <li><a th:href="@{/orders/client/} + ${user.getId()}">Command history</a></li>
+                </ul>
             </span>
 
             <span th:if="${user.getRole().getRoleName()=='ENTERPRISE'}">
-                <h1>Add beer</h1>
-                <p>...</p>
+                <span th:if="${bar != null}">
+                    <ul>
+                        <li><a th:href="@{/beer/add/}">Add Beer</a></li>
+                        <li><a th:href="@{/beer/edit/} + ${bar.getId()}">Edit Beer</a></li>
+                    </ul>
+                </span>
+                <ul>
+                    <span th:if="${bar == null}">
+                        <li><a th:href="@{/bar/add/}">Add Bar</a></li>
+                    </span>
+                    <span th:if="${bar != null}">
+                        <li><a th:href="@{/bar/update/}+ ${bar.getId()}">Edit Bar</a></li>
+                    </span>
+                </ul>
+                <span th:if="${bar != null}">
+                    <ul>
+                        <li><a th:href="@{/orders/} + ${bar.getId()}">Incoming commands</a></li>
+                    </ul>
+                </span>
             </span>
         </div>
     </main>
