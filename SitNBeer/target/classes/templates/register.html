@@ -19,6 +19,7 @@
                     <div class="input-field col s12">
                         <label for="email">Email : </label>
                         <input type="email" th:field="*{email}" class="validate" id="email" name="email" required>
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -26,6 +27,7 @@
                         <label for="username">Username : </label>
                         <input type="text" th:field="*{username}" class="validate" id="username" name="username"
                             required>
+                        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red;"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -33,6 +35,7 @@
                         <label for="password">Password : </label>
                         <input type="password" th:field="*{password}" class="validate" id="password" name="password"
                             required>
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -40,6 +43,7 @@
                         <label for="password_confirm">Confirm password : </label>
                         <input type="password" th:field="*{passwordConfirm}" class="form-control" id="passwordConfirm"
                             name="passwordConfirm" required>
+                        <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" style="color:red;"></span>
                     </div>
                 </div>
                 <input type="submit" class="btn" value="Register">

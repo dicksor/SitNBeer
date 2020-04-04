@@ -42,11 +42,8 @@
                         <li><a th:href="@{/bar/update/}+ ${bar.getId()}">Edit Bar</a></li>
                     </span>
                 </ul>
-
-                
-                
                 <ul>
-                    <li><a th:href="@{/orders/} + ${user.getId()}">Incoming commands</a></li>
+                    <li><a th:href="@{/orders/} + ${bar.getId()}">Incoming commands</a></li>
                 </ul>
             </span>
         </div>
