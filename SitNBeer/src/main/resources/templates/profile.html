@@ -25,7 +25,7 @@
             <h1>Access to :</h1>
             <span th:if="${user.getRole().getRoleName()=='USER'}">  
                 <ul>
-                    <li><a th:href="@{/orders/client/} + ${user.getId()}">Command history</a></li>
+                    <li><a th:href="@{/orders/client/} + ${user.getId()}">Commands history</a></li>
                 </ul>
             </span>
 
@@ -47,6 +47,7 @@
                 <span th:if="${bar != null}">
                     <ul>
                         <li><a th:href="@{/orders/} + ${bar.getId()}">Incoming commands</a></li>
+                        <li><a th:href="@{/orders/history/} + ${bar.getId()}">Commands history</a></li>
                     </ul>
                 </span>
             </span>
