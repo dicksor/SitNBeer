@@ -2,7 +2,9 @@ package com.example.demo.controllers;
 
 import java.security.Principal;
 
+import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
+import com.example.demo.models.User;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BeerAddValidator;
@@ -21,13 +23,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.validation.Valid;
+
 import com.example.demo.services.BeerService;
 import com.sipios.springsearch.anotation.SearchSpec;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -90,16 +93,16 @@ class BeerController {
 
     @PostMapping("/beer/add")
     public String addBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
-
         beerAddValidator.validate(beer, bindingResult);
 
 		if(bindingResult.hasErrors()){
 			return "createBeer";
         }
-        //TODO : make method to find bar from user
-        /*
+        User loggedUser = userRepository.findByUsername(principal.getName());
+        Bar bar = loggedUser.getOwnedBar();
         beer.setBar(bar);
-        beerRepository.save(beer);*/
+
+        beerRepository.save(beer);
 
         return "home";
     }
@@ -115,19 +118,15 @@ class BeerController {
         return "home";
     }
 
-    @PostMapping("/beer/update")
-    public String updateBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
-        beerAddValidator.validate(beer, bindingResult);
-
-        if(bindingResult.hasErrors()){
+    @PostMapping("/beer/update/{id}")
+    public String updateBeer(@PathVariable Long id, @Valid Beer beer, Model model, BindingResult bindingResult){
+        if(bindingResult.hasErrors())
+        {
+            beer.setId(id);
             return "updateBeer";
         }
 
-        //TODO : make method to find bar from user
-        /*
-        beer.setBar(bar);
-        beerRepository.save(beer);*/
-
+        beerRepository.save(beer);
         return "home";
     }
 }

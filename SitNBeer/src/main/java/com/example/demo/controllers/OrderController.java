@@ -140,7 +140,8 @@ class OrderController{
 			return "showBar";
 		}
 		order.setStatus(OrderStatusEnum.OPEN);
-		//order.setUser(new User());
+		order.setUser(userRepository.findByUsername(principal.getName()));
+		orderRepository.save(order);
 
 		return "home";
 	}
