@@ -26,10 +26,11 @@ class UserProfileController{
 	public String index(Model model, Principal principal) {
 
 		User user = userRepository.findByUsername(principal.getName());
-		Optional<Bar> bar = barRepository.findByUser_id(user.getId());
-
-		if(bar.isPresent())
+		Optional<Bar> optionalBar = barRepository.findByUser(user);
+		Bar bar = null;
+		if(optionalBar.isPresent())
 		{
+			bar = optionalBar.get();
 			model.addAttribute("bar", bar);
 		}
 
