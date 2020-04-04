@@ -13,6 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface IBarRepository extends JpaRepository<Bar, Long>, JpaSpecificationExecutor<Bar>{
     Bar findByName(String name);
     Optional<Bar> findById(Integer id);
-    Optional<Bar> findByUser_id(Long id);
     Optional<Bar> findByUser(User user);
 }
