@@ -48,14 +48,15 @@ class BarController {
 	@Autowired
 	private IBeerRepository beerRepository;
 
-	//@Autowired
-	//private UserServiceImpl userService;
+	// @Autowired
+	// private UserServiceImpl userService;
 
 	@Autowired
 	private IUserRepository userRepository;
 
 	@GetMapping("/bars")
-	public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+	public String index(Model model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(8);
 
@@ -72,25 +73,25 @@ class BarController {
 	}
 
 	@GetMapping("/bar/query")
-    public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
-            @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(8);
+	public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(8);
 
-        Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
-                Specification.where(specs));
-        model.addAttribute("barPage", barPage);
+		Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
+				Specification.where(specs));
+		model.addAttribute("barPage", barPage);
 
-        int totalPages = barPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
+		int totalPages = barPage.getTotalPages();
+		if (totalPages > 0) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-        return "bars";
-    }
+		return "bars";
+	}
 
-    @GetMapping("/bar/add")
+	@GetMapping("/bar/add")
 	public String addBarForm(Model model) {
 		model.addAttribute("bar", new Bar());
 		return "createBar";
@@ -101,13 +102,13 @@ class BarController {
 
 		User loggedUser = userRepository.findByUsername(principal.getName());
 
-		if(loggedUser.getOwnedBar() != null){
+		if (loggedUser.getOwnedBar() != null) {
 			return "createBar";
 		}
 
 		barAddValidator.validate(bar, bindingResult);
 
-		if(bindingResult.hasErrors()){
+		if (bindingResult.hasErrors()) {
 			return "createBar";
 		}
 
@@ -118,12 +119,12 @@ class BarController {
 	}
 
 	@GetMapping("/bar/{barId}")
-	public String showBar(Model model, @PathVariable long barId){
+	public String showBar(Model model, @PathVariable long barId) {
 		Optional<Bar> optionalBar = barRepository.findById(barId);
 		Bar bar = null;
-		if(optionalBar.isPresent()){
+		if (optionalBar.isPresent()) {
 			bar = optionalBar.get();
-		}else {
+		} else {
 			return "redirect:/";
 		}
 
@@ -137,27 +138,26 @@ class BarController {
 	}
 
 	@GetMapping("/bar/update/{barId}")
-    public String updateBarForm(@PathVariable Long barId, Model model){
+	public String updateBarForm(@PathVariable Long barId, Model model) {
 
 		Optional<Bar> optionalBar = barRepository.findById(barId);
-		
-        if(optionalBar.isPresent()){
-            model.addAttribute("bar", optionalBar.get());
-            return "updateBar";
-        }
-        return "home";
-    }
+
+		if (optionalBar.isPresent()) {
+			model.addAttribute("bar", optionalBar.get());
+			return "updateBar";
+		}
+		return "home";
+	}
 
 	@PostMapping("/bar/update/{id}")
-    public String updateBeer(@PathVariable Long id, @Valid Bar bar, Model model, BindingResult bindingResult){
+	public String updateBeer(@PathVariable Long id, @Valid Bar bar, Model model, BindingResult bindingResult) {
 
-		if(bindingResult.hasErrors())
-		{
+		if (bindingResult.hasErrors()) {
 			bar.setId(id);
 			return "updateBar";
 		}
 
 		barRepository.save(bar);
 		return "home";
-    }
+	}
 }
