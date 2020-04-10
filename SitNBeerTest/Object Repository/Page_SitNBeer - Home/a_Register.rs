@@ -3,11 +3,11 @@
    <description></description>
    <name>a_Register</name>
    <tag></tag>
-   <elementGuidId>eeab125f-0987-4124-a2e2-d61b112245fa</elementGuidId>
+   <elementGuidId>0ea3bbcf-0e56-4e3a-9912-c6605b5e1c38</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//ul[@id='nav-mobile']/li[5]/a</value>
+         <value>//ul[@id='nav-mobile']/span/li[2]/a</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -45,14 +45,14 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;nav-mobile&quot;)/li[5]/a[@class=&quot;btn&quot;]</value>
+      <value>id(&quot;nav-mobile&quot;)/span[1]/li[2]/a[@class=&quot;btn&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//ul[@id='nav-mobile']/li[5]/a</value>
+      <value>//ul[@id='nav-mobile']/span/li[2]/a</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -73,7 +73,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='arrow_drop_down'])[2]/following::a[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Add beer'])[1]/following::a[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -108,6 +108,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//li[5]/a</value>
+      <value>//span/li[2]/a</value>
    </webElementXpaths>
 </WebElementEntity>

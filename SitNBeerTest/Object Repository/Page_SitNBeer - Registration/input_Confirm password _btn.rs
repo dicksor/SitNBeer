@@ -3,7 +3,7 @@
    <description></description>
    <name>input_Confirm password _btn</name>
    <tag></tag>
-   <elementGuidId>b9314177-9504-45ca-b39f-62ead1bdf33d</elementGuidId>
+   <elementGuidId>0600e8d2-922d-40a7-8395-ff993779e36c</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
@@ -59,6 +59,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//input[2]</value>
+      <value>//div/form/input[2]</value>
    </webElementXpaths>
 </WebElementEntity>

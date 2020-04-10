@@ -3,7 +3,7 @@
    <description></description>
    <name>input_Confirm password _passwordConfirm</name>
    <tag></tag>
-   <elementGuidId>84e19f7b-8553-4ac6-944c-dc80bccf7bd7</elementGuidId>
+   <elementGuidId>5da923c2-efbd-4735-869b-7d44dea3e77f</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>

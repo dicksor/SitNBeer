@@ -1,9 +1,6 @@
 package com.example.demo.controllers;
 
-import javax.servlet.http.HttpSession;
-
 import com.example.demo.models.User;
-import com.example.demo.repositories.IUserRepository;
 import com.example.demo.services.interfaces.ISecurityService;
 import com.example.demo.services.interfaces.IUserService;
 import com.example.demo.validators.UserValidator;
@@ -56,10 +53,5 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-
-    @GetMapping("/home")
-    public String welcome(Model model) {
-        return "home";
     }
 }

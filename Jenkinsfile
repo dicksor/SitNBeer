@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    SPRING_DATASOURCE_URL= 'jdbc:mysql://157.26.83.83:3306/sitnbeer'
+    SPRING_DATASOURCE_URL= 'jdbc:mysql://157.26.83.83:3306/spring_db_2020'
     SPRING_DATASOURCE_USERNAME  = credentials('SPRING_DATASOURCE_USERNAME')
     SPRING_DATASOURCE_PASSWORD = credentials('SPRING_DATASOURCE_PASSWORD')
   }
@@ -40,7 +40,7 @@ pipeline {
       steps {
         echo "Running integration tests"
         unstash "app"
-        sh 'java -jar ./SitNBeer/target/SitNBeer-SNAPSHOT.jar >/dev/null 2>&1 &'
+        sh 'java -jar ./SitNBeer/target/sitnbeer-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
         sh 'sleep 30'
         sh 'chmod +x ./runTest.sh'
         sh './runTest.sh'

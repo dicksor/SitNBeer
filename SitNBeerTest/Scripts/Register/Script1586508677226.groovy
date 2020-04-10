@@ -20,15 +20,20 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://127.0.0.1:8181/')
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/a_Login'))
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/a_Register'))
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/label_Username'))
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Registration/label_Email'))
 
-WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Login_username'), 'romaintest')
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Email _email'), 'sitnbeer@test.ch')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVScEs4/2CZsLw==')
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Username _username'), 'sitnbeer')
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/input_Password _btn'))
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Password _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Confirm password _passwordConfirm'), 
+    '8SQVv/p9jVQbixvz/0SAXQ==')
+
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Confirm password _btn'))
 
 WebUI.closeBrowser()
 
