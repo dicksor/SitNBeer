@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -48,6 +49,9 @@ public class User {
 
   @OneToMany(mappedBy = "user")
   private List<Order> orders;
+
+  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+  private Bar ownedBar;
 
   public long getId() {
     return id;
@@ -104,4 +108,12 @@ public class User {
   public void setOrders(List<Order> orders){
       this.orders = orders;
   } 
+
+  public Bar getOwnedBar(){
+    return this.ownedBar;
+  }
+
+  public void setOwnedBar(Bar ownedBar){
+    this.ownedBar = ownedBar;
+  }
 }

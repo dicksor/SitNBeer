@@ -21,18 +21,21 @@
                     <label for="bar-name" class="active">Bar name : </label>
                     <input type="text" th:field="*{name}" id="bar-name" name="bar-name" class="validate" required/>
                 </div>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback">Name Error</div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-adress" class="activate">Bar Address : </label>
                     <input type="text" th:field="*{address}" id="bar-address" name="bar-address" class="validate" required/>
                 </div>
+                 <div th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="invalid-feedback">Address Error</div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-available-table" class="activate">Number of table available in the bar : </label>
                     <input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required/>
                 </div>
+                 <div th:if="${#fields.hasErrors('availableTable')}" th:errors="*{availableTable}" class="invalid-feedback">Available table Error</div>
             </div>
             <input type="submit" class="waves-effect waves-light btn" value="Add a bar">
         </form>

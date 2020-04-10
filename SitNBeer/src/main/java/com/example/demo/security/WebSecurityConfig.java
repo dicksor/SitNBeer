@@ -40,9 +40,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/js/*.js", "/css/*.css", "/favicon.ico").permitAll()
             .antMatchers("/registration", "/home", "/bars", "/beers", "/").permitAll()
+            .antMatchers("/bar/add", "/bar/update/*", "/beer/add", "/beer/update/*", "/beer/edit/*", "/orders/*", "/orders/history/*", "/order/update/*", "/order/delete/*").hasAuthority("ENTERPRISE")
+            .antMatchers("/orders/client/*").hasAuthority("USER")
             .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll().usernameParameter("username")
-                .defaultSuccessUrl("/home", true).and().logout().permitAll();
-
+            .and()
+            .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .usernameParameter("username")
+                .defaultSuccessUrl("/home", true)
+                .and()
+            .logout()
+                .permitAll();
     }
 }

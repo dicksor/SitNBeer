@@ -21,7 +21,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SitnbeerApplicationTests {
-
+/*
 	@Autowired
 	private IBarRepository barRepository;
 
@@ -101,5 +101,5 @@ class SitnbeerApplicationTests {
 		}else {
 			assertThat(false).isTrue();
 		}
-	}
+	}*/
 }

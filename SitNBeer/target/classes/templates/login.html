@@ -16,7 +16,7 @@
             <div class="row">
                 <form class="col s12" action="#" th:action="@{/login}" method="post" th:object="${model}">
                     <div th:if="${param.error}">
-                        <div class="alert alert-danger">
+                        <div style="color:red;">
                             Invalid username or password.
                         </div>
                     </div>
