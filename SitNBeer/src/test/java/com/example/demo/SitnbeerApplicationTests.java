@@ -22,7 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SitnbeerApplicationTests {
 
-	@Autowired
+	/*@Autowired
 	private IBarRepository barRepository;
 
 	@Autowired
@@ -101,5 +101,5 @@ class SitnbeerApplicationTests {
 		}else {
 			assertThat(false).isTrue();
 		}
-	}
+	}*/
 }
