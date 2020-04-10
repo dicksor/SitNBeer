@@ -24,7 +24,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SitnbeerApplicationTests {
-	@Autowired
+
+	/*@Autowired
 	private IBarRepository barRepository;
 
 	@Autowired
@@ -107,5 +108,5 @@ class SitnbeerApplicationTests {
 		}else {
 			assertThat(false).isTrue();
 		}
-	}
+	}*/
 }
