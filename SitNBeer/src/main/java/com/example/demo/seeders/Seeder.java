@@ -66,8 +66,7 @@ public class Seeder implements ISeeder {
     }
 
     private void seedOrderTable() {
-        OrderSeeder orderSeeder = new OrderSeeder(orderRepository, userSeeder.getFakeUsers(), beerSeeder.getFakeBeers(),
-                barSeeder.getFakeBars());
+        OrderSeeder orderSeeder = new OrderSeeder(orderRepository, userSeeder.getFakeUsers(), beerSeeder.getFakeBeers());
         orderSeeder.seedDB();
     }
 

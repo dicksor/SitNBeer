@@ -50,12 +50,18 @@ class BeerController {
     private IBarRepository barRepository;
 
     @Autowired
-	private BeerAddValidator beerAddValidator;
+    private BeerAddValidator beerAddValidator;
+    
+    //Routes 
+	private static final String BEERS = "beers";
+	private static final String CREATE_BEER = "createBeer";
+	private static final String UPDATE_BEER = "updateBeer";
+	private static final String HOME = "home";
 
     @GetMapping("/beer/add") 
 	public String addBeerForm(Model model) {
         model.addAttribute("beer", new Beer());
-        return "createBeer";
+        return CREATE_BEER;
     }
 
     @GetMapping("/beers")
@@ -73,7 +79,7 @@ class BeerController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "beers";
+        return BEERS;
     }
 
     @GetMapping("/beer/query")
@@ -92,7 +98,7 @@ class BeerController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "beers";
+        return BEERS;
     }
 
     @PostMapping("/beer/add")
@@ -100,7 +106,7 @@ class BeerController {
         beerAddValidator.validate(beer, bindingResult);
 
 		if(bindingResult.hasErrors()){
-			return "createBeer";
+			return CREATE_BEER;
         }
         User loggedUser = userRepository.findByUsername(principal.getName());
         Bar bar = loggedUser.getOwnedBar();
@@ -108,7 +114,7 @@ class BeerController {
 
         beerRepository.save(beer);
 
-        return "home";
+        return HOME;
     }
 
     @GetMapping("/beer/update/{beerId}")
@@ -117,9 +123,9 @@ class BeerController {
         Optional<Beer> optionalBeer = beerRepository.findById(beerId);
         if(optionalBeer.isPresent()){
             model.addAttribute("beer", optionalBeer.get());
-            return "updateBeer";
+            return UPDATE_BEER;
         }
-        return "home";
+        return HOME;
     }
 
     @PostMapping("/beer/update/{id}")
@@ -127,11 +133,11 @@ class BeerController {
         if(bindingResult.hasErrors())
         {
             beer.setId(id);
-            return "updateBeer";
+            return UPDATE_BEER;
         }
 
         beerRepository.save(beer);
-        return "home";
+        return HOME;
     }
 
     @GetMapping("/beer/edit/{barId}")
@@ -148,6 +154,6 @@ class BeerController {
             return "beersOfBar";
         }
 
-        return "home";
+        return HOME;
     }
 }
