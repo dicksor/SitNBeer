@@ -1,7 +1,7 @@
 package com.example.demo.seeders;
 
+import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
@@ -22,9 +22,9 @@ public class OrderSeeder implements ISeeder {
     private List<User> fakeUsers;
     private List<Beer> fakeBeers;
 
-    private Random rand = new Random();
+    private SecureRandom rand = new SecureRandom();
 
-    public OrderSeeder(IOrderRepository orderRepository, List<User> fakeUsers, List<Beer> fakeBeers, List<Bar> fakeBars) {
+    public OrderSeeder(IOrderRepository orderRepository, List<User> fakeUsers, List<Beer> fakeBeers) {
         this.orderRepository = orderRepository;
 
         this.fakeUsers = fakeUsers;

@@ -1,8 +1,8 @@
 package com.example.demo.seeders;
 
+import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
@@ -21,7 +21,7 @@ public class BeerSeeder implements ISeeder {
     private List<Bar> fakeBars;
     private List<Beer> fakeBeers;
 
-    private Random rand = new Random();
+    private SecureRandom rand = new SecureRandom();
 
     public BeerSeeder(IBeerRepository beerRepository, List<Bar> fakeBars) {
         this.beerRepository = beerRepository;

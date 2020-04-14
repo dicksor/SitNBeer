@@ -21,11 +21,15 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    //Routes
+    private static final String REGISTER = "register";
+    private static final String LOGIN = "login";
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "register";
+        return REGISTER;
     }
 
     @PostMapping("/registration")
@@ -34,7 +38,7 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "register";
+            return REGISTER;
         }
 
         userService.save(userForm);
@@ -52,6 +56,6 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-        return "login";
+        return LOGIN;
     }
 }

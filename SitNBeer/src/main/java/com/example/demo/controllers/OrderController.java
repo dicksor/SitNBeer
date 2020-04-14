@@ -45,6 +45,13 @@ class OrderController{
 	@Autowired 
 	private OrderAddValidator orderAddValidator;
 
+	//Routes 
+	private static final String CLIENT_ORDERS = "clientOrders";
+	private static final String ORDERS = "orders";
+	private static final String ORDERS_HISTORY = "ordersHistory";
+	private static final String HOME = "home";
+	private static final String SHOW_BAR = "showBar";
+
 	@GetMapping("/orders/client/{clientId}")
 	public String ordersClient(Model model,  @PathVariable long clientId){
 		Optional<User> optionalUser = userRepository.findById(clientId);
@@ -54,9 +61,9 @@ class OrderController{
 
 			model.addAttribute("orders", orders);
 
-			return "clientOrders";
+			return CLIENT_ORDERS;
 		}
-		return "home";
+		return HOME;
 	}
 
 	@GetMapping("/orders/{barId}")
@@ -67,10 +74,10 @@ class OrderController{
 			List<Order> orders = bar.getOrders();
 			model.addAttribute("orders", orders);
 
-			return "orders";
+			return ORDERS;
 		}
 		
-		return "home";
+		return HOME;
 	}
 
 	@GetMapping("/orders/history/{barId}")
@@ -81,10 +88,10 @@ class OrderController{
 			List<Order> orders = bar.getOrders();
 			model.addAttribute("orders", orders);
 
-			return "ordersHistory";
+			return ORDERS_HISTORY;
 		}
 		
-		return "home";
+		return HOME;
 	}
 
 	@GetMapping(value = "/order/update/{newOrderStatusString}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -137,12 +144,12 @@ class OrderController{
 		orderAddValidator.validate(order, bindingResult);
 
 		if(bindingResult.hasErrors()){
-			return "showBar";
+			return SHOW_BAR;
 		}
 		order.setStatus(OrderStatusEnum.OPEN);
 		order.setUser(userRepository.findByUsername(principal.getName()));
 		orderRepository.save(order);
 
-		return "home";
+		return HOME;
 	}
 }

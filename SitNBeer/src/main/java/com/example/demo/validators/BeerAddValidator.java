@@ -14,22 +14,22 @@ public class BeerAddValidator implements Validator{
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "name.empty", "You must enter a beer name !");
         if(beer.getName().length() < 2 || beer.getName().length() >32){
-            errors.rejectValue("name", "name.size", "The size must be between 2 and 32 !");
+            errors.rejectValue("name", "name.size", "The size of name must be between 2 and 32 !");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "manufacturer", "manufacturer.empty", "You must enter a beer manufacturer !");
         if(beer.getManufacturer().length() < 2 || beer.getManufacturer().length() >255){
-            errors.rejectValue("manufacturer", "manufacturer.size", "The size must be between 2 and 255 !");
+            errors.rejectValue("manufacturer", "manufacturer.size", "The of manufacturer size must be between 2 and 255 !");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "price", "price.empty", "You must enter a beer price !");
         if(beer.getPrice() < 0 || beer.getPrice() > 255){
-            errors.rejectValue("price", "price.size", "The size must be between 0 and 255 !");
+            errors.rejectValue("price", "price.size", "The size of price must be between 0 and 255 !");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "volume", "volume.empty", "You must enter a beer volume !");
         if(beer.getVolume() < 0 || beer.getVolume() > 255){
-            errors.rejectValue("volume", "volume.size", "The size must be between 0 and 255 !");
+            errors.rejectValue("volume", "volume.size", "The size of volume must be between 0 and 255 !");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "stockQuantity", "stockQuantity.empty", "You must enter a beer stock quantity !");

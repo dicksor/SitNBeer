@@ -19,8 +19,10 @@ import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
 import com.example.demo.models.User;
+import com.example.demo.models.enums.RoleEnum;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
+import com.example.demo.repositories.IRoleRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BarAddValidator;
 import java.util.List;
@@ -46,13 +48,17 @@ class BarController {
 	private IBarRepository barRepository;
 
 	@Autowired
-	private IBeerRepository beerRepository;
-
-	// @Autowired
-	// private UserServiceImpl userService;
+    private IRoleRepository roleRepository;
 
 	@Autowired
 	private IUserRepository userRepository;
+
+	//Routes 
+	private static final String BARS = "bars";
+	private static final String CREATE_BAR = "createBar";
+	private static final String UPDATE_BAR = "updateBar";
+	private static final String HOME = "home";
+	private static final String SHOW_BAR = "showBar";
 
 	@GetMapping("/bars")
 	public String index(Model model, @RequestParam("page") Optional<Integer> page,
@@ -69,7 +75,7 @@ class BarController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-		return "bars";
+		return BARS;
 	}
 
 	@GetMapping("/bar/query")
@@ -88,13 +94,13 @@ class BarController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-		return "bars";
+		return BARS;
 	}
 
 	@GetMapping("/bar/add")
 	public String addBarForm(Model model) {
 		model.addAttribute("bar", new Bar());
-		return "createBar";
+		return CREATE_BAR;
 	}
 
 	@PostMapping("/bar/add")
@@ -103,17 +109,20 @@ class BarController {
 		User loggedUser = userRepository.findByUsername(principal.getName());
 
 		if (loggedUser.getOwnedBar() != null) {
-			return "createBar";
+			return CREATE_BAR;
 		}
 
 		barAddValidator.validate(bar, bindingResult);
 
 		if (bindingResult.hasErrors()) {
-			return "createBar";
+			return CREATE_BAR;
 		}
 
 		bar.setUser(loggedUser);
 		barRepository.save(bar);
+
+		loggedUser.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
+		userRepository.save(loggedUser);
 
 		return "redirect:/";
 	}
@@ -134,7 +143,7 @@ class BarController {
 		model.addAttribute("order", new Order());
 		model.addAttribute("beers", beers);
 
-		return "showBar";
+		return SHOW_BAR;
 	}
 
 	@GetMapping("/bar/update/{barId}")
@@ -144,9 +153,9 @@ class BarController {
 
 		if (optionalBar.isPresent()) {
 			model.addAttribute("bar", optionalBar.get());
-			return "updateBar";
+			return UPDATE_BAR;
 		}
-		return "home";
+		return HOME;
 	}
 
 	@PostMapping("/bar/update/{id}")
@@ -154,10 +163,10 @@ class BarController {
 
 		if (bindingResult.hasErrors()) {
 			bar.setId(id);
-			return "updateBar";
+			return UPDATE_BAR;
 		}
 
 		barRepository.save(bar);
-		return "home";
+		return HOME;
 	}
 }
