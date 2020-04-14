@@ -45,7 +45,7 @@ public class Bar {
     @NotNull(message = "*Please provide a number of available tables")
     private int availableTable;
 
-    @OneToMany(mappedBy = "bar")
+    @OneToMany(mappedBy = "bar", fetch = FetchType.EAGER)
     private List<Order> orders;
 
     public long getId() {

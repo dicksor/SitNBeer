@@ -7,8 +7,6 @@ import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
 import com.example.demo.models.enums.OrderStatusEnum;
-import com.example.demo.repositories.IBarRepository;
-import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.models.User;
 import com.example.demo.repositories.IOrderRepository;
 
@@ -23,14 +21,14 @@ public class OrderSeeder implements ISeeder {
 
     private List<User> fakeUsers;
     private List<Beer> fakeBeers;
-    private List<Bar> fakeBars;
+
+    private Random rand = new Random();
 
     public OrderSeeder(IOrderRepository orderRepository, List<User> fakeUsers, List<Beer> fakeBeers, List<Bar> fakeBars) {
         this.orderRepository = orderRepository;
 
         this.fakeUsers = fakeUsers;
         this.fakeBeers = fakeBeers;
-        this.fakeBars = fakeBars;
     }
 
     @Override
@@ -43,7 +41,6 @@ public class OrderSeeder implements ISeeder {
     }
 
     private OrderStatusEnum getRandomOrderStatus(){
-        Random rand = new Random();
         OrderStatusEnum orderStatusEnum = null;
         switch (rand.nextInt(OrderStatusEnum.values().length)) {
             case 0:
@@ -58,12 +55,14 @@ public class OrderSeeder implements ISeeder {
             case 3:
                 orderStatusEnum = OrderStatusEnum.REJECTED;
                 break;
+            default :
+                orderStatusEnum = OrderStatusEnum.REJECTED;
+                break;
         }
         return orderStatusEnum;
     }
 
     public void generateFakeOrder(){
-        Random rand = new Random();
 
         for(int i = 0; i< 15; i++){
             Order order = new Order();

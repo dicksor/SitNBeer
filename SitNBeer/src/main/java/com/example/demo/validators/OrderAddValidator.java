@@ -18,13 +18,13 @@ public class OrderAddValidator implements Validator{
 
         if(beer == null){
             errors.rejectValue("beer", "beer", "You must select a beer ! ");
-        }
+        }else{
+            Bar bar = beer.getBar();
 
-        Bar bar = beer.getBar();
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tableNumber", "tableNumber.empty", "You must enter a table number !");
-        if(order.getTableNumber() < 0 || order.getTableNumber() > bar.getAvailableTable()){
-            errors.rejectValue("tableNumber", "tableNumber.size", "The size must be between 2 and "+bar.getAvailableTable()+" !");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tableNumber", "tableNumber.empty", "You must enter a table number !");
+            if(order.getTableNumber() < 0 || order.getTableNumber() > bar.getAvailableTable()){
+                errors.rejectValue("tableNumber", "tableNumber.size", "The size must be between 2 and "+bar.getAvailableTable()+" !");
+            }
         }
     }
 

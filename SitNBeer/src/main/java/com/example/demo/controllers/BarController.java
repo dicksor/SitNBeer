@@ -18,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import com.example.demo.models.Bar;
 import com.example.demo.models.Beer;
 import com.example.demo.models.Order;
+import com.example.demo.models.User;
 import com.example.demo.repositories.IBarRepository;
 import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IUserRepository;
@@ -25,9 +26,11 @@ import com.example.demo.validators.BarAddValidator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import javax.validation.Valid;
+
 import com.example.demo.services.BarService;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -45,11 +48,15 @@ class BarController {
 	@Autowired
 	private IBeerRepository beerRepository;
 
+	// @Autowired
+	// private UserServiceImpl userService;
+
 	@Autowired
 	private IUserRepository userRepository;
 
 	@GetMapping("/bars")
-	public String index(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+	public String index(Model model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("size") Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(8);
 
@@ -66,25 +73,25 @@ class BarController {
 	}
 
 	@GetMapping("/bar/query")
-    public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
-            @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(8);
+	public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
+			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+		int currentPage = page.orElse(1);
+		int pageSize = size.orElse(8);
 
-        Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
-                Specification.where(specs));
-        model.addAttribute("barPage", barPage);
+		Page<Bar> barPage = barService.findPaginatedWithSpecs(PageRequest.of(currentPage - 1, pageSize),
+				Specification.where(specs));
+		model.addAttribute("barPage", barPage);
 
-        int totalPages = barPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
+		int totalPages = barPage.getTotalPages();
+		if (totalPages > 0) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-        return "bars";
-    }
+		return "bars";
+	}
 
-    @GetMapping("/bar/add")
+	@GetMapping("/bar/add")
 	public String addBarForm(Model model) {
 		model.addAttribute("bar", new Bar());
 		return "createBar";
@@ -93,27 +100,31 @@ class BarController {
 	@PostMapping("/bar/add")
 	public String addBar(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal) {
 
-		barAddValidator.validate(bar, bindingResult);
+		User loggedUser = userRepository.findByUsername(principal.getName());
 
-		if(bindingResult.hasErrors()){
+		if (loggedUser.getOwnedBar() != null) {
 			return "createBar";
 		}
 
-		/*User loggedUser = userRepository.findByName(principal.getName());
+		barAddValidator.validate(bar, bindingResult);
+
+		if (bindingResult.hasErrors()) {
+			return "createBar";
+		}
 
 		bar.setUser(loggedUser);
-		barRepository.save(bar);*/
+		barRepository.save(bar);
 
 		return "redirect:/";
 	}
 
-	@GetMapping("/bar/{bar_id}")
-	public String showBar(Model model, @PathVariable long bar_id){
-		Optional<Bar> optionalBar = barRepository.findById(bar_id);
+	@GetMapping("/bar/{barId}")
+	public String showBar(Model model, @PathVariable long barId) {
+		Optional<Bar> optionalBar = barRepository.findById(barId);
 		Bar bar = null;
-		if(optionalBar.isPresent()){
+		if (optionalBar.isPresent()) {
 			bar = optionalBar.get();
-		}else {
+		} else {
 			return "redirect:/";
 		}
 
@@ -127,29 +138,26 @@ class BarController {
 	}
 
 	@GetMapping("/bar/update/{barId}")
-    public String updateBarForm(@PathVariable long barId, Model model){
+	public String updateBarForm(@PathVariable Long barId, Model model) {
 
-        Optional<Bar> optionalBar = barRepository.findById(barId);
-        if(optionalBar.isPresent()){
-            model.addAttribute("bar", optionalBar.get());
-            return "updateBar";
-        }
-        return "home";
-    }
+		Optional<Bar> optionalBar = barRepository.findById(barId);
 
-    @PostMapping("/bar/update")
-    public String updateBeer(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal){
-        barAddValidator.validate(bar, bindingResult);
+		if (optionalBar.isPresent()) {
+			model.addAttribute("bar", optionalBar.get());
+			return "updateBar";
+		}
+		return "home";
+	}
 
-        if(bindingResult.hasErrors()){
-            return "updateBar";
-        }
+	@PostMapping("/bar/update/{id}")
+	public String updateBeer(@PathVariable Long id, @Valid Bar bar, Model model, BindingResult bindingResult) {
 
-        //TODO : make method to find bar from user
-        /*
-        beer.setBar(bar);
-        beerRepository.save(beer);*/
+		if (bindingResult.hasErrors()) {
+			bar.setId(id);
+			return "updateBar";
+		}
 
-        return "home";
-    }
+		barRepository.save(bar);
+		return "home";
+	}
 }

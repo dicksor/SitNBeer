@@ -114,7 +114,7 @@ class OrderController{
 	@ResponseBody
 	public String deleteOrder(@PathVariable long orderId){
 		String status = "{\"status\":\"PARAM_ERRORRR\"}";
-		System.out.println("test");
+
 		Optional<Order> optionalOrder = orderRepository.findById(orderId);
 		if(optionalOrder.isPresent()){
 			Order order = optionalOrder.get();
@@ -140,7 +140,8 @@ class OrderController{
 			return "showBar";
 		}
 		order.setStatus(OrderStatusEnum.OPEN);
-		//order.setUser(new User());
+		order.setUser(userRepository.findByUsername(principal.getName()));
+		orderRepository.save(order);
 
 		return "home";
 	}

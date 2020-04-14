@@ -15,7 +15,7 @@
         <div class="container">
         <span id="createBeer"></span>
         <h1>Update a beer</h1>
-        <form action="beer" th:action="@{/beer/update}" th:object="${beer}" method="post" autocomplete="off">
+        <form action="beer" th:action="@{/beer/update/{id}(id=${beer.id})}" th:object="${beer}" method="post" autocomplete="off">
             <div class="row">
                 <div class="input-field col s12">
                     <label for="beer-name" class="active">Beer name : </label>
@@ -46,6 +46,7 @@
                     <input type="number" th:field="*{stockQuantity}" id="beer-stockQuantity" name="beer-stockQuantity" class="validate" required min="0" step="0.01"/>
                 </div>
             </div>
+            <input type="hidden" th:field="*{bar}">
             <input type="submit" class="waves-effect waves-light btn" value="Add a beer">
         </form>
     </main>

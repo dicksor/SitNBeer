@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -39,11 +40,7 @@ public class User {
   private String email;
 
   @Transient
-	private String passwordConfirm;
-
-  @JsonProperty(access = Access.WRITE_ONLY)
-  @Column(name = "active")
-  private Integer active;
+  private String passwordConfirm;
 
   @JoinColumn(name = "user_role", nullable = false)
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -51,7 +48,10 @@ public class User {
   private Role role;
 
   @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+  private List<Order> orders;
+
+  @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+  private Bar ownedBar;
 
   public long getId() {
     return id;
@@ -67,14 +67,6 @@ public class User {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public void setActive(Integer active) {
-    this.active = active;
-  }
-
-  public Integer getActive() {
-    return active;
   }
 
   public String getEmail() {
@@ -94,12 +86,12 @@ public class User {
   }
 
   public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
+    return passwordConfirm;
+  }
 
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
+  public void setPasswordConfirm(String passwordConfirm) {
+    this.passwordConfirm = passwordConfirm;
+  }
 
   public Role getRole() {
     return role;
@@ -109,11 +101,19 @@ public class User {
     this.role = role;
   }
 
-  public List<Order> getOrders(){
+  public List<Order> getOrders() {
     return this.orders;
   }
 
-  public void setOrders(List<Order> orders){
-      this.orders = orders;
-  } 
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
+  }
+
+  public Bar getOwnedBar() {
+    return this.ownedBar;
+  }
+
+  public void setOwnedBar(Bar ownedBar) {
+    this.ownedBar = ownedBar;
+  }
 }
