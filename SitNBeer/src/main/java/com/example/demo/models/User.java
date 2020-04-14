@@ -40,7 +40,7 @@ public class User {
   private String email;
 
   @Transient
-	private String passwordConfirm;
+  private String passwordConfirm;
 
   @JoinColumn(name = "user_role", nullable = false)
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -50,7 +50,7 @@ public class User {
   @OneToMany(mappedBy = "user")
   private List<Order> orders;
 
-  @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+  @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
   private Bar ownedBar;
 
   public long getId() {
@@ -86,12 +86,12 @@ public class User {
   }
 
   public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
+    return passwordConfirm;
+  }
 
-	public void setPasswordConfirm(String passwordConfirm) {
-		this.passwordConfirm = passwordConfirm;
-	}
+  public void setPasswordConfirm(String passwordConfirm) {
+    this.passwordConfirm = passwordConfirm;
+  }
 
   public Role getRole() {
     return role;
@@ -101,19 +101,19 @@ public class User {
     this.role = role;
   }
 
-  public List<Order> getOrders(){
+  public List<Order> getOrders() {
     return this.orders;
   }
 
-  public void setOrders(List<Order> orders){
-      this.orders = orders;
-  } 
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
+  }
 
-  public Bar getOwnedBar(){
+  public Bar getOwnedBar() {
     return this.ownedBar;
   }
 
-  public void setOwnedBar(Bar ownedBar){
+  public void setOwnedBar(Bar ownedBar) {
     this.ownedBar = ownedBar;
   }
 }
