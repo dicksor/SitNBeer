@@ -21,7 +21,6 @@ import com.example.demo.models.Order;
 import com.example.demo.models.User;
 import com.example.demo.models.enums.RoleEnum;
 import com.example.demo.repositories.IBarRepository;
-import com.example.demo.repositories.IBeerRepository;
 import com.example.demo.repositories.IRoleRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.validators.BarAddValidator;

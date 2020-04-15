@@ -36,7 +36,7 @@ public class UserValidator implements Validator {
         	errors.rejectValue(USERNAME, "username.dupplicate", "This username is already used!");
         }
         
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.empty", "You must enter an email!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, EMAIL, "email.empty", "You must enter an email!");
         if(!isValidEmail(user.getEmail())) {
         	errors.rejectValue(EMAIL, "email.structure", "This is not a valid email!");
         }
