@@ -30,7 +30,7 @@ pipeline {
         sh '(cd ./SitNBeer/; mvn sonar:sonar)'
       }
     }
-    /*stage('IntegrationTest') {
+    stage('IntegrationTest') {
       agent {
         docker {
           image 'lucienmoor/katalon-for-jenkins:latest'
@@ -47,7 +47,7 @@ pipeline {
 
         cleanWs()
       }
-    }*/
+    }
   }
   post {
     always {
