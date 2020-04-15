@@ -15,7 +15,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/span_Katalon'))
+WebUI.navigateToUrl('http://127.0.0.1:8181/profile')
 
 WebUI.verifyTextPresent('Your profile', false)
 
@@ -23,7 +23,7 @@ WebUI.verifyTextPresent('Name', false)
 
 WebUI.verifyTextPresent('Email', false)
 
-WebUI.verifyTextPresent('Acess to', false)
+WebUI.verifyTextPresent('Access to', false)
 
 WebUI.verifyTextPresent('Commands history', false)
 
