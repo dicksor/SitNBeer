@@ -17,5 +17,6 @@ import org.openqa.selenium.Keys as Keys
 
 WebUI.navigateToUrl('http://127.0.0.1:8181/beers')
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Beers/a_Hansen-Hansen'))
+WebUI.verifyTextPresent('SHOW DRINKS', false)
 
+WebUI.verifyTextPresent('Bars', false)
