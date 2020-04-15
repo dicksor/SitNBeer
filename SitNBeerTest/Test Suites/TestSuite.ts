@@ -17,6 +17,12 @@
       <testCaseId>Test Cases/TestLogin</testCaseId>
    </testCaseLink>
    <testCaseLink>
+      <guid>bcf14079-8448-4a65-8f1f-5ceab8ff9b6d</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/TestCaseHome</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
       <guid>509aeff0-1764-4908-8ad5-7d373497c77a</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
