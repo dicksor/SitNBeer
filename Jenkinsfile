@@ -40,7 +40,7 @@ pipeline {
       steps {
         echo "Running integration tests"
         unstash "app"
-        sh 'java -jar ./SitNBeer/target/SitNBeer-SNAPSHOT.jar >/dev/null 2>&1 &'
+        sh 'java -jar ./SitNBeer/target/sitnbeer-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
         sh 'sleep 30'
         sh 'chmod +x ./runTest.sh'
         sh './runTest.sh'
