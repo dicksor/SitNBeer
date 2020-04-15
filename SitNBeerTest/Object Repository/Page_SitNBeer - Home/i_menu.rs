@@ -3,7 +3,7 @@
    <description></description>
    <name>i_menu</name>
    <tag></tag>
-   <elementGuidId>044ed2bd-687a-46e5-abc4-38bcc23d78a0</elementGuidId>
+   <elementGuidId>8e4405b4-375c-4964-ad87-a48a2fadf3f2</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>

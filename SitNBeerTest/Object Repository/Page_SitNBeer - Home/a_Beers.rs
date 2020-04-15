@@ -3,7 +3,7 @@
    <description></description>
    <name>a_Beers</name>
    <tag></tag>
-   <elementGuidId>51f5ec9d-da4d-41fd-89db-3540c2614495</elementGuidId>
+   <elementGuidId>56c32f6d-a2b5-4f64-ac56-776aa0695cd8</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
