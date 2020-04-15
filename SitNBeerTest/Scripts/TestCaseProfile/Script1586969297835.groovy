@@ -15,15 +15,17 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/span_Katalon'))
 
-WebUI.maximizeWindow()
+WebUI.verifyTextPresent('Your profile', false)
 
-WebUI.navigateToUrl('http://127.0.0.1:8181/login')
+WebUI.verifyTextPresent('Name', false)
 
-WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Login_username'), 'Katalon')
+WebUI.verifyTextPresent('Email', false)
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
+WebUI.verifyTextPresent('Acess to', false)
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/input_Password _btn'))
+WebUI.verifyTextPresent('Commands history', false)
+
+WebUI.verifyTextPresent('Create a bar', false)
 
