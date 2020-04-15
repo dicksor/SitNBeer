@@ -3,11 +3,11 @@
    <description></description>
    <name>label_Username</name>
    <tag></tag>
-   <elementGuidId>5c087fd1-f0ca-4640-a069-9bb086f6b8f2</elementGuidId>
+   <elementGuidId>59a242d4-daf1-4772-84c0-30e6742b700d</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Login'])[3]/following::label[1]</value>
+         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

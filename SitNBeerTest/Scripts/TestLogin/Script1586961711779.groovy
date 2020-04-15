@@ -17,21 +17,11 @@ import org.openqa.selenium.Keys as Keys
 
 WebUI.openBrowser('')
 
-WebUI.navigateToUrl('http://127.0.0.1:8181/')
+WebUI.navigateToUrl('http://127.0.0.1:8181/login')
 
-WebUI.click(findTestObject('Page_SitNBeer - Home/i_menu'))
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Login_username'), 'Katalon')
 
-WebUI.click(findTestObject('Page_SitNBeer - Home/a_Login'))
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
 
-WebUI.setText(findTestObject('Page_SitNBeer - Login/input_Login_username'), 'Katalon')
-
-WebUI.setEncryptedText(findTestObject('Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
-
-WebUI.click(findTestObject('Page_SitNBeer - Login/input_Password _btn'))
-
-WebUI.navigateToUrl('http://127.0.0.1:8181/profile')
-
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Profile/a_Commands history'))
-
-WebUI.closeBrowser()
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/input_Password _btn'))
 

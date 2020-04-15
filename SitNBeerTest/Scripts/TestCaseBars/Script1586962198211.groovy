@@ -15,31 +15,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
-
-WebUI.navigateToUrl('http://127.0.0.1:8181/')
-
-WebUI.click(findTestObject('Page_SitNBeer - Home/i_menu'))
-
-WebUI.click(findTestObject('Page_SitNBeer - Home/a_Login'))
-
-WebUI.click(findTestObject('Page_SitNBeer - Login/label_Username'))
-
-WebUI.setText(findTestObject('Page_SitNBeer - Login/input_Login_username'), 'Katalon')
-
-WebUI.setEncryptedText(findTestObject('Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
-
-WebUI.click(findTestObject('Page_SitNBeer - Login/input_Password _btn'))
-
-WebUI.click(findTestObject('Page_SitNBeer - Home/i_menu'))
-
-WebUI.click(findTestObject('Page_SitNBeer - Home/a_Beers'))
-
-WebUI.click(findTestObject('Page_SitNBeer - Beers/a_Hansen-Hansen'))
-
-WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Bar/input_Table number _tableNumber'), '2')
-
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Bar/input_Table number _waves-button-input'))
+WebUI.navigateToUrl('127.0.0.1:8181/bars')
 
 WebUI.closeBrowser()
 
