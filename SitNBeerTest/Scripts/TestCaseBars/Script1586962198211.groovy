@@ -19,7 +19,7 @@ WebUI.navigateToUrl('http://127.0.0.1:8181/bars')
 
 WebUI.verifyTextPresent('Bars', false)
 
-WebUI.verifyTextPresent('Show drinks', false)
+WebUI.verifyTextPresent('SHOW DRINKS', false)
 
 WebUI.closeBrowser()
 
