@@ -17,9 +17,9 @@ import org.openqa.selenium.Keys as Keys
 
 WebUI.navigateToUrl('127.0.0.1:8181/bars')
 
-WebUI.verifyTextPresent('Beers', false)
+WebUI.verifyTextPresent('Bars', false)
 
-WebUI.verifyTextPresent('CHF', false)
+WebUI.verifyTextPresent('Show drinks', false)
 
 WebUI.closeBrowser()
 
