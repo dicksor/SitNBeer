@@ -3,7 +3,7 @@
    <description></description>
    <name>input_Table number _waves-button-input</name>
    <tag></tag>
-   <elementGuidId>4e4fc1a8-15d4-4a30-84d8-7ee1f3d93ff2</elementGuidId>
+   <elementGuidId>ecec78b9-2d99-4a12-b25e-9b62397eb56a</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>

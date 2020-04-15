@@ -3,7 +3,7 @@
    <description></description>
    <name>a_Commands history</name>
    <tag></tag>
-   <elementGuidId>294adbb7-e2ae-4e32-ae23-a3180ab25407</elementGuidId>
+   <elementGuidId>e575182e-1b9e-4304-8939-5c117ce7b2aa</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
