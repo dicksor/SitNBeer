@@ -12,6 +12,7 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
@@ -19,11 +20,17 @@ WebUI.openBrowser('')
 
 WebUI.navigateToUrl('http://127.0.0.1:8181/')
 
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/i_menu'))
+
 WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Home/a_Login'))
+
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/label_Username'))
 
 WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Login_username'), 'Katalon')
 
 WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
 
 WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/input_Password _btn'))
+
+WebUI.closeBrowser()
 
