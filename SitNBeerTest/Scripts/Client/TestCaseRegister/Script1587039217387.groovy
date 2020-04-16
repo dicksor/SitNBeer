@@ -15,7 +15,18 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.navigateToUrl('http://127.0.0.1:8181/bar/add')
+WebUI.openBrowser('')
 
-WebUI.verifyTextPresent('Add a bar', false)
+WebUI.navigateToUrl('http://127.0.0.1:8181/registration')
+
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Email _email'), 'katalon@client.com')
+
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Username _username'), 'KatalonClient')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Password _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
+
+WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Confirm password _passwordConfirm'), 
+    '8SQVv/p9jVQbixvz/0SAXQ==')
+
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Registration/input_Confirm password _btn'))
 

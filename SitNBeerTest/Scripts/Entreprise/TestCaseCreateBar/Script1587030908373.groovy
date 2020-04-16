@@ -15,15 +15,16 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('')
+WebUI.navigateToUrl('http://127.0.0.1:8181/bar/add')
 
-WebUI.maximizeWindow()
+WebUI.verifyTextPresent('Add a bar', false)
 
-WebUI.navigateToUrl('http://127.0.0.1:8181/login')
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Bars/input_Bar name _name'), 'KatalonBar')
 
-WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Login_username'), 'Katalon')
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Bars/input_Bar Address _address'), 'KatalonBarAdress')
 
-WebUI.setEncryptedText(findTestObject('Object Repository/Page_SitNBeer - Login/input_Username _password'), '8SQVv/p9jVQbixvz/0SAXQ==')
+WebUI.setText(findTestObject('Object Repository/Page_SitNBeer - Bars/input_Number of table available in the bar _ebaeaf'), 
+    '20')
 
-WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Login/input_Password _btn'))
+WebUI.click(findTestObject('Object Repository/Page_SitNBeer - Bars/input_Number of table available in the bar _btn'))
 

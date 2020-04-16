@@ -2,12 +2,18 @@ package com.example.demo.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
+import com.example.demo.models.Bar;
+import com.example.demo.models.Role;
 import com.example.demo.models.User;
+import com.example.demo.models.enums.RoleEnum;
+import com.example.demo.repositories.IBarRepository;
+import com.example.demo.repositories.IRoleRepository;
 import com.example.demo.repositories.IUserRepository;
 import com.example.demo.services.interfaces.ISecurityService;
 import com.example.demo.services.interfaces.IUserService;
@@ -30,7 +36,13 @@ public class UserController {
     private UserValidator userValidator;
 
     @Autowired
-	private IUserRepository userRepository;
+    private IUserRepository userRepository;
+    
+    @Autowired 
+    private IBarRepository barRepository;
+
+    @Autowired
+    private IRoleRepository roleRepository;
 
     //Routes
     private static final String REGISTER = "register";
@@ -73,6 +85,16 @@ public class UserController {
     @GetMapping("/user/delete")
     public String delete(Principal principal,HttpServletRequest request) throws ServletException{
         User user = userRepository.findByUsername(principal.getName());
+        
+        if(user.getRole() == roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()))
+        {
+            Optional<Bar> optionalBar = barRepository.findByUser(user);
+            if(optionalBar.isPresent())
+            {
+                barRepository.delete(optionalBar.get());
+            }
+        }
+
         request.logout();
 
         userRepository.delete(user);
