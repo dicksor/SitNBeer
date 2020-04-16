@@ -35,6 +35,12 @@
       <testCaseId>Test Cases/TestCaseBeers</testCaseId>
    </testCaseLink>
    <testCaseLink>
+      <guid>515797ac-95ba-4a59-803b-c01ab796447a</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/TestCaseCreateBar</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
       <guid>f97a4b42-b058-4b3e-b61a-3da83b801ca3</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
