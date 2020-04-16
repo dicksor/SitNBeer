@@ -24,6 +24,8 @@
             <br>
             <p>You can order a beer by going to <a href="/bar/create">this page</a> !</p>           
 
+            <a class="waves-effect waves-light btn-small" href="/user/delete">Delete your account</a>
+
             <h2>Access to :</h2>
             <span th:if="${user.getRole().getRoleName()=='USER'}">  
                 <ul>

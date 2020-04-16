@@ -1,6 +1,14 @@
 package com.example.demo.controllers;
 
+import java.io.IOException;
+import java.security.Principal;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.demo.models.User;
+import com.example.demo.repositories.IUserRepository;
 import com.example.demo.services.interfaces.ISecurityService;
 import com.example.demo.services.interfaces.IUserService;
 import com.example.demo.validators.UserValidator;
@@ -20,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+	private IUserRepository userRepository;
 
     //Routes
     private static final String REGISTER = "register";
@@ -57,5 +68,15 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return LOGIN;
+    }
+
+    @GetMapping("/user/delete")
+    public String delete(Principal principal,HttpServletRequest request) throws ServletException{
+        User user = userRepository.findByUsername(principal.getName());
+        request.logout();
+
+        userRepository.delete(user);
+
+        return "redirect:/home";
     }
 }

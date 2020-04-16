@@ -43,9 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/js/*.js", "/css/*.css", "/favicon.ico").permitAll()
                 .antMatchers("/registration", "/home", "/bars", "/beers", "/").permitAll()
-                .antMatchers("/bar/update/*", "/beer/add", "/beer/update/*", "/beer/edit/*", "/orders/*",
-                        "/orders/history/*", "/order/update/*", "/order/delete/*")
-                .hasAuthority("ENTERPRISE").antMatchers("/orders/client/*", "/bar/add").hasAuthority("USER").anyRequest()
+                .antMatchers("/bar/update/*", "/beer/add", "/beer/update/*", "/beer/edit/*", "/orders/*", "/orders/history/*", "/order/update/*", "/order/delete/*").hasAuthority("ENTERPRISE")
+                .antMatchers("/orders/client/*", "/bar/add").hasAuthority("USER")
+                .antMatchers("/profile", "/user/delete").authenticated()
+                .anyRequest()
                 .authenticated().and().formLogin().loginPage("/login").permitAll().usernameParameter("username")
                 .defaultSuccessUrl("/home", true).and().logout().permitAll();
     }
