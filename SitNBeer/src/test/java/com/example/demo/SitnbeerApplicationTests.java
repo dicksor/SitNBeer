@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Order;
+import com.example.demo.models.enums.OrderStatusEnum;
 import com.example.demo.repositories.IBarRepository;
 
 import org.junit.jupiter.api.Test;
@@ -73,10 +74,18 @@ class SitnbeerApplicationTests {
 			if (orders.size() > 0) {
 				Order order = orders.get(0);
 
-				mvc.perform(get("/orders/" + bar.getId())).andExpect(status().isOk())
-						.andExpect(content().string(containsString("orders")))
-						.andExpect(content().string(containsString(Long.toString(order.getId()))))
-						.andExpect(content().string(containsString(Integer.toString(order.getTableNumber()))));
+				if(order.getStatus() == OrderStatusEnum.OPEN || order.getStatus() == OrderStatusEnum.IN_PROCESS)
+				{
+					mvc.perform(get("/orders/" + bar.getId())).andExpect(status().isOk())
+					.andExpect(content().string(containsString("orders")))
+					.andExpect(content().string(containsString(Long.toString(order.getId()))))
+					.andExpect(content().string(containsString(Integer.toString(order.getTableNumber()))));
+				}
+				else 
+				{
+					mvc.perform(get("/orders/" + bar.getId())).andExpect(status().isOk())
+					.andExpect(content().string(containsString("orders")));
+				}
 			}
 		}
 	}

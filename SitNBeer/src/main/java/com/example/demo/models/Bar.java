@@ -30,7 +30,7 @@ public class Bar {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "bar")
+    @OneToMany(mappedBy = "bar", cascade = CascadeType.MERGE)
     private Set<Beer> beers;
 
     @Column(name = "name")
