@@ -52,7 +52,7 @@ class BarController {
 	@Autowired
 	private IUserRepository userRepository;
 
-	//Routes 
+	// Constantes
 	private static final String BARS = "bars";
 	private static final String CREATE_BAR = "createBar";
 	private static final String UPDATE_BAR = "updateBar";

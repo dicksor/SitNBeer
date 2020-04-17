@@ -1,15 +1,12 @@
 package com.example.demo.controllers;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.util.Optional;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import com.example.demo.models.Bar;
-import com.example.demo.models.Role;
 import com.example.demo.models.User;
 import com.example.demo.models.enums.RoleEnum;
 import com.example.demo.repositories.IBarRepository;
@@ -44,7 +41,7 @@ public class UserController {
     @Autowired
     private IRoleRepository roleRepository;
 
-    //Routes
+    // Constantes
     private static final String REGISTER = "register";
     private static final String LOGIN = "login";
 

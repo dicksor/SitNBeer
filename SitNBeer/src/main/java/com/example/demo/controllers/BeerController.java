@@ -52,7 +52,7 @@ class BeerController {
     @Autowired
     private BeerAddValidator beerAddValidator;
     
-    //Routes 
+    // Constantes
 	private static final String BEERS = "beers";
 	private static final String CREATE_BEER = "createBeer";
 	private static final String UPDATE_BEER = "updateBeer";
@@ -150,7 +150,7 @@ class BeerController {
         {
             bar = optionalBar.get();
             Iterable<Beer> beers = beerRepository.findByBar(bar);
-            model.addAttribute("beers", beers);
+            model.addAttribute(BEERS, beers);
             return "beersOfBar";
         }
 
