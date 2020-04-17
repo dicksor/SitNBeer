@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.validators;
 
 import com.example.demo.models.User;
@@ -10,7 +18,7 @@ import org.springframework.validation.Validator;
 
 @Component
 public class UserValidator implements Validator {
-    
+
     @Autowired
     private IUserService userService;
 
@@ -23,9 +31,9 @@ public class UserValidator implements Validator {
     }
 
     @Override
-	public void validate(Object o, Errors errors) {
-		
-		User user = (User) o;
+    public void validate(Object o, Errors errors) {
+
+        User user = (User) o;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, USERNAME, "username.empty", "You must enter a username!");
         if (user.getUsername().length() < 4 || user.getUsername().length() > 32) {
@@ -33,33 +41,32 @@ public class UserValidator implements Validator {
         }
 
         if (userService.findByUsername(user.getUsername()) != null) {
-        	errors.rejectValue(USERNAME, "username.dupplicate", "This username is already used!");
+            errors.rejectValue(USERNAME, "username.dupplicate", "This username is already used!");
         }
-        
+
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, EMAIL, "email.empty", "You must enter an email!");
-        if(!isValidEmail(user.getEmail())) {
-        	errors.rejectValue(EMAIL, "email.structure", "This is not a valid email!");
+        if (!isValidEmail(user.getEmail())) {
+            errors.rejectValue(EMAIL, "email.structure", "This is not a valid email!");
         }
-        
+
         if (userService.findByEmail(user.getEmail()) != null) {
-        	errors.rejectValue(EMAIL, "email.dupplicate", "This email is already used!");
+            errors.rejectValue(EMAIL, "email.dupplicate", "This email is already used!");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.empty", "Password can't be empty!");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
-        	errors.rejectValue("password", "password.length", "The size must be between 8 and 32!");
+            errors.rejectValue("password", "password.length", "The size must be between 8 and 32!");
         }
 
         if (!user.getPasswordConfirm().equals(user.getPassword())) {
-        	errors.rejectValue("passwordConfirm", "passwordConfirm.value", "This password doesn't match!");
+            errors.rejectValue("passwordConfirm", "passwordConfirm.value", "This password doesn't match!");
         }
-        
-	}
-	
-	private boolean isValidEmail(String email)
-	{
-		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-	    return email.matches(regex);
-	}
+
+    }
+
+    private boolean isValidEmail(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
 
 }
