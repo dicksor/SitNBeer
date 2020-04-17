@@ -9,29 +9,89 @@
    <pageLoadTimeout>30</pageLoadTimeout>
    <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
-   <testSuiteGuid>1210aa26-e239-41a5-a405-b6b9f20ff748</testSuiteGuid>
+   <testSuiteGuid>6a90b865-e64b-4776-843d-b72ca7d83406</testSuiteGuid>
    <testCaseLink>
-      <guid>dc5275a2-0999-40c5-8b07-deb8307c0830</guid>
+      <guid>91eeb5c3-73b9-46b3-a2e5-147cd26efd70</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/TestCaseLogin</testCaseId>
+      <testCaseId>Test Cases/Client/TestCaseRegister</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>97a0e51b-093f-4641-ae27-da4579858f3b</guid>
+      <guid>aeb3595f-2004-4ba0-a9de-f9f196006b93</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/TestCaseShowBeer</testCaseId>
+      <testCaseId>Test Cases/Client/TestCaseLogin</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>5dbc5502-63f5-40a7-b12d-da17e1b39353</guid>
+      <guid>0cf499d8-9546-4d87-bb39-8d6e4afc903a</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/TestCaseOrder</testCaseId>
+      <testCaseId>Test Cases/Client/TestCaseHome</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>6d56f7e2-3216-4eea-8e5d-15cd207d671e</guid>
+      <guid>e61cfcd1-4c3e-4ee7-a5f1-3201620b9a15</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/TestCaseHistory</testCaseId>
+      <testCaseId>Test Cases/Client/TestCaseBeers</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>5e2f88c0-186c-44b5-ad03-f1cbc1d73717</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Client/TestCaseProfile</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>ff222133-0fe8-48bc-9443-d176e65a2e66</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Client/TestCaseBars</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>00f870fa-6723-4cc4-a2c1-9edc4f576c44</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseCreateBar</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>f3174a29-573a-49ae-8459-ea244203b8aa</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Client/TestCaseDeleteClient</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>85f5c2ed-15e1-4b10-b4dc-c2f4c2a19a0c</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseRegister</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>030f34bc-4a07-434b-9f17-e4f5df66c8ce</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseLogin</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>21d9fc98-afbe-49ea-a546-b43f8e765d8d</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseCreateBar</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>34113276-f13f-4b64-a8be-0793c0f88fe5</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseProfile</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>6418ff56-774c-44fe-9765-ba51c80c449c</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseCreateBeer</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>a2edfc99-f693-4395-bbce-ab0202db53d1</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Entreprise/TestCaseDeleteEntreprise</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

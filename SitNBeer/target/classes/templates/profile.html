@@ -24,6 +24,7 @@
             <br>
             <p>You can order a beer by going to <a href="/bar/create">this page</a> !</p>           
 
+
             <h2>Access to :</h2>
             <span th:if="${user.getRole().getRoleName()=='USER'}">  
                 <ul>
@@ -55,6 +56,8 @@
                     </ul>
                 </span>
             </span>
+            <h3>Danger zone : </h3>
+            <a class="waves-effect waves-light btn-small" href="/user/delete">Delete your account</a>
         </div>
     </main>
     <th:block th:include="fragments/layout :: footer"></th:block>

@@ -26,8 +26,9 @@ pipeline {
       }
       steps {
         echo "Running quality tests"
+        unstash "app"
         sh '(cd ./SitNBeer/; mvn clean test)'
-        sh '(cd ./SitNBeer/; mvn sonar:sonar)'
+        sh '(cd ./SitNBeer/; mvn sonar:sonar -Dsonar.projectKey=discksor_SitNBeer -Dsonar.organization=sitnbeer -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=f98acff4af31e8f5ef952a30dd36e8f5346b93c5)'
       }
     }
     stage('IntegrationTest') {
@@ -40,7 +41,7 @@ pipeline {
       steps {
         echo "Running integration tests"
         unstash "app"
-        sh 'java -jar ./SitNBeer/target/SitNBeer-SNAPSHOT.jar >/dev/null 2>&1 &'
+        sh 'java -jar ./SitNBeer/target/sitnbeer-0.0.1-SNAPSHOT.jar >/dev/null 2>&1 &'
         sh 'sleep 30'
         sh 'chmod +x ./runTest.sh'
         sh './runTest.sh'

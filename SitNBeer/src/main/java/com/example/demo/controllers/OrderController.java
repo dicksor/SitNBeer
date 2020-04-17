@@ -45,7 +45,7 @@ class OrderController{
 	@Autowired 
 	private OrderAddValidator orderAddValidator;
 
-	//Routes 
+	// Constantes
 	private static final String CLIENT_ORDERS = "clientOrders";
 	private static final String ORDERS = "orders";
 	private static final String ORDERS_HISTORY = "ordersHistory";
@@ -59,7 +59,7 @@ class OrderController{
 			User user = optionalUser.get();
 			List<Order> orders = user.getOrders();
 
-			model.addAttribute("orders", orders);
+			model.addAttribute(ORDERS, orders);
 
 			return CLIENT_ORDERS;
 		}
@@ -72,7 +72,7 @@ class OrderController{
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();
 			List<Order> orders = bar.getOrders();
-			model.addAttribute("orders", orders);
+			model.addAttribute(ORDERS, orders);
 
 			return ORDERS;
 		}
@@ -86,7 +86,7 @@ class OrderController{
 		if(optionalBar.isPresent()){
 			Bar bar = optionalBar.get();
 			List<Order> orders = bar.getOrders();
-			model.addAttribute("orders", orders);
+			model.addAttribute(ORDERS, orders);
 
 			return ORDERS_HISTORY;
 		}

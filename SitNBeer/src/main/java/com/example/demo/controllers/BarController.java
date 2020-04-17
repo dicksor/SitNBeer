@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.controllers;
 
 import java.security.Principal;
@@ -52,7 +60,7 @@ class BarController {
 	@Autowired
 	private IUserRepository userRepository;
 
-	//Routes 
+	// Constantes
 	private static final String BARS = "bars";
 	private static final String CREATE_BAR = "createBar";
 	private static final String UPDATE_BAR = "updateBar";

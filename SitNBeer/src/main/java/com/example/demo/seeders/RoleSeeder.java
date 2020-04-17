@@ -17,6 +17,9 @@ public class RoleSeeder implements ISeeder {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     * Seeds the database with Roles
+     */
     @Override
     public void seedDB() {
         if (roleRepository.findAll().isEmpty()) {

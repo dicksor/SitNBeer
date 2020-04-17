@@ -20,18 +20,21 @@
                 <div class="input-field col s12">
                     <label for="bar-name" class="active">Bar name : </label>
                     <input type="text" th:field="*{name}" id="bar-name" name="bar-name" class="validate" required/>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-adress" class="activate">Bar Address : </label>
                     <input type="text" th:field="*{address}" id="bar-address" name="bar-address" class="validate" required/>
+                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-available-table" class="activate">Number of table available in the bar : </label>
                     <input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required/>
+                    <span th:if="${#fields.hasErrors('availableTable')}" th:errors="*{availableTable}" style="color:red;"></span>
                 </div>
             </div>
             <input type="hidden" th:field="*{user}">

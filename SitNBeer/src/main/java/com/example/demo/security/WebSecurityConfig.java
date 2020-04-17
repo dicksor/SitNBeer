@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +47,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
+    /**
+     * Used to configure the routes, what's forbidden or not according to the user role
+     * Specify the route of the login page and the default success route
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/js/*.js", "/css/*.css", "/favicon.ico").permitAll()
-                .antMatchers("/registration", "/home", "/bars", "/beers", "/").permitAll()
-                .antMatchers("/bar/update/*", "/beer/add", "/beer/update/*", "/beer/edit/*", "/orders/*",
-                        "/orders/history/*", "/order/update/*", "/order/delete/*")
-                .hasAuthority("ENTERPRISE").antMatchers("/orders/client/*", "/bar/add").hasAuthority("USER").anyRequest()
+                .antMatchers("/registration", "/home", "/bars", "/beers", "/" ).permitAll()
+                .antMatchers("/bar/update/*", "/beer/update/*", "/beer/edit/*", "/beer/add", "/orders/*", "/orders/history/*", "/order/update/*", "/order/delete/*").hasAuthority("ENTERPRISE")
+                .antMatchers("/orders/client/*", "/bar/add").hasAuthority("USER")
+                .antMatchers("/profile", "/user/delete").authenticated()
+                .anyRequest()
                 .authenticated().and().formLogin().loginPage("/login").permitAll().usernameParameter("username")
                 .defaultSuccessUrl("/home", true).and().logout().permitAll();
     }
