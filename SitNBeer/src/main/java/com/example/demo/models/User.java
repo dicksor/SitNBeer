@@ -45,7 +45,7 @@ public class User {
   @JoinColumn(name = "user_role", nullable = false)
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JsonProperty(access = Access.WRITE_ONLY)
-  private Role role;
+  private Role user_role;
 
   @OneToMany(mappedBy = "user")
   private List<Order> orders;
@@ -94,11 +94,11 @@ public class User {
   }
 
   public Role getRole() {
-    return role;
+    return user_role;
   }
 
   public void setRole(Role role) {
-    this.role = role;
+    this.user_role = role;
   }
 
   public List<Order> getOrders() {

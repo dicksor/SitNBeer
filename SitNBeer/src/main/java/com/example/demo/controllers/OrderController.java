@@ -59,7 +59,7 @@ class OrderController{
 			User user = optionalUser.get();
 			List<Order> orders = user.getOrders();
 
-			model.addAttribute("orders", orders);
+			model.addAttribute(ORDERS, orders);
 
 			return CLIENT_ORDERS;
 		}

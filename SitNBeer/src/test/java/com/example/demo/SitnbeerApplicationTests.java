@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Order;
@@ -46,7 +45,8 @@ class SitnbeerApplicationTests {
 
 	@Test
 	public void homeShowTest() throws Exception {
-		mvc.perform(get("/home")).andExpect(status().isOk()).andExpect(content().string(containsString("home")));
+		mvc.perform(get("/home")).andExpect(status().isOk()).
+		andExpect(content().string(containsString("home")));
 	}
 
 	@Test
@@ -63,10 +63,10 @@ class SitnbeerApplicationTests {
 		}
 	}
 
-	@Test
+	/*@Test
 	public void test() throws Exception {
 		assertTrue(OrderStatusEnum.CLOSE == OrderStatusEnum.CLOSE);
-	}
+	}*/
 
 	@Test
 	public void checkOrders() throws Exception {

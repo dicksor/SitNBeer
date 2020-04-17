@@ -20,30 +20,35 @@
                 <div class="input-field col s12">
                     <label for="beer-name" class="active">Beer name : </label>
                     <input type="text" th:field="*{name}" id="beer-name" name="beer-name" class="validate" required/>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="beer-manufacturer" class="active">Beer manufacturer : </label>
                     <input type="text" th:field="*{manufacturer}" id="beer-manufacturer" name="beer-manufacturer" class="validate" required/>
+                    <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="beer-price" class="active">Beer price : </label>
                     <input type="number" th:field="*{price}" id="beer-price" name="beer-price" class="validate" required min="0"  step="0.01"/>
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="beer-volume" class="active">Beer volume : </label>
                     <input type="number" th:field="*{volume}" id="beer-volume" name="beer-volume" class="validate" required min="0"  step="0.01"/>
+                    <span th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}" style="color:red;"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <label for="beer-stockQuantity" class="active">Stock quantity : </label>
                     <input type="number" th:field="*{stockQuantity}" id="beer-stockQuantity" name="beer-stockQuantity" class="validate" required min="0"  step="0.01"/>
+                    <span th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}" style="color:red;"></span>
                 </div>
             </div>
             <input type="submit" class="btn" value="Add a beer">
