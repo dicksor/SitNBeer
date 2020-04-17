@@ -85,6 +85,14 @@ class BarController {
 		return BARS;
 	}
 
+	/**
+	 * Allows you to make a detailed search for bar
+	 * @param specs Search Criterion
+	 * @param model Model Spring Object
+	 * @param page page number 
+	 * @param size number of item display on a page
+	 * @return template
+	 */
 	@GetMapping("/bar/query")
 	public String searchForCars(@SearchSpec Specification<Bar> specs, Model model,
 			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
@@ -153,6 +161,12 @@ class BarController {
 		return SHOW_BAR;
 	}
 
+	/**
+	 * Update a bar form	
+	 * @param barId Id of a bar
+	 * @param model Model Spring object
+	 * @return template
+	 */
 	@GetMapping("/bar/update/{barId}")
 	public String updateBarForm(@PathVariable Long barId, Model model) {
 
@@ -165,6 +179,14 @@ class BarController {
 		return HOME;
 	}
 
+	/**
+	 * Allow to update a bar 	
+	 * @param id Id of a bar
+	 * @param bar Bar object to update
+	 * @param model 
+	 * @param bindingResult 
+	 * @return template
+	 */
 	@PostMapping("/bar/update/{id}")
 	public String updateBeer(@PathVariable Long id, @Valid Bar bar, Model model, BindingResult bindingResult) {
 

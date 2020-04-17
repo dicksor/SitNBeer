@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.controllers;
 
 import java.security.Principal;
@@ -94,6 +102,12 @@ class OrderController{
 		return HOME;
 	}
 
+	/**
+	 * Update an order status for an order
+	 * @param newOrderStatusString New order status for an order
+	 * @param orderId Id of an order
+	 * @return JSON which contains the new status of an order
+	 */
 	@GetMapping(value = "/order/update/{newOrderStatusString}/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String processOrder(@PathVariable String newOrderStatusString, @PathVariable long orderId){
@@ -117,6 +131,11 @@ class OrderController{
 		return status;
 	}
 
+	/**
+	 * Delete an order from an id	
+	 * @param orderId Id of order
+	 * @return JSON, which indicates whether the deletion has been carried out correctly, status:OK or status:PARAM_ERROR
+	 */
 	@GetMapping(value = "order/delete/{orderId}",  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public String deleteOrder(@PathVariable long orderId){

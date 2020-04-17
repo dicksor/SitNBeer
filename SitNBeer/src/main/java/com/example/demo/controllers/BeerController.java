@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.controllers;
 
 import java.security.Principal;
@@ -82,6 +90,14 @@ class BeerController {
         return BEERS;
     }
 
+    /**
+	 * Allows you to make a detailed search for beer
+	 * @param specs Search Criterion
+	 * @param model Model Spring Object
+	 * @param page page number 
+	 * @param size number of item display on a page
+	 * @return template
+	 */
     @GetMapping("/beer/query")
     public String searchForCars(@SearchSpec Specification<Beer> specs, Model model,
             @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
@@ -128,6 +144,14 @@ class BeerController {
         return HOME;
     }
 
+    /**
+     * Allow to update a beer from an id
+     * @param id Id of a beer   
+     * @param beer Beer Object to update
+     * @param model Model Spring Object
+     * @param bindingResult
+     * @return template
+     */
     @PostMapping("/beer/update/{id}")
     public String updateBeer(@PathVariable Long id, @Valid Beer beer, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -139,6 +163,12 @@ class BeerController {
         return HOME;
     }
 
+    /**
+     * Display all updatble beer for a bar
+     * @param model Model Spring Object
+     * @param barId Id of a bar
+     * @return template
+     */
     @GetMapping("/beer/edit/{barId}")
     public String updateBeerOfBar(Model model, @PathVariable long barId) {
         Optional<Bar> optionalBar = barRepository.findById(barId);
