@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.seeders;
 
 import java.security.SecureRandom;
@@ -41,6 +49,9 @@ public class BeerSeeder implements ISeeder {
         return this.fakeBeers;
     }
 
+    /**
+     * Seeds the database with fake beers
+     */
     private void generateFakeBeer() {
         Faker faker = new Faker();
 

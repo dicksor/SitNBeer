@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo.seeders;
 
 import java.util.LinkedList;
@@ -40,6 +48,9 @@ public class BarSeeder implements ISeeder {
         return this.fakeBars;
     }
 
+    /**
+     * Seeds the database with fake bars
+     */
     private void generateFakeBars() {
         Faker faker = new Faker();
 

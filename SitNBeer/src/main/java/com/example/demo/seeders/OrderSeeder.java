@@ -1,3 +1,10 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
 package com.example.demo.seeders;
 
 import java.security.SecureRandom;
@@ -33,8 +40,6 @@ public class OrderSeeder implements ISeeder {
 
     @Override
     public void seedDB() {
-        
-
         if (orderRepository.findAll().isEmpty()) {
             generateFakeOrder();
         }
@@ -49,7 +54,7 @@ public class OrderSeeder implements ISeeder {
             case 1:
                 orderStatusEnum = OrderStatusEnum.IN_PROCESS;
                 break;
-            case 2: 
+            case 2:
                 orderStatusEnum = OrderStatusEnum.CLOSE;
                 break;
             case 3:
@@ -62,6 +67,9 @@ public class OrderSeeder implements ISeeder {
         return orderStatusEnum;
     }
 
+    /**
+     * Seeds the database with fake orders
+     */
     public void generateFakeOrder(){
 
         for(int i = 0; i< 15; i++){
