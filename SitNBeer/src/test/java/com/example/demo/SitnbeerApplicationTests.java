@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 package com.example.demo;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -87,7 +95,7 @@ class SitnbeerApplicationTests {
 					.andExpect(content().string(containsString(Long.toString(order.getId()))))
 					.andExpect(content().string(containsString(Integer.toString(order.getTableNumber()))));
 				}
-				else 
+				else
 				{
 					mvc.perform(get("/orders/" + bar.getId())).andExpect(status().isOk())
 					.andExpect(content().string(containsString("orders")));

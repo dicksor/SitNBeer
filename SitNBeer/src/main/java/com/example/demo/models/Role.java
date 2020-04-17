@@ -19,7 +19,7 @@ public class Role {
 
     @Column(name = "role")
     @NotEmpty(message = "*Please provide a role")
-    private String userRole;
+    private String role;
 
     public Integer getId() {
         return id;
@@ -30,11 +30,11 @@ public class Role {
     }
 
     public String getRoleName() {
-        return userRole;
+        return this.role;
     }
 
     public void setRoleName(String role) {
-        this.userRole = role;
+        this.role = role;
     }
 
 }

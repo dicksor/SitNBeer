@@ -41,7 +41,7 @@ class BeerController {
     private BeerService beerService;
 
     @Autowired
-	private IBeerRepository beerRepository;
+    private IBeerRepository beerRepository;
 
     @Autowired
     private IUserRepository userRepository;
@@ -51,15 +51,15 @@ class BeerController {
 
     @Autowired
     private BeerAddValidator beerAddValidator;
-    
-    // Constantes
-	private static final String BEERS = "beers";
-	private static final String CREATE_BEER = "createBeer";
-	private static final String UPDATE_BEER = "updateBeer";
-	private static final String HOME = "home";
 
-    @GetMapping("/beer/add") 
-	public String addBeerForm(Model model) {
+    // Constantes
+    private static final String BEERS = "beers";
+    private static final String CREATE_BEER = "createBeer";
+    private static final String UPDATE_BEER = "updateBeer";
+    private static final String HOME = "home";
+
+    @GetMapping("/beer/add")
+    public String addBeerForm(Model model) {
         model.addAttribute("beer", new Beer());
         return CREATE_BEER;
     }
@@ -102,11 +102,11 @@ class BeerController {
     }
 
     @PostMapping("/beer/add")
-    public String addBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal){
+    public String addBeer(@ModelAttribute Beer beer, Model model, BindingResult bindingResult, Principal principal) {
         beerAddValidator.validate(beer, bindingResult);
 
-		if(bindingResult.hasErrors()){
-			return CREATE_BEER;
+        if (bindingResult.hasErrors()) {
+            return CREATE_BEER;
         }
         User loggedUser = userRepository.findByUsername(principal.getName());
         Bar bar = loggedUser.getOwnedBar();
@@ -118,10 +118,10 @@ class BeerController {
     }
 
     @GetMapping("/beer/update/{beerId}")
-    public String updateBeerForm(@PathVariable long beerId, Model model){
+    public String updateBeerForm(@PathVariable long beerId, Model model) {
 
         Optional<Beer> optionalBeer = beerRepository.findById(beerId);
-        if(optionalBeer.isPresent()){
+        if (optionalBeer.isPresent()) {
             model.addAttribute("beer", optionalBeer.get());
             return UPDATE_BEER;
         }
@@ -129,9 +129,8 @@ class BeerController {
     }
 
     @PostMapping("/beer/update/{id}")
-    public String updateBeer(@PathVariable Long id, @Valid Beer beer, Model model, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
-        {
+    public String updateBeer(@PathVariable Long id, @Valid Beer beer, Model model, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             beer.setId(id);
             return UPDATE_BEER;
         }
@@ -141,13 +140,11 @@ class BeerController {
     }
 
     @GetMapping("/beer/edit/{barId}")
-    public String updateBeerOfBar(Model model, @PathVariable long barId)
-    {
+    public String updateBeerOfBar(Model model, @PathVariable long barId) {
         Optional<Bar> optionalBar = barRepository.findById(barId);
         Bar bar = null;
 
-        if(optionalBar.isPresent())
-        {
+        if (optionalBar.isPresent()) {
             bar = optionalBar.get();
             Iterable<Beer> beers = beerRepository.findByBar(bar);
             model.addAttribute(BEERS, beers);
