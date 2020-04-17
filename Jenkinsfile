@@ -26,6 +26,7 @@ pipeline {
       }
       steps {
         echo "Running quality tests"
+        unstash "app"
         sh '(cd ./SitNBeer/; mvn clean test)'
         sh '(cd ./SitNBeer/; mvn sonar:sonar -Dsonar.projectKey=discksor_SitNBeer -Dsonar.organization=sitnbeer -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=f98acff4af31e8f5ef952a30dd36e8f5346b93c5)'
       }
