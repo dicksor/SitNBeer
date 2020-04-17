@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.example.demo.models.Bar;
 import com.example.demo.models.Order;
@@ -60,6 +61,11 @@ class SitnbeerApplicationTests {
 					.andExpect(content().string(containsString(bar.getAddress())))
 					.andExpect(content().string(containsString(Integer.toString(bar.getAvailableTable()))));
 		}
+	}
+
+	@Test
+	public void test() throws Exception {
+		assertTrue(OrderStatusEnum.CLOSE == OrderStatusEnum.CLOSE);
 	}
 
 	@Test
