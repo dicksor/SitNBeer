@@ -45,7 +45,7 @@ class OrderController{
 	@Autowired 
 	private OrderAddValidator orderAddValidator;
 
-	    // Constantes
+	// Constantes
 	private static final String CLIENT_ORDERS = "clientOrders";
 	private static final String ORDERS = "orders";
 	private static final String ORDERS_HISTORY = "ordersHistory";
