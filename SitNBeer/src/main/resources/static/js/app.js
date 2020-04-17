@@ -1,3 +1,11 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
     var ranges = document.querySelectorAll("input[type=range]")
     M.Range.init(ranges)

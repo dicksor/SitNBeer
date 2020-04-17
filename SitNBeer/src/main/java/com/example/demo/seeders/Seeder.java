@@ -1,3 +1,10 @@
+/**
+ * SitNBeer
+ * Romain Capocasale, Vincent Moulin and Jonas Freiburghaus
+ * He-Arc, INF3dlm-a
+ * Spring Course
+ * 2019-2020
+ */
 package com.example.demo.seeders;
 
 import com.example.demo.repositories.IBarRepository;
@@ -36,6 +43,9 @@ public class Seeder implements ISeeder {
         this.seedDB();
     }
 
+    /**
+     * Seeds all the tables in the database with fake data
+     */
     @Override
     public void seedDB() {
         seedRoleTable();
