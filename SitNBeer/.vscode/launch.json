@@ -4,7 +4,7 @@
             "type": "java",
             "name": "CodeLens (Launch) - SitnbeerApplicationTests",
             "request": "launch",
-            "mainClass": "com.example.demo.SitnbeerApplicationTests",
+            "mainClass": "ch.hearc.sitnbeer.SitnbeerApplicationTests",
             "projectName": "sitnbeer"
         },
         {
@@ -13,7 +13,17 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "com.example.demo.SitnbeerApplication",
+            "mainClass": "ch.hearc.sitnbeer.SitnbeerApplication",
+            "projectName": "sitnbeer",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SitnbeerApplication<sitnbeer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "ch.hearc.sitnbeer.SitnbeerApplication",
             "projectName": "sitnbeer",
             "args": ""
         }
