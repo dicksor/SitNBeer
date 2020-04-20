@@ -71,11 +71,6 @@ class SitnbeerApplicationTests {
 		}
 	}
 
-	/*@Test
-	public void test() throws Exception {
-		assertTrue(OrderStatusEnum.CLOSE == OrderStatusEnum.CLOSE);
-	}*/
-
 	@Test
 	public void checkOrders() throws Exception {
 		List<Bar> bars = barRepository.findAll();
