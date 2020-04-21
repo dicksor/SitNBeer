@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <label for="bar-available-table" class="activate">Number of table available in the bar : </label>
-                    <input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required/>
+                    <input type="number" th:field="*{availableTable}" id="bar-available-table" name="bar-available-table" class="validate" required max="255"/>
                 </div>
                  <div th:if="${#fields.hasErrors('availableTable')}" th:errors="*{availableTable}" class="invalid-feedback">Available table Error</div>
             </div>
