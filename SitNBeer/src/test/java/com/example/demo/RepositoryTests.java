@@ -1,4 +1,4 @@
-package com.example.demo.repository;
+package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
