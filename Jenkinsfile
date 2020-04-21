@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    SPRING_DATASOURCE_URL= 'jdbc:mysql://localhost:3306/spring_db_2020'
+    SPRING_DATASOURCE_URL='jdbc:mysql://localhost:3306/spring_db_2020'
     SPRING_DATASOURCE_USERNAME  = credentials('SPRING_DATASOURCE_USERNAME')
     SPRING_DATASOURCE_PASSWORD = credentials('SPRING_DATASOURCE_PASSWORD')
   }
