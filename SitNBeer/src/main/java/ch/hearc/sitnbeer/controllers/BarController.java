@@ -36,6 +36,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import ch.hearc.sitnbeer.services.BarService;
@@ -120,7 +122,7 @@ class BarController {
 	}
 
 	@PostMapping("/bar/add")
-	public String addBar(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal) {
+	public String addBar(@ModelAttribute Bar bar, Model model, BindingResult bindingResult, Principal principal, HttpServletRequest request) throws ServletException{
 
 		User loggedUser = userRepository.findByUsername(principal.getName());
 
@@ -140,7 +142,9 @@ class BarController {
 		loggedUser.setRole(roleRepository.findByRole(RoleEnum.ENTERPRISE.toString()));
 		userRepository.save(loggedUser);
 
-		return "redirect:/";
+		request.logout();
+
+		return "redirect:/home";
 	}
 
 	@GetMapping("/bar/{barId}")
