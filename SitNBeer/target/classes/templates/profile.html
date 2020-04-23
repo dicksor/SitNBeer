@@ -20,13 +20,12 @@
             <ul>
                 <li>Name : <span th:text="${user.getUsername()}"></span></li>
                 <li>Email : <span th:text="${user.getEmail()}"></span></li>
-            </ul>
-            <br>
-            <p>You can order a beer by going to <a href="/bar/create">this page</a> !</p>           
-
+            </ul>       
 
             <h2>Access to :</h2>
             <span th:if="${user.getRole().getRoleName()=='USER'}">  
+                <p>You can order a beer by going to <a href="/bar/create">this page</a> !</p>   
+                <br>
                 <ul>
                     <li><a th:href="@{/orders/client/} + ${user.getId()}">Commands history</a></li>
                     <br>

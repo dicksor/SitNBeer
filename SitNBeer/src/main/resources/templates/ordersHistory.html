@@ -19,7 +19,7 @@
             <h1>Orders history</h1>
             <span th:if="${#lists.size(orders) > 0}">
                 <ul class="collection">
-                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).REJECTED or order.getStatus() == T(com.example.demo.models.enums.OrderStatusEnum).CLOSE}">
+                    <li class="collection-item" th:id="'order-' + ${order.id}" th:each="order: ${orders}" th:if="${order.getStatus() == T(ch.hearc.sitnbeer.models.enums.OrderStatusEnum).REJECTED or order.getStatus() == T(ch.hearc.sitnbeer.models.enums.OrderStatusEnum).CLOSE}">
                         <strong>Id : </strong><span th:text="${order.id}"></span><br>
                         <strong>Table : </strong><span th:text="${order.tableNumber}"></span><br>
                         <strong>Beer : </strong><span th:text="${order.getBeer().getName()}"></span><br>
