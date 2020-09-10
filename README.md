@@ -4,7 +4,7 @@ JEE Project: Beer order management in bars...
 
 ## Context
 
-Project done during the 3rd Bachelor semester in JEE course.
+Project done during the 6th Bachelor semester in JEE course.
 
 ## Team
 
